@@ -46,7 +46,7 @@ module TM1638_LED_KEY_DRV #(
     , input              MISO_i
     , output                FRAME_REQ_o
     , output                EN_CK_o
-    , output                MOSI_o
+    , output                tm1638_data
     , output                MOSI_OE_o
     , output                tm1638_clk
     , output                tm1638_strobe
@@ -109,8 +109,8 @@ module TM1638_LED_KEY_DRV #(
     // gen cyclic FRAME_request
     //
     // fps define
-    // SCLK CK count = C_HALF_DIV_LEN * 2
-    // FCK / SCLK / FPS = SCLK clocks
+    // output_clk_reg CK count = C_HALF_DIV_LEN * 2
+    // FCK / output_clk_reg / FPS = output_clk_reg clocks
     localparam C_FRAME_SCLK_N = C_FCK / (C_HALF_DIV_LEN * C_FPS) ; //8000
     localparam C_F_CTR_W = log2( C_FRAME_SCLK_N ) ;
     reg [C_F_CTR_W-1:0] F_CTR ;
@@ -459,19 +459,19 @@ module TM1638_LED_KEY_DRV #(
             endcase
         end
 
-    reg SCLK ;
+    reg output_clk_reg ;
     always @(posedge clk or negedge n_rst)
         if (~ n_rst)
-            SCLK <= 1'b1 ;
+            output_clk_reg <= 1'b1 ;
         else if( EN_SCLK )
-            SCLK <= 1'b1 ;
+            output_clk_reg <= 1'b1 ;
         else if (EN_XSCLK)
             case ( FRAME_STATE)
                   S_IDLE 
                 , S_BCD
                 , S_LOAD
                 , S_FINISH :
-                    SCLK <= 1'b1 ;
+                    output_clk_reg <= 1'b1 ;
                 default :
                     case (BYTE_STATE)
                           S_LOAD
@@ -482,7 +482,7 @@ module TM1638_LED_KEY_DRV #(
                         , S_BIT4
                         , S_BIT5
                         , S_BIT6 :
-                            SCLK <= 1'b0 ;
+                            output_clk_reg <= 1'b0 ;
                     endcase
             endcase
 
@@ -518,7 +518,7 @@ module TM1638_LED_KEY_DRV #(
                 endcase
             end
         end
-    assign tm1638_clk    = SCLK  ;
+    assign tm1638_clk    = output_clk_reg  ;
     assign MOSI_OE_o = MOSI_OE ;
     assign tm1638_strobe      = SS ;
 
@@ -818,7 +818,7 @@ module TM1638_LED_KEY_DRV #(
                     BYTE_BUFF <= {1'b0 , BYTE_BUFF[7:1]} ;
         endcase
 
-    assign MOSI_o = BYTE_BUFF[0] ;
+    assign tm1638_data = BYTE_BUFF[0] ;
 
 
     reg [ 7 :0] KEYS ;
@@ -861,90 +861,3 @@ module TM1638_LED_KEY_DRV #(
 endmodule //TM1638_LED_KEY_DRV()
 
 
-
-`timescale 1ns/1ns
-module TB_TM1638_LED_KEY_DRV #(
-    parameter C_C = 10.0
-)(
-) ;
-    reg     CK  ;
-    initial begin
-        CK <= 1'b1 ;
-        forever begin
-            #( C_C /2) ;
-            CK <= ~ CK ;
-        end
-    end
-    reg XARST   ;
-    initial begin
-        XARST <= 1'b1 ;
-        #( 0.1 * C_C) ;
-            XARST <= 1'b0 ;
-        #( 2.1 * C_C) ;
-            XARST <= 1'b1 ;
-    end
-
-    wire            FRAME_REQ_o     ;
-    wire            EN_CK_o         ;
-    reg             BIN2BCD_ON_i    ;
-    wire            ENCBIN_XDIRECT_i;
-    wire            MISO_i          ;
-    wire            MOSI            ;
-    wire            MOSI_OE         ;
-    wire            tm1638_clk          ;
-    wire            tm1638_strobe            ;
-    wire    [ 7:0]  KEYS            ;
-    assign ENCBIN_XDIRECT_i = 1'b1 ; //
-    TM1638_LED_KEY_DRV #(
-          .C_FCK    ( 4096         )// Hz
-        , .C_FSCLK  ( 1024             )// Hz
-        , .C_FPS    ( 1           )// cycle(Hz)
-    ) TM1638_LED_KEY_DRV (
-          .clk             ( CK            )
-        , .n_rst          ( XARST         )
-        , .DIRECT7SEG0_i    ( 7'b0111111 )
-        , .DIRECT7SEG1_i    ( 7'b0000110 )
-        , .DIRECT7SEG2_i    ( 7'b1011011 )
-        , .DIRECT7SEG3_i    ( 7'b1001111 )
-        , .DIRECT7SEG4_i    ( 7'b1100110 )
-        , .DIRECT7SEG5_i    ( 7'b1101101 )
-        , .DIRECT7SEG6_i    ( 7'b1111101 )
-        , .DIRECT7SEG7_i    ( 7'b0100111 )
-        , .DOTS_i           ( KEYS     )
-        , .LEDS_i           ( 8'hFF     )
-        , .BIN_DAT_i        ( {
-                                  4'h0
-                                , 4'h5
-                                , 4'hE
-                                , 4'h3
-                                , 4'h0
-                                , 4'hA
-                                , 4'h7
-                                , 4'h8
-                             })
-        , .SUP_DIGITS_i     ()
-        , .ENCBIN_XDIRECT_i ( ENCBIN_XDIRECT_i)
-        , .BIN2BCD_ON_i     ( BIN2BCD_ON_i  )
-        , .FRAME_REQ_o      ( FRAME_REQ_o   )
-        , .EN_CK_o          ( EN_CK_o       )
-        , .MISO_i           ( MISO_i        )
-        , .MOSI_o           ( MOSI          )
-        , .MOSI_OE_o        ( MOSI_OE       )
-        , .tm1638_clk           ( tm1638_clk        )
-        , .tm1638_strobe             ( tm1638_strobe          )
-        , .KEYS_o           ( KEYS          )
-    ) ;
-
-    integer TB_CTR ;
-    initial begin
-        TB_CTR <= 'd0 ;
-        BIN2BCD_ON_i <= 1'b1 ;
-        repeat ( 100  ) begin
-            repeat ( 100 )
-                @(posedge CK) ;
-            TB_CTR  <= TB_CTR +1 ;
-        end
-        $stop ;
-    end
-
-endmodule
