@@ -20,21 +20,13 @@ module TM1638_LED_KEY_DRV #(
 )(
       input                 clk
     , input              n_rst
-    , input   [ 6 :0]    DIRECT7SEG0_i
-    , input   [ 6 :0]    DIRECT7SEG1_i
-    , input   [ 6 :0]    DIRECT7SEG2_i
-    , input   [ 6 :0]    DIRECT7SEG3_i
-    , input   [ 6 :0]    DIRECT7SEG4_i
-    , input   [ 6 :0]    DIRECT7SEG5_i
-    , input   [ 6 :0]    DIRECT7SEG6_i
-    , input   [ 6 :0]    DIRECT7SEG7_i
     , input   [ 7 :0]    dots_input
     , input   [ 7 :0]    leds_input
     , input   [31 :0]    display_data_input
     , input   [ 7 :0]    SUP_DIGITS_i
-    , input              BIN2BCD_ON_i   
+    , input              enable_bin2bcd   
     , input              MISO_i
-    , output                FRAME_REQ_o
+    , output                on_frame_update
     , output                EN_CK_o
     , output                tm1638_data
     , output                MOSI_OE_o
@@ -42,6 +34,13 @@ module TM1638_LED_KEY_DRV #(
     , output                tm1638_strobe
     , output    [ 7:0]      key_values
 ) ;
+
+
+reg on_frame_update_reg;
+wire    [31:0]  bcd_values;
+wire    bcd_done;
+reg     enable_bin2bcd_reg;
+
     function time log2;             //time is reg unsigned [63:0]
         input time value ;
     begin
@@ -92,7 +91,35 @@ module TM1638_LED_KEY_DRV #(
     assign EN_CK = EN_XSCLK ;
     assign EN_CK_o = EN_CK ;
 
-    // gen cyclic FRAME_request
+
+    // main data part
+    //
+    //
+
+    
+    BIN2BCD #(
+          .C_MILLIONAIRE( 0 )   //1:Millionaire code  0:normal shift regs
+        , .C_WO_LATCH   ( 1 )   //0:BCD latch, increse 32FF, 1:less FF but
+    ) BIN2BCD (
+          .CK_i     ( clk              )
+        , .XARST_i  ( n_rst           )
+        , .EN_CK_i  ( EN_CK             )
+        , .DAT_i    ( display_data_input [26 :0] )
+        , .REQ_i    ( on_frame_update_reg         )
+        , .QQ_o     ( bcd_values              )
+        , .DONE_o   ( bcd_done          )
+    ) ;
+    
+
+
+
+
+
+
+
+
+
+    // gen cyclic on_frame_update_reguest
     //
     // fps define
     // output_clk_reg CK count = C_HALF_DIV_LEN * 2
@@ -100,33 +127,34 @@ module TM1638_LED_KEY_DRV #(
     localparam C_FRAME_SCLK_N = C_FCK / (C_HALF_DIV_LEN * C_FPS) ; //8000
     localparam C_F_CTR_W = log2( C_FRAME_SCLK_N ) ;
     reg [C_F_CTR_W-1:0] F_CTR ;
-    reg                 FRAME_REQ ;
     wire                F_CTR_cy ;
     assign F_CTR_cy = &(F_CTR | ~( C_FRAME_SCLK_N-1)) ;
     always @(posedge clk or negedge n_rst) 
-        if (~ n_rst) begin
+        if (~ n_rst) 
+        begin
             F_CTR <= 'd0 ;
-            FRAME_REQ <= 1'b0 ;
-        end else if (EN_CK) begin
-            FRAME_REQ <= F_CTR_cy ;
+            on_frame_update_reg <= 1'b0 ;
+        end 
+        else if (EN_CK) 
+        begin
+            on_frame_update_reg <= F_CTR_cy ;
             if (F_CTR_cy)
                 F_CTR<= 'd0 ;
             else
                 F_CTR <= F_CTR + 1 ;
         end
-    assign FRAME_REQ_o = FRAME_REQ ;
-    reg     BIN2BCD_ON_D    ;
+    assign on_frame_update = on_frame_update_reg ;
+
     always @(posedge clk or negedge n_rst) 
         if (~ n_rst)
-            BIN2BCD_ON_D <= 1'b0 ;
+            enable_bin2bcd_reg <= 1'b0 ;
         else if ( EN_CK )
-            if (FRAME_REQ)
-                BIN2BCD_ON_D <= BIN2BCD_ON_i ;
-    wire    BCD_DONE        ;
-    reg     BCD_DONE_D       ;
+            if (on_frame_update_reg)
+                enable_bin2bcd_reg <= enable_bin2bcd ;
+    reg     bcd_done_D       ;
     always @(posedge clk or negedge n_rst) 
         if (~ n_rst)
-            BCD_DONE_D <= 1'b0 ;
+            bcd_done_D <= 1'b0 ;
 
     // inter byte seqenser
     //
@@ -151,7 +179,7 @@ module TM1638_LED_KEY_DRV #(
         if (~ n_rst)
             BYTE_STATE <= S_STARTUP ;
         else if (EN_CK)
-            if ( FRAME_REQ |  BCD_DONE)
+            if ( on_frame_update_reg |  bcd_done)
                 BYTE_STATE <= S_LOAD ;
             else case (BYTE_STATE)
                 S_STARTUP    :
@@ -223,16 +251,16 @@ module TM1638_LED_KEY_DRV #(
         if (~ n_rst)
             FRAME_STATE <= S_STARTUP ;
         else if (EN_CK)
-            if (FRAME_REQ)
+            if (on_frame_update_reg)
                 FRAME_STATE <= S_BCD ;
             else case (FRAME_STATE)
                 S_STARTUP    :
                     FRAME_STATE <= S_IDLE ;
                 S_IDLE       :
-                    if ( FRAME_REQ )
+                    if ( on_frame_update_reg )
                         FRAME_STATE <= S_BCD ;
                 S_BCD :
-                    if ( BCD_DONE )
+                    if ( bcd_done )
                         FRAME_STATE <= S_LOAD ;
                 S_LOAD       : //7seg convert
                     case ( BYTE_STATE )
@@ -490,7 +518,7 @@ module TM1638_LED_KEY_DRV #(
                         endcase
                     endcase
             else if ( EN_XSCLK ) begin
-                if ( FRAME_REQ )
+                if ( on_frame_update_reg )
                     SS <= 1'b1 ;
                 case (BYTE_STATE)
                     S_FINISH :
@@ -510,30 +538,13 @@ module TM1638_LED_KEY_DRV #(
 
 
 
-    // main data part
-    //
-    //
-    wire    [31:0]  BCDS    ;
-    BIN2BCD #(
-          .C_MILLIONAIRE( 0 )   //1:Millionaire code  0:normal shift regs
-        , .C_WO_LATCH   ( 1 )   //0:BCD latch, increse 32FF, 1:less FF but
-    ) BIN2BCD (
-          .CK_i     ( clk              )
-        , .XARST_i  ( n_rst           )
-        , .EN_CK_i  ( EN_CK             )
-        , .DAT_i    ( display_data_input [26 :0] )
-        , .REQ_i    ( FRAME_REQ         )
-        , .QQ_o     ( BCDS              )
-        , .DONE_o   ( BCD_DONE          )
-    ) ;
-    
-//    wire    [31:0]  BCDS ;
+
     reg     [34:0]  DAT_BUFF ;   //5bit downsized, but too complex
     always @(posedge clk or negedge n_rst)
         if (~ n_rst)
             DAT_BUFF <= 35'd0 ;
         else if (EN_CK) begin
-            if (FRAME_REQ )
+            if (on_frame_update_reg )
                 DAT_BUFF <= {
                       SUP_DIGITS_i  [7]
                     , display_data_input     [7*4 +:4]
@@ -550,15 +561,15 @@ module TM1638_LED_KEY_DRV #(
                     , SUP_DIGITS_i  [1]
                     , display_data_input     [1*4 +:4]
                 } ;
-            else if( BCD_DONE )
-                if ( BIN2BCD_ON_D ) begin
-                    DAT_BUFF[6*5 +:4] <= BCDS[7*4 +:4] ;
-                    DAT_BUFF[5*5 +:4] <= BCDS[6*4 +:4] ;
-                    DAT_BUFF[4*5 +:4] <= BCDS[5*4 +:4] ;
-                    DAT_BUFF[3*5 +:4] <= BCDS[4*4 +:4] ;
-                    DAT_BUFF[2*5 +:4] <= BCDS[3*4 +:4] ;
-                    DAT_BUFF[1*5 +:4] <= BCDS[2*4 +:4] ;
-                    DAT_BUFF[0*5 +:4] <= BCDS[1*4 +:4] ;
+            else if( bcd_done )
+                if ( enable_bin2bcd_reg ) begin
+                    DAT_BUFF[6*5 +:4] <= bcd_values[7*4 +:4] ;
+                    DAT_BUFF[5*5 +:4] <= bcd_values[6*4 +:4] ;
+                    DAT_BUFF[4*5 +:4] <= bcd_values[5*4 +:4] ;
+                    DAT_BUFF[3*5 +:4] <= bcd_values[4*4 +:4] ;
+                    DAT_BUFF[2*5 +:4] <= bcd_values[3*4 +:4] ;
+                    DAT_BUFF[1*5 +:4] <= bcd_values[2*4 +:4] ;
+                    DAT_BUFF[0*5 +:4] <= bcd_values[1*4 +:4] ;
                 end
             case (FRAME_STATE)
                 S_LOAD :
@@ -575,7 +586,7 @@ module TM1638_LED_KEY_DRV #(
         if (~ n_rst) begin
             SUP_DIGIT_0 <= 1'b0 ;
             BIN_DAT_0 <= 4'b0 ;
-        end else if (FRAME_REQ) begin
+        end else if (on_frame_update_reg) begin
             SUP_DIGIT_0 <= SUP_DIGITS_i[0] ;
             BIN_DAT_0 <= display_data_input[3:0] ;
         end
@@ -583,9 +594,9 @@ module TM1638_LED_KEY_DRV #(
     wire [ 3 :0] octet_seled ;
     wire        sup_now ;
     assign {sup_now, octet_seled } = 
-        ( BCD_DONE ) ? 
-                (BIN2BCD_ON_D) ? 
-                    {SUP_DIGIT_0 , BCDS[3:0] }
+        ( bcd_done ) ? 
+                (enable_bin2bcd_reg) ? 
+                    {SUP_DIGIT_0 , bcd_values[3:0] }
                 :
                     {SUP_DIGIT_0 , BIN_DAT_0} 
             : 
@@ -634,7 +645,7 @@ module TM1638_LED_KEY_DRV #(
         if (~ n_rst)
             ENC_SHIFT <= 1'b0 ;
         else if ( EN_CK )
-            if ( BCD_DONE )
+            if ( bcd_done )
                 ENC_SHIFT <= 1'b1 ;
             else
                 case (BYTE_STATE)
@@ -649,26 +660,26 @@ module TM1638_LED_KEY_DRV #(
             main_buffer_reg <= 72'd0 ;
         else if ( EN_CK )
 			begin
-				if ( FRAME_REQ ) 
+				if ( on_frame_update_reg ) 
 				begin
 					 main_buffer_reg[71:7] <= {
-												leds_input[0] , dots_input[0] , DIRECT7SEG0_i,
-												leds_input[1], dots_input[1], DIRECT7SEG1_i, 
-												leds_input[2], dots_input[2], DIRECT7SEG2_i,
-												leds_input[3], dots_input[3], DIRECT7SEG3_i,
-												leds_input[4], dots_input[4], DIRECT7SEG4_i, 
-												leds_input[5], dots_input[5], DIRECT7SEG5_i, 
-												leds_input[6], dots_input[6], DIRECT7SEG6_i, 
+												leds_input[0] , dots_input[0] , 7'b00,
+												leds_input[1], dots_input[1], 7'b00, 
+												leds_input[2], dots_input[2], 7'b00,
+												leds_input[3], dots_input[3], 7'b00,
+												leds_input[4], dots_input[4], 7'b00, 
+												leds_input[5], dots_input[5], 7'b00, 
+												leds_input[6], dots_input[6], 7'b00, 
 												leds_input[7], dots_input[7]
 											} ;
 					 main_buffer_reg[6:0] <= enced_7seg ;
 				end 
-				else if ( BCD_DONE )
+				else if ( bcd_done )
 				begin
-					if( BIN2BCD_ON_D )
+					if( enable_bin2bcd_reg )
 						main_buffer_reg[6:0] <= enced_7seg ;
 				end 
-				else if (BCD_DONE_D | ENC_SHIFT)
+				else if (bcd_done_D | ENC_SHIFT)
 					 case (FRAME_STATE)
 						 S_LOAD :
 							main_buffer_reg <=  {

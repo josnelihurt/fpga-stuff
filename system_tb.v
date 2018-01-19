@@ -36,6 +36,7 @@ parameter clk_freq = 1000000000 / tck; // Frequenzy in HZ
 reg        clk_tb;
 reg        rst_tb;
 wire[2:0]  led_tb;
+reg 	   io5_tb;
 //----------------------------------------------------------------------------
 // UART STUFF (testbench uart, simulating a comm. partner)
 //----------------------------------------------------------------------------
@@ -50,6 +51,7 @@ system #(
 	.uart_baud_rate	(	uart_baud_rate	)
 ) dut  (
 	.clk(	clk_tb	),
+	.io5( io5_tb ),
 	// Debug
 	.rst(	rst_tb	),
 	.leds(	led_tb	)
@@ -69,6 +71,7 @@ initial begin
 	//export all signals in the simulation viewer
 	$dumpvars(-1, dut);
 	//$dumpvars(-1,clk_tb,rst_tb);
+	#0  io5_tb <= 1;
 	#0  rst_tb <= 0;
 	#80 rst_tb <= 1;
 	#(tck*1000000) $finish;
