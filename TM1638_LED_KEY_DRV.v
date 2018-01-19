@@ -25,11 +25,11 @@ module TM1638_LED_KEY_DRV #(
     , input   [31 :0]    display_data_input
     , input   [ 7 :0]    SUP_DIGITS_i
     , input              enable_bin2bcd   
-    , input              MISO_i
+    , input              tm1638_data_input
     , output                on_frame_update
     , output                EN_CK_o
-    , output                tm1638_data
-    , output                MOSI_OE_o
+    , output                tm1638_data_output
+    , output                tm1638_data_oe
     , output                tm1638_clk
     , output                tm1638_strobe
     , output    [ 7:0]      key_values
@@ -59,7 +59,6 @@ reg     enable_bin2bcd_reg;
         ((C_FCK % (C_FSCLK * 2)) ? 1 : 0) 
     ;
     localparam C_HALF_DIV_W = log2( C_HALF_DIV_LEN ) ;
-//    reg EN_HSCLK ;
     reg EN_SCLK ;
     reg EN_XSCLK ;
     reg EN_SCLK_D ;
@@ -72,12 +71,10 @@ reg     enable_bin2bcd_reg;
         if (~n_rst) begin
             H_DIV_CTR <= 'd0 ;
             DIV_CTR  <=  1'd0 ;
-//            EN_HSCLK <=  1'b0 ;
             EN_SCLK  <=  1'b0 ;
             EN_XSCLK <=  1'b0 ;
             EN_SCLK_D <= 1'b0 ;
         end else begin
-//            EN_HSCLK <= H_DIV_CTR_cy ;
             EN_SCLK  <= H_DIV_CTR_cy & ~ DIV_CTR ;
             EN_XSCLK <= H_DIV_CTR_cy &   DIV_CTR ;
             EN_SCLK_D <= EN_SCLK ;
@@ -110,14 +107,6 @@ reg     enable_bin2bcd_reg;
         , .DONE_o   ( bcd_done          )
     ) ;
     
-
-
-
-
-
-
-
-
 
     // gen cyclic on_frame_update_reguest
     //
@@ -218,9 +207,9 @@ reg     enable_bin2bcd_reg;
 
     // frame sequenser
     //
-//    localparam S_STARTUP    = 'hFF ;
-//    localparam S_IDLE       =   0 ;
-//    localparam S_LOAD       =   1 ;
+	//    localparam S_STARTUP    = 'hFF ;
+	//    localparam S_IDLE       =   0 ;
+	//    localparam S_LOAD       =   1 ;
     localparam S_BCD        = 7 ;
     localparam S_SEND_SET   =   2 ;
     localparam S_LED_ADR_SET=   4 ;
@@ -442,7 +431,7 @@ reg     enable_bin2bcd_reg;
     always @(posedge clk or negedge n_rst)
         if (~ n_rst)
             MOSI_OE <= 1'b0 ;
-        else if( EN_CK) begin // EN_XSCLK
+        else if( EN_CK) begin
             case ( BYTE_STATE )
                 S_BIT7 :
                     MOSI_OE <= 1'b0 ;
@@ -533,7 +522,7 @@ reg     enable_bin2bcd_reg;
             end
         end
     assign tm1638_clk    = output_clk_reg  ;
-    assign MOSI_OE_o = MOSI_OE ;
+    assign tm1638_data_oe = MOSI_OE ;
     assign tm1638_strobe      = SS ;
 
 
@@ -766,7 +755,7 @@ reg     enable_bin2bcd_reg;
                     BYTE_BUFF <= {1'b0 , BYTE_BUFF[7:1]} ;
         endcase
 
-    assign tm1638_data = BYTE_BUFF[0] ;
+    assign tm1638_data_output = BYTE_BUFF[0] ;
 
 
     reg [ 7 :0] key_values_reg ;
@@ -778,30 +767,30 @@ reg     enable_bin2bcd_reg;
                 S_KEY0 : 
                     case (BYTE_STATE)
                         S_BIT0 :
-                            key_values_reg[7] <= MISO_i ;
+                            key_values_reg[7] <= tm1638_data_input ;
                         S_BIT4 :
-                            key_values_reg[6] <= MISO_i ;
+                            key_values_reg[6] <= tm1638_data_input ;
                     endcase
                 S_KEY1 : 
                     case (BYTE_STATE)
                         S_BIT0 :
-                            key_values_reg[5] <= MISO_i ;
+                            key_values_reg[5] <= tm1638_data_input ;
                         S_BIT4 :
-                            key_values_reg[4] <= MISO_i ;
+                            key_values_reg[4] <= tm1638_data_input ;
                     endcase
                 S_KEY2 : 
                     case (BYTE_STATE)
                         S_BIT0 :
-                            key_values_reg[3] <= MISO_i ;
+                            key_values_reg[3] <= tm1638_data_input ;
                         S_BIT4 :
-                            key_values_reg[2] <= MISO_i ;
+                            key_values_reg[2] <= tm1638_data_input ;
                     endcase
                 S_KEY3 : 
                     case (BYTE_STATE)
                         S_BIT0 :
-                            key_values_reg[1] <= MISO_i ;
+                            key_values_reg[1] <= tm1638_data_input ;
                         S_BIT4 :
-                            key_values_reg[0] <= MISO_i ;
+                            key_values_reg[0] <= tm1638_data_input ;
                     endcase
             endcase
     assign key_values = key_values_reg ;

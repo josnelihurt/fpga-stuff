@@ -45,7 +45,7 @@ module system
 	// Debug 
 	output	[2:0] leds,
 	output tm1638_strobe,
-	output tm1638_data,
+	inout  tm1638_data_io,
 	output tm1638_clk
 );
 //---------------------------------------------------------------------------
@@ -63,6 +63,15 @@ counter	#(    .N(32), // number of bits in counter
     .q()
    );
    
+parameter C_FCK = 50_000_000 ;
+
+wire [ 7:0] board_keys;
+reg [ 7:0] board_keys_reg;
+
+wire tm1638_data_oe ;
+wire tm1638_data_input;
+wire tm1638_data_output;
+assign tm1638_data_io = ( tm1638_data_oe ) ? tm1638_data_output : 1'bZ ; //DIO
    
    //signal declaration
    reg [31:0] counter_reg;
@@ -77,29 +86,31 @@ counter	#(    .N(32), // number of bits in counter
    // next-state logic
    assign counter_next = counter_reg + 1;
 
+   always @(posedge counter_unit0_ovf, posedge n_rst)
+      if (n_rst)
+         board_keys_reg <= 8'b0;
+      else
+         board_keys_reg <= board_keys;
 
 
-parameter C_FCK = 50_000_000 ;
-
-wire [ 7:0] board_keys;
 
 TM1638_LED_KEY_DRV #(
           .C_FCK    ( C_FCK         )// Hz
         , .C_FSCLK  ( 1_000_000     )// Hz
         , .C_FPS    ( 250           )// cycle(Hz)
     ) tm1638_ctrl_unit0 (
-          .clk             ( clk            )
-        , .n_rst          ( rst         )
-        , .dots_input           ( counter_reg[7:0]     )
-        , .leds_input           ( counter_reg[7:0]     )
-        , .display_data_input   ( counter_reg[31:0] )
-        , .SUP_DIGITS_i     ()
+          .clk(clk)
+        , .n_rst(rst)
+        , .dots_input(board_keys_reg)
+        , .leds_input( counter_reg[7:0])
+        , .display_data_input(counter_reg[31:0])
+        , .SUP_DIGITS_i()
         , .enable_bin2bcd( io5 )
-        , .MISO_i           ( )
-        , .tm1638_data           ( tm1638_data )
-        , .MOSI_OE_o        ( )
-        , .tm1638_clk           ( tm1638_clk )
-        , .tm1638_strobe             ( tm1638_strobe )
+        , .tm1638_data_input (tm1638_data_input)
+        , .tm1638_data_output ( tm1638_data_output )
+        , .tm1638_data_oe( tm1638_data_oe)
+        , .tm1638_clk( tm1638_clk )
+        , .tm1638_strobe( tm1638_strobe )
         , .key_values( board_keys)
     ) ;
 

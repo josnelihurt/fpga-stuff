@@ -37,6 +37,7 @@ reg        clk_tb;
 reg        rst_tb;
 wire[2:0]  led_tb;
 reg 	   io5_tb;
+wire tm1638_data_io_tb;
 //----------------------------------------------------------------------------
 // UART STUFF (testbench uart, simulating a comm. partner)
 //----------------------------------------------------------------------------
@@ -52,6 +53,7 @@ system #(
 ) dut  (
 	.clk(	clk_tb	),
 	.io5( io5_tb ),
+	.tm1638_data_io(tm1638_data_io_tb),
 	// Debug
 	.rst(	rst_tb	),
 	.leds(	led_tb	)
