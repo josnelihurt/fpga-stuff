@@ -94,6 +94,9 @@ assign tm1638_data_io = ( tm1638_data_oe ) ? tm1638_data_output : 1'bZ ; //DIO
 
 
 
+    reg [7:0]   SUP_DIGITS ;
+
+
 TM1638_LED_KEY_DRV #(
           .C_FCK    ( C_FCK         )// Hz
         , .C_FSCLK  ( 1_000_000     )// Hz
@@ -104,7 +107,7 @@ TM1638_LED_KEY_DRV #(
         , .dots_input(board_keys_reg)
         , .leds_input( counter_reg[7:0])
         , .display_data_input(counter_reg[31:0])
-        , .SUP_DIGITS_i()
+        , .SUP_DIGITS_i(SUP_DIGITS)
         , .enable_bin2bcd( io5 )
         , .tm1638_data_input (tm1638_data_input)
         , .tm1638_data_output ( tm1638_data_output )
@@ -114,7 +117,13 @@ TM1638_LED_KEY_DRV #(
         , .key_values( board_keys)
     ) ;
 
-
+    generate
+        genvar g_idx ;
+        for (g_idx=0 ; g_idx<8 ; g_idx=g_idx+1)begin :gen_SUPS
+            always @ (posedge clk)
+                    SUP_DIGITS[g_idx] <= board_keys[ g_idx ] ;
+        end
+    endgenerate 
 
 
 
