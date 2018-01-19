@@ -1,1 +1,6 @@
 simulation
+_impactbatch.log
+build
+sys_install_scripts
+*.bit
+system.svf

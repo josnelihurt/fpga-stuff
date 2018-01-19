@@ -6,6 +6,11 @@ NET "rst" LOC = "P13" | IOSTANDARD = LVTTL;
 NET "leds(0)" LOC = "P61" | IOSTANDARD = LVTTL;
 NET "leds(1)" LOC = "P62" | IOSTANDARD = LVTTL;
 NET "leds(2)" LOC = "P63" | IOSTANDARD = LVTTL;
+NET "io9" LOC = "P9" | IOSTANDARD = LVTTL;
+NET "io5" LOC = "P5" | IOSTANDARD = LVTTL;
+NET "io4" LOC = "P4" | IOSTANDARD = LVTTL;
+
+
 # ==== tm1638 ====
 NET "tm1638_strobe" LOC = "P60" | IOSTANDARD = LVTTL;
 NET "tm1638_data" LOC = "P58" | IOSTANDARD = LVTTL;

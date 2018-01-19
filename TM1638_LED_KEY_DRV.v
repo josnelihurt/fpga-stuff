@@ -11,16 +11,7 @@
 // hatena: id:mangakoji http://mangakoji.hatenablog.com/
 // GitHub :@mangakoji
 //
-//
-//2017-05-06sa      :debug done append BIN2DEC 
-///                     354LE(BIN2BCD 77LE) um too big
-//2017-05-05fr  015 :add BIN2DEC , add FRAME_REQ_o
-//2017-05-02tu  013 :all feature passed
-//              011 :almost passed, remind SUP_DIGITS
-//              010 :DIRECT passed, ENC7SEG debug prepare commit
-//2017-05-01mo  008 :1st compile is passed , debug start
-//              007 :1ce wrote
-//2017-04-29sa  :1st
+
 
 module TM1638_LED_KEY_DRV #(
       parameter C_FCK  =  48_000_000  // Hz
@@ -37,11 +28,10 @@ module TM1638_LED_KEY_DRV #(
     , input   [ 6 :0]    DIRECT7SEG5_i
     , input   [ 6 :0]    DIRECT7SEG6_i
     , input   [ 6 :0]    DIRECT7SEG7_i
-    , input   [ 7 :0]    DOTS_i
-    , input   [ 7 :0]    LEDS_i
+    , input   [ 7 :0]    dots_input
+    , input   [ 7 :0]    leds_input
     , input   [31 :0]    BIN_DAT_i
     , input   [ 7 :0]    SUP_DIGITS_i
-    , input              ENCBIN_XDIRECT_i
     , input              BIN2BCD_ON_i   
     , input              MISO_i
     , output                FRAME_REQ_o
@@ -60,6 +50,8 @@ module TM1638_LED_KEY_DRV #(
             value = value>>1;
     end endfunction
 
+wire ENCBIN_XDIRECT_i;
+assign ENCBIN_XDIRECT_i = 1;
 
     //
     // ctl part
@@ -650,7 +642,7 @@ module TM1638_LED_KEY_DRV #(
         if (~ n_rst)
             ENCBIN_XDIRECT_D <= 1'b0 ;
         else if( FRAME_REQ )
-            ENCBIN_XDIRECT_D <= ENCBIN_XDIRECT_i ;
+            ENCBIN_XDIRECT_D <= 1'b1 ;
 //    assign ENCBIN_XDIRECT_y = (FRAME_REQ)? ENCBIN_XDIRECT_i : ENCBIN_XDIRECT
 
     reg             ENC_SHIFT ;
@@ -667,64 +659,48 @@ module TM1638_LED_KEY_DRV #(
                 endcase
 
 
-    reg     [71 :0] MAIN_BUFF ; //7bit downsize but too complex.
+    reg     [71 :0] main_buffer_reg ; //7bit downsize but too complex.
     always @(posedge clk or negedge n_rst)
         if (~ n_rst)
-            MAIN_BUFF <= 72'd0 ;
+            main_buffer_reg <= 72'd0 ;
         else if ( EN_CK )
-            if ( FRAME_REQ ) begin
-                 MAIN_BUFF[71:7] <= {
-                       LEDS_i[0]
-                     , DOTS_i[0]
-                     , DIRECT7SEG0_i
-                     , LEDS_i[1]
-                     , DOTS_i[1]
-                     , DIRECT7SEG1_i
-                     , LEDS_i[2]
-                     , DOTS_i[2]
-                     , DIRECT7SEG2_i
-                     , LEDS_i[3]
-                     , DOTS_i[3]
-                     , DIRECT7SEG3_i
-                     , LEDS_i[4]
-                     , DOTS_i[4]
-                     , DIRECT7SEG4_i
-                     , LEDS_i[5]
-                     , DOTS_i[5]
-                     , DIRECT7SEG5_i
-                     , LEDS_i[6]
-                     , DOTS_i[6]
-                     , DIRECT7SEG6_i
-                     , LEDS_i[7]
-                     , DOTS_i[7]
-                 } ;
-                 if ( ENCBIN_XDIRECT_i )
-                     MAIN_BUFF[6:0] <= enced_7seg ;
-                 else
-                     MAIN_BUFF[6:0] <= DIRECT7SEG7_i ;
-            end else if ( BCD_DONE ) begin
+            if ( FRAME_REQ ) 
+            begin
+                 main_buffer_reg[71:7] <= {
+											leds_input[0] , dots_input[0] , DIRECT7SEG0_i,
+											leds_input[1], dots_input[1], DIRECT7SEG1_i, 
+											leds_input[2], dots_input[2], DIRECT7SEG2_i,
+											leds_input[3], dots_input[3], DIRECT7SEG3_i,
+											leds_input[4], dots_input[4], DIRECT7SEG4_i, 
+											leds_input[5], dots_input[5], DIRECT7SEG5_i, 
+											leds_input[6], dots_input[6], DIRECT7SEG6_i, 
+											leds_input[7], dots_input[7]
+										} ;
+                 main_buffer_reg[6:0] <= enced_7seg ;
+            end else if ( BCD_DONE )
+            begin
                 if( BIN2BCD_ON_D )
-                    MAIN_BUFF[6:0] <= enced_7seg ;
+                    main_buffer_reg[6:0] <= enced_7seg ;
             end else if (BCD_DONE_D | ENC_SHIFT)
                  case (FRAME_STATE)
                      S_LOAD :
                         if (ENCBIN_XDIRECT_D) 
-                            MAIN_BUFF <=  {
-                                  MAIN_BUFF[7*9+7  +:2]
-                                , MAIN_BUFF[6*9    +:7]
-                                , MAIN_BUFF[6*9+7  +:2]
-                                , MAIN_BUFF[5*9    +:7]
-                                , MAIN_BUFF[5*9+7  +:2]
-                                , MAIN_BUFF[4*9    +:7]
-                                , MAIN_BUFF[4*9+7  +:2]
-                                , MAIN_BUFF[3*9    +:7]
-                                , MAIN_BUFF[3*9+7  +:2]
-                                , MAIN_BUFF[2*9    +:7]
-                                , MAIN_BUFF[2*9+7  +:2]
-                                , MAIN_BUFF[1*9    +:7]
-                                , MAIN_BUFF[1*9+7  +:2]
-                                , MAIN_BUFF[0*9    +:7]
-                                , MAIN_BUFF[0*9+7  +:2]
+                            main_buffer_reg <=  {
+                                  main_buffer_reg[7*9+7  +:2]
+                                , main_buffer_reg[6*9    +:7]
+                                , main_buffer_reg[6*9+7  +:2]
+                                , main_buffer_reg[5*9    +:7]
+                                , main_buffer_reg[5*9+7  +:2]
+                                , main_buffer_reg[4*9    +:7]
+                                , main_buffer_reg[4*9+7  +:2]
+                                , main_buffer_reg[3*9    +:7]
+                                , main_buffer_reg[3*9+7  +:2]
+                                , main_buffer_reg[2*9    +:7]
+                                , main_buffer_reg[2*9+7  +:2]
+                                , main_buffer_reg[1*9    +:7]
+                                , main_buffer_reg[1*9+7  +:2]
+                                , main_buffer_reg[0*9    +:7]
+                                , main_buffer_reg[0*9+7  +:2]
                                 , enced_7seg 
                             } ;
                 endcase
@@ -747,9 +723,9 @@ module TM1638_LED_KEY_DRV #(
                              , S_BIT5
                              , S_BIT6
                              , S_BIT7 :
-                                 MAIN_BUFF <= {
-                                      MAIN_BUFF[0]
-                                     , MAIN_BUFF[71:1]
+                                 main_buffer_reg <= {
+                                      main_buffer_reg[0]
+                                     , main_buffer_reg[71:1]
                                  } ;
                          endcase
                        S_LED0H
@@ -762,9 +738,9 @@ module TM1638_LED_KEY_DRV #(
                      , S_LED7H :
                          case ( BYTE_STATE )
                                S_BIT0 :
-                                 MAIN_BUFF <= {
-                                       MAIN_BUFF[0]
-                                     , MAIN_BUFF[71:1]
+                                 main_buffer_reg <= {
+                                       main_buffer_reg[0]
+                                     , main_buffer_reg[71:1]
                                  } ;
                          endcase
                 endcase
@@ -796,7 +772,7 @@ module TM1638_LED_KEY_DRV #(
                         , S_LED5L
                         , S_LED6L
                         , S_LED7L :
-                            BYTE_BUFF <= MAIN_BUFF[7:0] ;
+                            BYTE_BUFF <= main_buffer_reg[7:0] ;
                           S_LED0H
                         , S_LED1H
                         , S_LED2H
@@ -805,7 +781,7 @@ module TM1638_LED_KEY_DRV #(
                         , S_LED5H
                         , S_LED6H
                         , S_LED7H :
-                            BYTE_BUFF <= {7'b0000_000 , MAIN_BUFF[0]} ;
+                            BYTE_BUFF <= {7'b0000_000 , main_buffer_reg[0]} ;
                     endcase
                   S_BIT0
                 , S_BIT1
