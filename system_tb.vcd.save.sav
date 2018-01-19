@@ -1,0 +1,25 @@
+[*]
+[*] GTKWave Analyzer v3.3.34 (w)1999-2012 BSI
+[*] Mon Jun 18 23:12:29 2012
+[*]
+[dumpfile] "/home/fsegura/Dropbox/JOSNELIHURT/HDL/SharkBoard/Blinking_led/simulation/system_tb.vcd"
+[dumpfile_mtime] "Mon Jun 18 23:09:32 2012"
+[dumpfile_size] 16706750
+[savefile] "/home/fsegura/Dropbox/JOSNELIHURT/HDL/SharkBoard/Blinking_led/system_tb.vcd.save.sav"
+[timestart] 0
+[size] 1000 600
+[pos] 333 254
+*-18.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] system_tb.
+[treeopen] system_tb.dut.
+[sst_width] 223
+[signals_width] 86
+[sst_expanded] 1
+[sst_vpaned_height] 160
+@28
+system_tb.dut.clk
+system_tb.dut.led_out
+@29
+system_tb.dut.rst
+[pattern_trace] 1
+[pattern_trace] 0
