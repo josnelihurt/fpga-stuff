@@ -100,7 +100,7 @@ TM1638_LED_KEY_DRV #(
         , .DIRECT7SEG7_i    ( 7'b0100111 )
         , .dots_input           ( counter_reg[7:0]     )
         , .leds_input           ( counter_reg[7:0]     )
-        , .BIN_DAT_i        ( counter_reg[31:0] )
+        , .display_data_input   ( counter_reg[31:0] )
         , .SUP_DIGITS_i     ()
         , .BIN2BCD_ON_i     ( io5 )
         , .MISO_i           ( )
@@ -108,7 +108,7 @@ TM1638_LED_KEY_DRV #(
         , .MOSI_OE_o        ( )
         , .tm1638_clk           ( tm1638_clk )
         , .tm1638_strobe             ( tm1638_strobe )
-        , .KEYS_o           ( board_keys)
+        , .key_values( board_keys)
     ) ;
 
 
