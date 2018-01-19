@@ -90,7 +90,6 @@ TM1638_LED_KEY_DRV #(
     ) tm1638_ctrl_unit0 (
           .clk             ( clk            )
         , .n_rst          ( rst         )
-        , .DIRECT7SEG0_i    ( counter_reg[7	:0] )
         , .dots_input           ( counter_reg[7:0]     )
         , .leds_input           ( counter_reg[7:0]     )
         , .display_data_input   ( counter_reg[31:0] )
