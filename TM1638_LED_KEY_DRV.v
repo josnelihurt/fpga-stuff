@@ -62,6 +62,7 @@ module TM1638_LED_KEY_DRV #(
     reg [C_HALF_DIV_W-1 :0] main_clock_counter_reg ;
     wire [C_HALF_DIV_W-1 :0] main_clock_counter_next ;
     reg  main_clock_counter_compare_d ;
+    wire main_clock;
     wire main_clock_counter_compare ;
     assign main_clock_counter_next = main_clock_counter_reg + 1;
     assign main_clock_counter_compare = &(main_clock_counter_reg | ~(C_HALF_DIV_LEN-1)) ;
@@ -87,7 +88,7 @@ module TM1638_LED_KEY_DRV #(
     end
     
     assign enable_clk = enable_clk_reg ;
-
+	assign main_clock = enable_clk90_reg | enable_clk_reg;
 
     // main data part
     //
@@ -139,13 +140,12 @@ module TM1638_LED_KEY_DRV #(
     
     assign on_frame_update = on_frame_update_reg ;
 
-    always @(posedge clk or negedge n_rst) 
+    always @(posedge on_frame_update_reg or negedge n_rst) 
     begin
         if (~ n_rst)
             enable_bin2bcd_reg <= 1'b0 ;
-        else if ( enable_clk_reg )
-            if (on_frame_update_reg)
-                enable_bin2bcd_reg <= enable_bin2bcd ;
+        else
+			enable_bin2bcd_reg <= enable_bin2bcd ;
     end
     
     reg     bcd_done_D;
@@ -472,8 +472,10 @@ module TM1638_LED_KEY_DRV #(
 	end
 
     reg tm1638_strobe_reg ;
+    reg tm1638_strobe_reg_testA ;
     always @(posedge clk or negedge n_rst)
     begin
+		tm1638_strobe_reg_testA <= 1'b1;
         if (~ n_rst)
             tm1638_strobe_reg <= 1'b1 ;
         else 
@@ -483,7 +485,10 @@ module TM1638_LED_KEY_DRV #(
                     S_LOAD :
 						case ( state_frame_reg )
 							S_SEND_SET, S_LED_ADR_SET, S_LEDPWR_SET, S_KEY_ADR_SET :
+							begin
 								tm1638_strobe_reg <= 1'b0 ;
+								tm1638_strobe_reg_testA <= 1'b0;	
+							end
 						endcase
                 endcase
             else if ( enable_clk_reg ) 
@@ -500,17 +505,41 @@ module TM1638_LED_KEY_DRV #(
             end
         end
     end
+    reg tm1638_strobe_load_reg;
+    reg tm1638_strobe_finish_reg;
+    always @(negedge main_clock or negedge n_rst)
+    begin
+		if (~ n_rst)
+            tm1638_strobe_load_reg <= 1'b1 ;
+        else 
+        begin
+            tm1638_strobe_load_reg <= 1'b1 ;
+			case (state_byte_reg)
+				S_LOAD :
+					case ( state_frame_reg )
+						S_SEND_SET, S_LED_ADR_SET, S_LEDPWR_SET, S_KEY_ADR_SET :
+						begin
+							tm1638_strobe_load_reg <= 1'b0 ;
+						end
+					endcase
+			endcase       
+        end
+    end
+    
+    
     assign tm1638_clk    = output_clk_reg  ;
     assign tm1638_data_oe = tm1638_data_oe_reg ;
     assign tm1638_strobe      = tm1638_strobe_reg ;
 
     reg     [34:0]  DAT_BUFF ;   //5bit downsized, but too complex
-    always @(posedge clk or negedge n_rst)
+    always @(posedge enable_clk_reg or negedge n_rst)
 	begin
         if (~ n_rst)
             DAT_BUFF <= 35'd0 ;
-        else if (enable_clk_reg) begin
-            if (on_frame_update_reg )
+        else 
+        begin
+            if (on_frame_update )
+            begin
                 DAT_BUFF <= {
                       SUP_DIGITS_i  [7]
                     , display_data_input     [7*4 +:4]
@@ -527,7 +556,9 @@ module TM1638_LED_KEY_DRV #(
                     , SUP_DIGITS_i  [1]
                     , display_data_input     [1*4 +:4]
                 } ;
+            end
             else if( bcd_done )
+            begin
                 if ( enable_bin2bcd_reg ) begin
                     DAT_BUFF[6*5 +:4] <= bcd_values[7*4 +:4] ;
                     DAT_BUFF[5*5 +:4] <= bcd_values[6*4 +:4] ;
@@ -537,12 +568,10 @@ module TM1638_LED_KEY_DRV #(
                     DAT_BUFF[1*5 +:4] <= bcd_values[2*4 +:4] ;
                     DAT_BUFF[0*5 +:4] <= bcd_values[1*4 +:4] ;
                 end
+            end
             case (state_frame_reg)
                 S_LOAD :
-                    DAT_BUFF <= {
-                          5'b0
-                        , DAT_BUFF[34:5]
-                    } ;
+                    DAT_BUFF <= {5'b0, DAT_BUFF[34:5]};
             endcase
         end
 	end
@@ -571,6 +600,28 @@ module TM1638_LED_KEY_DRV #(
             : 
                 DAT_BUFF[ 4 :0] 
     ;
+    always @*
+    begin 
+		if(bcd_done)
+		begin
+			if(enable_bin2bcd_reg)
+			begin
+				sup_now = SUP_DIGIT_0;
+				octet_seled = DATA_BUFF[3:0];
+			end
+			else
+			begin
+				{SUP_DIGIT_0 , BIN_DAT_0} 
+				sup_now = SUP_DIGIT_0;
+				octet_seled = DATA_BUFF[3:0];
+			end
+		end
+		else
+		begin 
+			sup_now = DAT_BUFF[4];
+			octet_seled = DATA_BUFF[3:0];
+		end
+    end
 
     // endcoder for  LED7-segment
     //   a 
@@ -578,7 +629,7 @@ module TM1638_LED_KEY_DRV #(
     //    g
     // e     c
     //    d 
-    wire    [ 6 :0] enced_7seg ;
+    wire    [ 6 :0] encoded_7seg ;
     function [6:0] f_seg_enc ;
         input sup_now ;
         input [3:0] octet;
@@ -607,7 +658,7 @@ module TM1638_LED_KEY_DRV #(
             default : f_seg_enc = 7'b1000000 ; //-
           endcase
     end endfunction
-    assign enced_7seg = f_seg_enc(sup_now , octet_seled ) ;
+    assign encoded_7seg = f_seg_enc(sup_now , octet_seled ) ;
 
     reg             ENC_SHIFT ;
     always @(posedge clk or negedge n_rst)
@@ -643,12 +694,12 @@ module TM1638_LED_KEY_DRV #(
 												leds_input[6], dots_input[6], 7'b00, 
 												leds_input[7], dots_input[7]
 											} ;
-					 main_buffer_reg[6:0] <= enced_7seg ;
+					 main_buffer_reg[6:0] <= encoded_7seg ;
 				end 
 				else if ( bcd_done )
 				begin
 					if( enable_bin2bcd_reg )
-						main_buffer_reg[6:0] <= enced_7seg ;
+						main_buffer_reg[6:0] <= encoded_7seg ;
 				end 
 				else if (bcd_done_D | ENC_SHIFT)
 					 case (state_frame_reg)
@@ -669,7 +720,7 @@ module TM1638_LED_KEY_DRV #(
 								, main_buffer_reg[1*9+7  +:2]
 								, main_buffer_reg[0*9    +:7]
 								, main_buffer_reg[0*9+7  +:2]
-								, enced_7seg 
+								, encoded_7seg 
 							} ;
 					endcase
 				else 
@@ -693,30 +744,30 @@ module TM1638_LED_KEY_DRV #(
 	end
     // output BYTE buffer 
     //
-    reg [ 7 :0] byte_buffer_reg ;
+    reg [ 7 :0] byte_shift_buffer_reg ;
     always @(posedge clk or negedge n_rst) 
 	begin
         if ( ~ n_rst )
-            byte_buffer_reg <= 8'h0 ;
+            byte_shift_buffer_reg <= 8'h0 ;
         else if ( enable_clk_reg )
             case ( state_byte_reg )
                 S_LOAD :
                     case ( state_frame_reg )
-                        S_SEND_SET 		: byte_buffer_reg <= 8'h40 ;
-                        S_LED_ADR_SET 	: byte_buffer_reg <= 8'hC0 ;
-                        S_LEDPWR_SET 	: byte_buffer_reg <= 8'h8F ;
-                        S_KEY_ADR_SET 	: byte_buffer_reg <= 8'h42 ;
+                        S_SEND_SET 		: byte_shift_buffer_reg <= 8'h40 ;
+                        S_LED_ADR_SET 	: byte_shift_buffer_reg <= 8'hC0 ;
+                        S_LEDPWR_SET 	: byte_shift_buffer_reg <= 8'h8F ;
+                        S_KEY_ADR_SET 	: byte_shift_buffer_reg <= 8'h42 ;
                         S_LED0L, S_LED1L, S_LED2L, S_LED3L, S_LED4L, S_LED5L, S_LED6L, S_LED7L :
-                            byte_buffer_reg <= main_buffer_reg[7:0] ;
+                            byte_shift_buffer_reg <= main_buffer_reg[7:0] ;
                         S_LED0H, S_LED1H, S_LED2H, S_LED3H, S_LED4H, S_LED5H, S_LED6H, S_LED7H :
-                            byte_buffer_reg <= {7'b0000_000 , main_buffer_reg[0]} ;
+                            byte_shift_buffer_reg <= {7'b0000_000 , main_buffer_reg[0]} ;
                     endcase
                 S_BIT0, S_BIT1, S_BIT2, S_BIT3, S_BIT4, S_BIT5, S_BIT6, S_BIT7 :
-                    byte_buffer_reg <= {1'b0 , byte_buffer_reg[7:1]} ;
+                    byte_shift_buffer_reg <= {1'b0 , byte_shift_buffer_reg[7:1]} ;
         endcase
 	end
 	
-    assign tm1638_data_output = byte_buffer_reg[0] ;
+    assign tm1638_data_output = byte_shift_buffer_reg[0] ;
 
 
 	//! Input read, Keys valeus

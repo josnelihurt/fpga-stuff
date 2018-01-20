@@ -95,7 +95,18 @@ assign tm1638_data_io = ( tm1638_data_oe ) ? tm1638_data_output : 1'bZ ; //DIO
 
 
     reg [7:0]   SUP_DIGITS ;
-
+    
+	tm1638 tm1638_unit0 (
+			.clk            (clk),
+			.rst            (rst),
+			.data_latch     (data_latch),
+			.data           (data_sig),
+			.rw             (rw),
+			.busy           (busy),
+			.sclk           (sclk),
+			.dio_out        (dio_out),
+			.dio_in         (dio_in)
+	);
 
 TM1638_LED_KEY_DRV #(
           .C_FCK    ( C_FCK         )// Hz
