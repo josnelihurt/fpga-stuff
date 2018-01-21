@@ -45,16 +45,9 @@ module top(
     //   tm_rw      selects input or output
     reg tm_rw;
     wire dio_in, dio_out;
-    SB_IO #(
-        .PIN_TYPE(6'b101001),
-        .PULLUP(1'b1)
-    ) tm_dio_io (
-        .PACKAGE_PIN(tm_dio),
-        .OUTPUT_ENABLE(tm_rw),
-        .D_IN_0(dio_in),
-        .D_OUT_0(dio_out)
-    );
-
+    
+    assign tm_dio = tm_rw ? dio_out : 8'hZZ;
+	assign dio_in = dio_in;
     // setup tm1638 module with it's tristate IO
     //   tm_in      is read from module
     //   tm_out     is written to module
@@ -67,7 +60,8 @@ module top(
     //   dio_out    for sending to display
     //
     //   tm_data    the tristate io pin to module
-    wire tm_latch, busy;
+    reg tm_latch;
+    wire busy;
     wire [7:0] tm_data, tm_in;
     reg [7:0] tm_out;
 

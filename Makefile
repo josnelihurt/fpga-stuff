@@ -52,8 +52,8 @@ SIM_SRC=					\
 #		For example:
 SRC=														\
 	../system.v												\
-	../TM1638_LED_KEY_DRV.v									\
-	../BIN2BCD.v									\
+	../tm1638.v									\
+	../basic.v									\
 	$(PATH_RTL_GENRIC_LIBS)/dataregister/dataregister.v		\
 	$(PATH_RTL_GENRIC_LIBS)/counter/counter.v				\
 	../rtl/barrel_shifter/barrel_shifter.v		
