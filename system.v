@@ -51,49 +51,41 @@ module system
 //---------------------------------------------------------------------------
 // General Purpose IO
 //---------------------------------------------------------------------------
-wire counter_unit0_ovf;
+
 wire n_rst=~rst;
-counter	#(    .N(32), // number of bits in counter
-              .M(5) // Remember for simulation 50000 = frec(counter_unit0_ovf)=>1KHz, for implementation use 50000000 => 1 Hz 
+
+wire counter_tm1638_ovf;
+counter	#(    .N(32),
+              .M(10) 
    		)
 	counter_unit0 
    (
     .clk(clk), .reset(n_rst),
-    .max_tick(counter_unit0_ovf),
+    .max_tick(counter_tm1638_ovf),
     .q()
    );
+
+wire counter_1hz_unit_ovf;
+counter	#(    .N(32), // number of bits in counter
+              .M(5000000) // Remember for simulation 50000 = frec(counter_tm1638_ovf)=>1KHz, for implementation use 50000000 => 1 Hz 
+   		)
+	counter_1hz_unit 
+   (
+    .clk(clk), .reset(n_rst),
+    .max_tick(counter_1hz_unit_ovf),
+    .q()
+   );
+wire[7:0] counter_leds;
+counter	#(    .N(8), // number of bits in counter
+              .M(255) // Remember for simulation 50000 = frec(counter_tm1638_ovf)=>1KHz, for implementation use 50000000 => 1 Hz 
+   		)
+	ccounter_leds_unit 
+   (
+    .clk(counter_1hz_unit_ovf), .reset(n_rst),
+    .max_tick(),
+    .q(counter_leds)
+   );
    
-wire [ 7:0] board_keys;
-reg [ 7:0] board_keys_reg;
-
-   
-   //signal declaration
-   reg [31:0] counter_reg;
-   wire [31:0] counter_next;
-   
-   always @(posedge counter_unit0_ovf, posedge n_rst)
-      if (n_rst)
-         counter_reg <= 0;
-      else
-         counter_reg <= counter_next;
-         
-   // next-state logic
-   assign counter_next = counter_reg + 1;
-
-   always @(posedge counter_unit0_ovf, posedge n_rst)
-      if (n_rst)
-         board_keys_reg <= 8'b0;
-      else
-         board_keys_reg <= board_keys;
-
-
-//top test_unit(
-//    .clk(counter_unit0_ovf),
-//    .tm1638_strobe(tm1638_strobe),
-//    .tm_clk(tm1638_clk),
-//    .tm_dio(tm1638_data_io));
-//    reg [7:0]   SUP_DIGITS ;
-
 
 	localparam 
         HIGH    = 1'b1,
@@ -111,19 +103,21 @@ reg [ 7:0] board_keys_reg;
         S_BLK   = 7'b0000000;
 
     localparam [7:0]
-        C_READ  = 8'b01000010,
-        C_WRITE = 8'b01000000,
-        C_DISP  = 8'b10001111,
-        C_ADDR  = 8'b11000000;
+        C_READ  = 8'b0100_0010,
+        C_WRITE = 8'b0100_0000,
+        C_DISP  = 8'b1000_1111,
+        C_ADDR  = 8'b1100_0000;
 
     localparam CLK_DIV = 19; // speed of scanner
 
 
     reg [5:0] instruction_step;
-    reg [7:0] keys;
+    reg [7:0] tm1638_keys;
+	wire  [7:0] tm1638_leds_green;
+	assign tm1638_leds_green = counter_leds;
 
-    reg [7:0] larson;
-    reg larson_dir;
+	wire  [7:0] tm1638_leds_red;
+	assign tm1638_leds_red = tm1638_keys;
     reg [CLK_DIV:0] counter;
 
     // set up tristate IO pin for display
@@ -153,12 +147,29 @@ reg [ 7:0] board_keys_reg;
     wire busy;
     wire [7:0] tm_data, tm_in;
     reg [7:0] tm_out;
+    wire [7:0] digit1;
+    wire [7:0] digit2;
+    wire [7:0] digit3;
+    wire [7:0] digit4;
+    wire [7:0] digit5;
+    wire [7:0] digit6;
+    wire [7:0] digit7;
+    wire [7:0] digit8;
 
     assign tm_in = tm_data;
     assign tm_data = tm1638_data_oe ? tm_out : 8'hZZ;
 
+	assign digit1 = {1'b0, S_8};
+	assign digit2 = {1'b0, S_8};
+	assign digit3 = {1'b0, S_8};
+	assign digit4 = {1'b0, S_8};
+	assign digit5 = {1'b0, S_8};
+	assign digit6 = {1'b0, S_7};
+	assign digit7 = {1'b0, S_6};
+	assign digit8 = {1'b0, counter_leds[7:0]};
+
     tm1638 u_tm1638 (
-        .clk(counter_unit0_ovf),
+        .clk(counter_tm1638_ovf),
         .rst(n_rst),
         .data_latch(tm_latch),
         .data(tm_data),
@@ -169,54 +180,17 @@ reg [ 7:0] board_keys_reg;
         .dio_out(tm1638_data_output)
     );
 
-    // handles displaying 1-8 on a display location
-    // and animating the decimal point
-    task display_digit;
-        input [2:0] key;
-        input [6:0] segs;
-
-        begin
-            tm_latch <= HIGH;
-
-            if (keys[key])
-                tm_out <= {1'b1, S_BLK[6:0]}; // decimal on
-            else
-                tm_out <= {1'b0, segs}; // decimal off
-        end
-    endtask
-
-    // handles animating the LEDs 1-8
-    task display_led;
-        input [2:0] dot;
-
-        begin
-            tm_latch <= HIGH;
-            tm_out <= {7'b0, larson[dot]};
-        end
-    endtask
-
-    always @(posedge counter_unit0_ovf, posedge n_rst) begin
+    always @(posedge counter_tm1638_ovf, posedge n_rst) begin
         if (n_rst) begin
             instruction_step <= 6'b0;
             tm1638_strobe <= HIGH;
             tm1638_data_oe <= HIGH;
 
             counter <= 0;
-            keys <= 8'b0;
-            larson_dir <= 0;
-            larson <= 8'b00010000;
+            tm1638_keys <= 8'b0;
 
         end else 
         begin
-            if (&counter) 
-            begin
-                larson_dir <= larson[6] ? 0 : larson[1] ? 1 : larson_dir;
-
-                if (larson_dir)
-                    larson <= {larson[6:0], larson[7]};
-                else
-                    larson <= {larson[0], larson[7:1]};
-            end
 
             if (counter[0] && ~busy) 
             begin
@@ -226,15 +200,15 @@ reg [ 7:0] board_keys_reg;
                     2:  {tm_latch, tm_out} <= {HIGH, C_READ}; // read mode
                     3:  {tm_latch, tm1638_data_oe}  <= {HIGH, LOW};
 
-                    //  read back keys S1 - S8
-                    4:  {keys[7], keys[3]} <= {tm_in[0], tm_in[4]};
+                    //  read back tm1638_keys S1 - S8
+                    4:  {tm1638_keys[7],tm1638_keys[3]} <= {tm_in[0], tm_in[4]};
                     5:  {tm_latch}         <= {HIGH};
-                    6:  {keys[6], keys[2]} <= {tm_in[0], tm_in[4]};
+                    6:  {tm1638_keys[6],tm1638_keys[2]} <= {tm_in[0], tm_in[4]};
                     7:  {tm_latch}         <= {HIGH};
-                    8:  {keys[5], keys[1]} <= {tm_in[0], tm_in[4]};
+                    8:  {tm1638_keys[5],tm1638_keys[1]} <= {tm_in[0], tm_in[4]};
                     9:  {tm_latch}         <= {HIGH};
-                    10: {keys[4], keys[0]} <= {tm_in[0], tm_in[4]};
-                    11: {tm1638_strobe}            <= {HIGH};
+                    10: {tm1638_keys[4],tm1638_keys[0]} <= {tm_in[0], tm_in[4]};
+                    11: {tm1638_strobe}    <= {HIGH};
 
                     // *** DISPLAY ***
                     12: {tm1638_strobe, tm1638_data_oe}     <= {LOW, HIGH};
@@ -244,29 +218,29 @@ reg [ 7:0] board_keys_reg;
                     15: {tm1638_strobe, tm1638_data_oe}     <= {LOW, HIGH};
                     16: {tm_latch, tm_out} <= {HIGH, C_ADDR}; // set addr 0 pos
 
-                    17: display_digit(3'd7, S_1); // Digit 1
-                    18: display_led(3'd0);        // LED 1
+                    17: {tm_latch, tm_out} <= {HIGH, digit1};           // Digit 
+                    18: {tm_latch, tm_out} <= {HIGH, {6'b0, tm1638_leds_red[7], tm1638_leds_green[7]}}; // LED
+                    
+                    19: {tm_latch, tm_out} <= {HIGH, digit2};           // Digit 
+                    20: {tm_latch, tm_out} <= {HIGH, {6'b0, tm1638_leds_red[6], tm1638_leds_green[6]}}; // LED
 
-                    19: display_digit(3'd6, S_2); // Digit 2
-                    20: display_led(3'd1);        // LED 2
+                    21: {tm_latch, tm_out} <= {HIGH, digit3};           // Digit 
+                    22: {tm_latch, tm_out} <= {HIGH, {6'b0, tm1638_leds_red[5], tm1638_leds_green[5]}}; // LED
 
-                    21: display_digit(3'd5, S_3); // Digit 3
-                    22: display_led(3'd2);        // LED 3
+                    23: {tm_latch, tm_out} <= {HIGH, digit4};           // Digit 
+                    24: {tm_latch, tm_out} <= {HIGH, {6'b0, tm1638_leds_red[4], tm1638_leds_green[4]}}; // LED
 
-                    23: display_digit(3'd4, S_4); // Digit 4
-                    24: display_led(3'd3);        // LED 4
+                    25: {tm_latch, tm_out} <= {HIGH, digit5};           // Digit 
+                    26: {tm_latch, tm_out} <= {HIGH, {6'b0, tm1638_leds_red[3], tm1638_leds_green[3]}}; // LED
 
-                    25: display_digit(3'd3, S_5); // Digit 5
-                    26: display_led(3'd4);        // LED 5
+                    27: {tm_latch, tm_out} <= {HIGH, digit6};           // Digit 
+                    28: {tm_latch, tm_out} <= {HIGH, {6'b0, tm1638_leds_red[2], tm1638_leds_green[2]}}; // LED
 
-                    27: display_digit(3'd2, S_6); // Digit 6
-                    28: display_led(3'd5);        // LED 6
+                    29: {tm_latch, tm_out} <= {HIGH, digit7};           // Digit 
+                    30: {tm_latch, tm_out} <= {HIGH, {6'b0, tm1638_leds_red[1], tm1638_leds_green[1]}}; // LED
 
-                    29: display_digit(3'd1, S_7); // Digit 7
-                    30: display_led(3'd6);        // LED 7
-
-                    31: display_digit(3'd0, S_8); // Digit 8
-                    32: display_led(3'b111);        // LED 8
+                    31: {tm_latch, tm_out} <= {HIGH, digit8};           // Digit 
+                    32: {tm_latch, tm_out} <= {HIGH, {6'b0, tm1638_leds_red[0], tm1638_leds_green[0]}}; // LED
 
                     33: {tm1638_strobe}            <= {HIGH};
 
@@ -289,14 +263,9 @@ reg [ 7:0] board_keys_reg;
         end
     end
 
-
-
-
-
-
 //----------------------------------------------------------------------------
 // Wires Assigments
 //----------------------------------------------------------------------------
-assign leds = counter_reg[2:0];
+assign leds = counter_leds[2:0];
 
 endmodule

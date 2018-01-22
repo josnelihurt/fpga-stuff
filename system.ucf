@@ -13,5 +13,5 @@ NET "io4" LOC = "P4" | IOSTANDARD = LVTTL;
 
 # ==== tm1638 ====
 NET "tm1638_strobe" LOC = "P60" | IOSTANDARD = LVTTL;
-NET "tm1638_data" LOC = "P58" | IOSTANDARD = LVTTL;
+NET "tm1638_data_io" LOC = "P58" | IOSTANDARD = LVTTL;
 NET "tm1638_clk" LOC = "P57" | IOSTANDARD = LVTTL;

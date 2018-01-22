@@ -53,7 +53,7 @@ SIM_SRC=					\
 SRC=														\
 	../system.v												\
 	../tm1638.v									\
-	../basic.v									\
+	../tm1638_keys_display.v									\
 	$(PATH_RTL_GENRIC_LIBS)/dataregister/dataregister.v		\
 	$(PATH_RTL_GENRIC_LIBS)/counter/counter.v				\
 	../rtl/barrel_shifter/barrel_shifter.v		
