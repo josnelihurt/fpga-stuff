@@ -72,31 +72,31 @@ module system
 	
 	//! ============ R-SIDE ============ 
 	//! === Bank ===
-	input 		io10,
-	input 		io11,
-	input 		io12,
-	input 		io15,
-	input 		io16,
-	input 		io17,
-	input 		io18,
-	input 		io22,
+	output 		io10,
+	output 		io11,
+	output 		io12,
+	output 		io15,
+	output 		io16,
+	output 		io17,
+	output 		io18,
+	output 		io22,
 	//! === Bank ===
-	input 		io23,
+	output 		io23,
 	input 		i25,
-	input 		io26,
+	output 		io26,
 	input 		i30,
-	input 		io32,
-	input 		io33,
-	input 		io34,
-	input 		io35,
+	output 		io32,
+	output 		io33,
+	output 		io34,
+	output 		io35,
 	//! === Bank ===
-	input 		io36,
-	input 		io40,
-	input 		io41,
-	input 		io44,
-	input 		io53,
-	input 		io57,
-	input 		io58,
+	output 		io36,
+	output 		io40,
+	output 		io41,
+	output 		io44,
+	output 		io53,
+	output 		io57,
+	output 		io58,
 	input 		io60
 );
   localparam [6:0]
@@ -176,31 +176,40 @@ counter	#(    .N(32),
 		.tm1638_data_io(tm1638_data_io)
 		);
 	
-	//
-	//tm1638_keys_display
-	//	tm1638_keys_display_unit_0
-	//	(
-	//		.clk_5MHz(counter_tm1638_ovf),
-	//		.n_rst(n_rst),
-	//		.display_level({1'b0, counter_leds[2:0]}),
-	//		.digit1({1'b0,S_1}),
-	//		.digit2({1'b0,S_2}),
-	//		.digit3({1'b0,S_3}),
-	//		.digit4({1'b0,S_4}),
-	//		.digit5({1'b0,S_5}),
-	//		.digit6({1'b0,S_6}),
-	//		.digit7({1'b0,S_7}),
-	//		.digit8({1'b0,S_8}),
-	//		.leds_green(counter_leds),
-	//		.leds_red(tm1638_keys),		
-	//		.keys(tm1638_keys),
-	//		.tm1638_strobe(tm1638_strobe),
-	//		.tm1638_clk(tm1638_clk),
-	//		.tm1638_data_io(tm1638_data_io)
-	//	);
+	wire hx8352_data[15:0];
+	wire hx8352_rs;
+	wire hx8352_wr;
+	wire hx8352_rd;
+	wire hx8352_cs;
+	wire hx8352_rst;
+	
+
+	
 //----------------------------------------------------------------------------
 // Wires Assigments
 //----------------------------------------------------------------------------
+assign io10 = hx8352_data[0];
+assign io11 = hx8352_data[1];
+assign io12 = hx8352_data[2];
+assign io15 = hx8352_data[3];
+assign io16 = hx8352_data[4];
+assign io17 = hx8352_data[5];
+assign io18 = hx8352_data[6];
+assign io22 = hx8352_data[7];
+assign io23 = hx8352_data[8];
+assign io26 = hx8352_data[9];
+assign io32 = hx8352_data[10];
+assign io33 = hx8352_data[11];
+assign io34 = hx8352_data[12];
+assign io35 = hx8352_data[13];
+assign io36 = hx8352_data[14];
+assign io40 = hx8352_data[15];
+
+assign io41 = hx8352_rs;
+assign io44 = hx8352_wr;
+assign io53 = hx8352_rd;
+assign io57 = hx8352_cs;
+assign io58 = hx8352_rst;
 assign leds = counter_leds[2:0];
 
 endmodule
