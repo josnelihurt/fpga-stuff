@@ -94,7 +94,7 @@ module tm1638(
         endcase
     end
 
-    always @(posedge clk)
+    always @(posedge clk, posedge rst)
     begin
         if (rst)
         begin

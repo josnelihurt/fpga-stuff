@@ -2,9 +2,8 @@ module tm1638_keys_display
 (
 	input		clk_5MHz,
 	input		n_rst,
-	
-	
-    input [3:0] display_level,
+	input 		display_off,
+    input [2:0] display_level,
 	input [7:0] digit1,
     input [7:0] digit2,
     input [7:0] digit3,
@@ -34,6 +33,7 @@ module tm1638_keys_display
     localparam CLK_DIV = 19; // speed of scanner
 
     reg [5:0] instruction_step;
+    wire [5:0] instruction_step_next;
     reg [CLK_DIV:0] counter;
 
     // set up tristate IO pin for display
@@ -77,6 +77,7 @@ module tm1638_keys_display
         .dio_out(tm1638_data_output)
     );
 
+	assign instruction_step_next = instruction_step + 1;
     always @(posedge clk_5MHz, posedge n_rst) begin
         if (n_rst) begin
             instruction_step <= 6'b0;
@@ -142,12 +143,12 @@ module tm1638_keys_display
                     33: {tm1638_strobe}            <= {HIGH};
 
                     34: {tm1638_strobe, tm1638_data_oe}     <= {LOW, HIGH};
-                    35: {tm_latch, tm_out} <= {HIGH, {4'b1000, display_level}}; // display
+                    35: {tm_latch, tm_out} <= {HIGH, 4'b1000, ~display_off, display_level};
                     36: {tm1638_strobe, instruction_step} <= {HIGH, 6'b0};
 
                 endcase
 
-                instruction_step <= instruction_step + 1;
+                instruction_step <= instruction_step_next;
 
             end else if (busy) 
             begin
