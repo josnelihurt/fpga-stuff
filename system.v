@@ -138,7 +138,7 @@ counter	#(    .N(32), // number of bits in counter
     .q()
    );
 wire[7:0] counter_leds;
-wire[32:0] counter_low_frec;
+wire[31:0] counter_low_frec;
 assign counter_leds = counter_low_frec[7:0];
 counter	#(    .N(32), 
               .M(32'hFFFF_FFFF)
@@ -182,9 +182,19 @@ counter	#(    .N(32),
 	wire hx8352_rd;
 	wire hx8352_cs;
 	wire hx8352_rst;
-	
-
-	
+	hx8352_controller
+		hx8352_controller_unit0
+		(
+		.clk(clk),
+		.rst(n_rst),
+		//.data_output(hx8352_data),
+		.lcd_rs(hx8352_rs),
+		.lcd_wr(hx8352_wr),
+		.lcd_rd(hx8352_rd),
+		.lcd_cs(hx8352_cs),
+		.lcd_rst(hx8352_rst)
+		);
+		
 //----------------------------------------------------------------------------
 // Wires Assigments
 //----------------------------------------------------------------------------

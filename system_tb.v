@@ -53,7 +53,7 @@ system #(
 ) dut  (
 	.clk(	clk_tb	),
 	.io5( io5_tb ),
-	.tm1638_data_io(tm1638_data_io_tb),
+	.io67(tm1638_data_io_tb),
 	// Debug
 	.rst(	rst_tb	),
 	.leds(	led_tb	)
