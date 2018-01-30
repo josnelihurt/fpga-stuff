@@ -137,6 +137,8 @@ counter	#(    .N(32), // number of bits in counter
     .max_tick(counter_1hz_unit_ovf),
     .q()
    );
+   
+   
 wire[7:0] counter_leds;
 wire[31:0] counter_low_frec;
 assign counter_leds = counter_low_frec[7:0];
@@ -158,7 +160,14 @@ counter	#(    .N(32),
     assign io68 = tm1638_strobe;
     assign io66 = tm1638_clk;
     
+	wire [15:0]hx8352_data;
+	wire hx8352_rs;
+	wire hx8352_wr;
+	wire hx8352_rd;
+	wire hx8352_cs;
+	wire hx8352_rst;
 	wire [7:0] tm1638_keys;
+	wire[17:0] debug_instruction_step;
 	tm1638_keys_display_encoded
 		tm1638_keys_display_encoded_unit0
 		(
@@ -166,9 +175,9 @@ counter	#(    .N(32),
 		.n_rst(n_rst),
 		.display_off(1'b0),
 		.display_level(3'b100),
-		.display_value(counter_low_frec),
-		.dots(counter_leds),
-		.leds_green(counter_leds),
+		.display_value({debug_instruction_step, hx8352_data}),
+		.dots(8'h00),
+		.leds_green({ hx8352_cs, hx8352_rst, hx8352_rs, hx8352_wr, hx8352_rd, counter_1hz_unit_ovf, counter_leds[1], counter_leds[1]}),
 		.leds_red(tm1638_keys),
 		.keys(tm1638_keys),
 		.tm1638_strobe(tm1638_strobe),
@@ -176,25 +185,19 @@ counter	#(    .N(32),
 		.tm1638_data_io(tm1638_data_io)
 		);
 	
-	wire hx8352_data[15:0];
-	wire hx8352_rs;
-	wire hx8352_wr;
-	wire hx8352_rd;
-	wire hx8352_cs;
-	wire hx8352_rst;
 	hx8352_controller
 		hx8352_controller_unit0
 		(
-		.clk(clk),
+		.clk2(clk),
 		.rst(n_rst),
-		//.data_output(hx8352_data),
 		.lcd_rs(hx8352_rs),
 		.lcd_wr(hx8352_wr),
 		.lcd_rd(hx8352_rd),
+		.lcd_rst(hx8352_rst),
 		.lcd_cs(hx8352_cs),
-		.lcd_rst(hx8352_rst)
+		.data_output(hx8352_data),
+		.debug_instruction_step(debug_instruction_step)
 		);
-		
 //----------------------------------------------------------------------------
 // Wires Assigments
 //----------------------------------------------------------------------------

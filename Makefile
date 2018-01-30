@@ -56,6 +56,8 @@ SRC=														\
 	../tm1638_keys_display.v								\
 	../tm1638_keys_display_encoded.v						\
 	../hx8352_controller.v									\
+	../hx8352_controller_bus_controller.v					\
+	../hx8352_reset_generator.v								\
 	$(PATH_RTL_GENRIC_LIBS)/dataregister/dataregister.v		\
 	$(PATH_RTL_GENRIC_LIBS)/counter/counter.v				\
 	../rtl/barrel_shifter/barrel_shifter.v		

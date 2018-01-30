@@ -60,6 +60,31 @@ system #(
 	// Uart
 );
 
+localparam 
+	LCD_CMD  = 1'b0,
+	LCD_DATA = 1'b1;
+
+wire n_rst;
+assign n_rst = ~rst_tb;
+
+wire [15:0] hx8352_data;
+reg hx8352_data_command_tb;
+wire hx8352_rs;
+wire hx8352_wr;
+wire hx8352_rd;
+reg lcd_cs;
+reg lcd_rst;
+reg hx8352_transfer_step;
+hx8352_controller
+	hx8352_controller_unit0
+	(
+	.clk2(clk_tb),
+	.rst(n_rst),
+	.lcd_rs(hx8352_rs),
+	.lcd_wr(hx8352_wr),
+	.lcd_rd(hx8352_rd)
+	);
+
 /* Clocking device */
 // Remember this is only for simulation. It never will be syntetizable //
 initial         clk_tb <= 0;
@@ -71,11 +96,21 @@ initial begin
 	$dumpfile("system_tb.vcd"); 
 	//$monitor("%b,%b,%b",clk_tb,rst_tb,led_tb);
 	//export all signals in the simulation viewer
-	$dumpvars(-1, dut);
+	$dumpvars(-1, hx8352_controller_unit0);
 	//$dumpvars(-1,clk_tb,rst_tb);
 	#0  io5_tb <= 1;
 	#0  rst_tb <= 0;
-	#80 rst_tb <= 1;
+	#0 	lcd_cs <= 1;
+	#70 rst_tb <= 1;
+	#80 rst_tb <= 0;
+	#90 rst_tb <= 1;
+	
+	
+	#100  lcd_cs <= 0;
+	
+	#100 	  lcd_cs <= 1;
+	
 	#(tck*1000000) $finish;
+	//#(tck*750_000) $finish; // xx ms
 end
 endmodule
