@@ -190,6 +190,7 @@ counter	#(    .N(32),
 		(
 		.clk2(clk),
 		.rst(n_rst),
+		.color(tm1638_keys),
 		.lcd_rs(hx8352_rs),
 		.lcd_wr(hx8352_wr),
 		.lcd_rd(hx8352_rd),
