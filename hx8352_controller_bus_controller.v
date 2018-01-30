@@ -82,7 +82,7 @@ module hx8352_controller_bus_controller
             cur_state <= STATE_IDLE;
             lcd_rs_reg <= LOW;
             lcd_wr_reg <= LOW;
-            lcd_rd_reg <= HIGH;
+            lcd_rd_reg <= LOW;
             lcd_data_reg <= 16'h0;
             
         end
