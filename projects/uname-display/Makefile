@@ -35,11 +35,11 @@
 #FPGA capacity
 FPGA_SIZE=500
 
-include ../Makefile
+include ../../Makefile
 #############################################################################
 
 VINCDIR=						\
-	-I../rtl/barrel_shifter		
+	-I../	
 SYN_SRC=
 
 SIM_SRC=					\
@@ -59,8 +59,7 @@ SRC=														\
 	../hx8352_controller_bus_controller.v					\
 	../hx8352_reset_generator.v								\
 	$(PATH_RTL_GENRIC_LIBS)/dataregister/dataregister.v		\
-	$(PATH_RTL_GENRIC_LIBS)/counter/counter.v				\
-	../rtl/barrel_shifter/barrel_shifter.v		
+	$(PATH_RTL_GENRIC_LIBS)/counter/counter.v				
 
 #
 
