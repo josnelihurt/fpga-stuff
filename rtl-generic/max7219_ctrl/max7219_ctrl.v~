@@ -1,0 +1,135 @@
+`timescale 1ns / 1ps
+//---------------------------------------------------------------------------
+// SharkBoad ExampleModule
+// Josnelihurt Rodriguez - Fredy Segura Q.
+// josnelihurt@gmail.com
+// Top Level Design for the Xilinx Spartan 3-100E Device
+//---------------------------------------------------------------------------
+
+/*#
+# SharkBoad
+# Copyright (C) 2012 Bogotá, Colombia
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, version 3 of the License.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#*/
+
+/*
+  _________.__                  __   __________                       .___
+ /   _____/|  |__ _____ _______|  | _\______   \ _________ _______  __| _/
+ \_____  \ |  |  \\__  \\_  __ \  |/ /|    |  _//  _ \__  \\_  __ \/ __ | 
+ /        \|   Y  \/ __ \|  | \/    < |    |   (  <_> ) __ \|  | \/ /_/ | 
+/_______  /|___|  (____  /__|  |__|_ \|______  /\____(____  /__|  \____ | 
+        \/      \/     \/           \/       \/           \/           \/ 
+
+*/
+module matrix_ctrl(
+    input wire clk,reset,
+    input wire  [7:0] disp_data,
+    output wire  [2:0] disp_addr,
+    output max7219_din,max7219_ncs,max7219_clk
+    );
+//This memory is used for testing only It will remplaced for a 64-bit input in the module
+//Here you can write to draw in the matrix
+
+localparam NPRESS=2;				//It need to be calculated I left it on 2 for simulation
+   // constant declaration
+	// Internal signas declaration
+	// Internal Current Row-Col values used in instantaneus refresh
+   wire  		[7:0] cur_row;	//It must be changed from wires to register 
+   reg	     	[7:0] cur_col;	//it will reduce giches if async changes are done
+   
+   /*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*/
+   /*Prescaller for clock used serial comunication @10MHz Max*/
+   wire		[NPRESS:0] clk_driver_next;
+   reg		[NPRESS:0] clk_driver_reg;
+   always @(posedge clk, posedge reset)
+		clk_driver_reg=(reset)?0:clk_driver_next;
+   assign clk_driver_next = clk_driver_reg + 1;
+   /* End - prescaller */
+   /*VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV*/
+   
+   
+   /*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*/
+   /* Shift Reg*/
+   
+    always @(posedge clk_driver, posedge reset) 
+    begin 
+    	if (reset)
+    		
+    begin 
+      tmp = tmp << 1; 
+      tmp[0] = SI; 
+    end 
+    assign SO  = tmp[7]; 
+    /* Shift Reg*/
+   /*VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV*/
+   
+   /*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*/
+   /* FSM for driver 16-stage shift-and-store */ 
+   // symbolic state declaration
+   	localparam MAX_STATES 3
+	localparam [MAX_STATES-1:0] START = MAX_STATES'b000 ,
+								;								
+	//signal declaration
+	reg [MAX_STATES-1:0] state_reg, state_next;
+	reg [15:0] serial_data_reg;
+	
+	//state register
+    always @(posedge clk, posedge reset)	
+		if (reset)
+			state_reg <= START;
+		else
+			state_reg <= state_next
+	//next-state logic
+	always @*
+	begin
+		case (state_reg)
+		START:
+			//Disabe the shutdown mode
+			serial_data_reg <= {4'hC,8'h1};
+			state_next = SET_DECODE_MODE;
+		SET_DECODE_MODE:
+			//No decode. It will only be set for 7-Segments
+			serial_data_reg <= {4'hC,8'h1};
+		default: state_next = START;
+	end
+   /* End - FSM ... */ 
+   /*VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV*/
+
+   /*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*/
+   /* Current row-col calculation */
+   reg 		[2:0]	cnt_col_reg;
+   wire		[2:0]	cnt_col_next;
+	//Here is important to get a 90° delay because a posedge will chage values before
+	//that the 4094 assert 8th data ;) 
+	always @(posedge mat_str, posedge reset)
+		cnt_col_reg <=(reset)?0:cnt_col_next;
+	assign cnt_col_next	= cnt_col_reg + 1 ;
+	//Re-order Col-register
+	always @*
+	begin
+		case (cnt_col_reg)
+			3'h7:cur_col=(1<<1);
+			3'h6:cur_col=(1<<2);
+			3'h5:cur_col=(1<<0);
+			3'h4:cur_col=(1<<3);
+			3'h3:cur_col=(1<<5);
+			3'h2:cur_col=(1<<7);
+			3'h1:cur_col=(1<<6);
+			3'h0:cur_col=(1<<4);
+		endcase
+	end
+	//Re-order row-register
+	assign cur_row			= {disp_data[3],disp_data[5],disp_data[0],disp_data[6],disp_data[7],disp_data[1],disp_data[2],disp_data[4]};
+	assign disp_addr		= cnt_col_reg;
+endmodule
