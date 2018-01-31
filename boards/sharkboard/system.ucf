@@ -1,0 +1,46 @@
+# ----------------WARNING----------------------------
+# This PINS are ROUTED ON BOARD DO NOT USED IN OTHER WAY
+#==== Debug ====
+#On-board USB--RS232 converter 
+NET "uart_rxd" LOC = "P54" | IOSTANDARD = LVTTL;
+NET "uart_txd" LOC = "P69" | IOSTANDARD = LVTTL;
+
+#LED D301 and D302 are not conected to the FPGA
+
+# ==== Clock inputs (CLK) ====
+# 50MHz on-board clk
+NET "clk" LOC = "P38" | IOSTANDARD = LVCMOS33 ; # GCLK10;
+NET "clk" PERIOD = 20 HIGH 50%;
+
+# ==== IO ====
+NET "rst" LOC = "P13" | IOSTANDARD = LVTTL;
+NET "LEDD" LOC = "P65" | IOSTANDARD = LVTTL;
+
+NET "LEDB" LOC = "P61" | IOSTANDARD = LVTTL;
+NET "LEDC" LOC = "P62" | IOSTANDARD = LVTTL;
+NET "LEDA" LOC = "P63" | IOSTANDARD = LVTTL;
+
+# ==== DATA FLASH ====
+# M25P10 
+NET "DF_CS" LOC = "P24" | IOSTANDARD = LVTTL;
+NET "DF_SI" LOC = "P27" | IOSTANDARD = LVTTL;
+NET "DF_SO" LOC = "P44" | IOSTANDARD = LVTTL;
+NET "DF_CLK" LOC = "P50" | IOSTANDARD = LVTTL;
+
+#JUMPERS
+# K501 BOOT FROM DATAFLASH
+# K504 HIGH IMPEDANCE BOOT, WHEN SELECTED PINS ARE ENABLED DURING BOOT
+
+
+
+
+#
+# This PINS can be used as input only, It can't be used as a output. 
+# For more information please check the datasheet Spartan 3E by Xilinx
+# NET "your_wire_name_input_only" LOC = "P30" | IOSTANDARD = LVTTL;
+# NET "your_wire_name_input_only" LOC = "P88" | IOSTANDARD = LVTTL;
+# NET "your_wire_name_input_only" LOC = "P89" | IOSTANDARD = LVTTL;
+# ----------------WARNING END------------------------
+
+
+
