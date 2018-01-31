@@ -5,3 +5,6 @@ sys_install_scripts
 *.bit
 system.svf
 syn_install_scripts
+*.save
+*.bak
+*.sav
