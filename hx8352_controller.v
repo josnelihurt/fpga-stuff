@@ -62,9 +62,9 @@ endmodule
 
 module hx8352_controller
 (
-	input  clk2,
+	input  clk,
 	input  rst,
-	input  [7:0] color,
+	input  [15:0] color,
 	
 	
 	output busy,
@@ -75,35 +75,7 @@ module hx8352_controller
 	output lcd_rst,
 	output lcd_cs,
 	output [15:0]debug_instruction_step
-);
-	wire clk2_ovf;
-	counter	#(    .N(24),
-			  .M(50)
-		)
-		counter_clk2
-	   (
-		.clk(clk2), .reset(rst),
-		.max_tick(clk2_ovf),
-		.q()
-	   );
-	wire clk;
-	reg clk_reg;
-	always @(posedge clk2_ovf or posedge rst)
-	begin
-		if(rst)
-			clk_reg <= 0;
-		else
-			clk_reg <= clk;
-	end
-	
-	
-	`ifdef SIMULATION
-		assign clk = clk2;
-	`else
-		assign clk = ~clk2;
-	`endif
-	
-	
+);	
 	reg  [15:0] data_input;
 	reg  data_command;
 	wire  transfer_step;
@@ -138,15 +110,17 @@ module hx8352_controller
 		
 	
 	wire init_commands_clk;
-	counter	#(    .N(3),
-			  .M(4)
-		)
-		counter_reset_generator_unit 
-	   (
-		.clk(clk), .reset(rst),
-		.max_tick(init_commands_clk),
-		.q()
-	   );
+	reg init_commands_clk_reg;
+	always @(posedge clk or posedge rst)
+	begin
+		if(rst)
+			init_commands_clk_reg <= 0;
+		else
+			init_commands_clk_reg <= init_commands_clk;
+	end
+	
+	assign init_commands_clk = ~init_commands_clk_reg;
+	
 	reg [7:0] delay_value;
 	reg delay_step;
 	wire delay_done;
@@ -307,35 +281,7 @@ module hx8352_controller
 					32'h008d:  {data_command, data_input}     <= {LCD_DATA, 16'h008F};  // y1 L
 					32'h008e:  {data_command, data_input}     <= {LCD_CMD,  16'h0022}; 
 					
-					16'h008f:  {data_command, data_input}     <= {LCD_DATA, {8'hAA ,color} };
-					//16'h0082:  {data_command, data_input}     <= {LCD_DATA, 16'hAAAA};
-					//16'h0083:  {data_command, data_input}     <= {LCD_DATA, 16'hAAAA};
-					//16'h0084:  {data_command, data_input}     <= {LCD_DATA, 16'hAAAA};
-					//16'h0085:  {data_command, data_input}     <= {LCD_DATA, 16'hAAAA};
-					//16'h0086:  {data_command, data_input}     <= {LCD_DATA, 16'hAAAA};
-					//16'h0087:  {data_command, data_input}     <= {LCD_DATA, 16'hAAAA};
-					//16'h0088:  {data_command, data_input}     <= {LCD_DATA, 16'hAAAA}; 
-					//16'h0089:  {data_command, data_input}     <= {LCD_DATA, 16'hAAAA}; 
-					//16'h008a:  {data_command, data_input}     <= {LCD_DATA, 16'hAAAA}; 
-					//16'h008b:  {data_command, data_input}     <= {LCD_DATA, 16'hAAAA}; 
-					//16'h008c:  {data_command, data_input}     <= {LCD_DATA, 16'hAAAA}; 
-					//16'h008d:  {data_command, data_input}     <= {LCD_DATA, 16'hAAAA}; 
-					//16'h008e:  {data_command, data_input}     <= {LCD_DATA, 16'hAAAA}; 
-					//16'h008f:  {data_command, data_input}     <= {LCD_DATA, 16'hAAAA}; 
-				
-					//16'h0078:  {data_command, data_input}     <= {LCD_CMD,  16'h002C};
-					//Lcd_Write_Com(0x00,0x2a);
-					//Lcd_Write_Data(0x00,x1>>8);	    //start X
-					//Lcd_Write_Data(0x00,x1);	    //start X
-					//Lcd_Write_Data(0x00,x2>>8);	    //end X
-					//Lcd_Write_Data(0x00,x2);	    //end X
-					//Lcd_Write_Com(0x00,0x2b);
-					//Lcd_Write_Data(0x00,y1>>8);	    //start Y
-					//Lcd_Write_Data(0x00,y1);	    //start Y
-					//Lcd_Write_Data(0x00,y2>>8);	    //end Y
-					//Lcd_Write_Data(0x00,y2);	    //end Y
-					//Lcd_Write_Com(0x00,0x2c); 			
-					
+					16'h008f:  {data_command, data_input}     <= {LCD_DATA, color };
 					
 					//32'h0001_778f:  {cs_reg, enable_transfer} <= {1'b1 , 1'b0};
 					32'h0001_7790:  {data_command, instruction_step} <= {HIGH, 32'h0071};

@@ -78,7 +78,7 @@ reg hx8352_transfer_step;
 hx8352_controller
 	hx8352_controller_unit0
 	(
-	.clk2(clk_tb),
+	.clk(clk_tb),
 	.rst(n_rst),
 	.lcd_rs(hx8352_rs),
 	.lcd_wr(hx8352_wr),
@@ -110,7 +110,7 @@ initial begin
 	
 	#100 	  lcd_cs <= 1;
 	
-	#(tck*1000000) $finish;
+	#(tck*10000) $finish;
 	//#(tck*750_000) $finish; // xx ms
 end
 endmodule

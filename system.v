@@ -129,7 +129,7 @@ counter	#(    .N(32),
 
 wire counter_1hz_unit_ovf;
 counter	#(    .N(32), // number of bits in counter
-              .M(5000000) // Remember for simulation 50000 = frec(counter_tm1638_ovf)=>1KHz, for implementation use 50000000 => 1 Hz 
+              .M(50000) // Remember for simulation 50000 = frec(counter_tm1638_ovf)=>1KHz, for implementation use 50000000 => 1 Hz 
    		)
 	counter_1hz_unit 
    (
@@ -188,9 +188,9 @@ counter	#(    .N(32),
 	hx8352_controller
 		hx8352_controller_unit0
 		(
-		.clk2(clk),
+		.clk(clk),
 		.rst(n_rst),
-		.color(tm1638_keys),
+		.color(counter_low_frec[15:0] ),
 		.lcd_rs(hx8352_rs),
 		.lcd_wr(hx8352_wr),
 		.lcd_rd(hx8352_rd),
