@@ -138,8 +138,8 @@ module hx8352_controller
 		
 	
 	wire init_commands_clk;
-	counter	#(    .N(24),
-			  .M(10)
+	counter	#(    .N(3),
+			  .M(4)
 		)
 		counter_reset_generator_unit 
 	   (
