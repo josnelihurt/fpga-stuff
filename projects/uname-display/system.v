@@ -34,7 +34,7 @@ module system
 	parameter	clk_freq	= 50000000,
 	parameter	uart_baud_rate	= 57600
 ) (
-	input		clk,
+	input		clk50MHz,
 	input		rst,
 	input       uart_rx, 
 	input       uart_tx,
@@ -64,7 +64,7 @@ module system
 	input 		io79,
 	input 		io78,
 	input 		io71,
-	input 		io70,
+	output 		io70,
 	output 		io68,//tn1638_strobe
 	inout 		io67,//tm1638_io
 	output 		io66,//tm1638_clk
@@ -114,6 +114,12 @@ module system
 // General Purpose IO
 //---------------------------------------------------------------------------
 
+wire unused = io9  | io5  | io4  | io3  | io2  | io38 |
+			  io95 | io94 | io92 | io91 | io90 | i89  |
+			  i88  | io86 | io85 | io84 | io83 | io79 |
+			  io78 | io71 | i30  | i25  | io60 | uart_tx | uart_tx;
+assign io70 = unused;
+
 wire n_rst=~rst;
 
 wire counter_tm1638_ovf;
@@ -122,7 +128,7 @@ counter	#(    .N(32),
    		)
 	counter_unit0 
    (
-    .clk(clk), .reset(n_rst),
+    .clk(clk50MHz), .reset(n_rst),
     .max_tick(counter_tm1638_ovf),
     .q()
    );
@@ -133,7 +139,7 @@ counter	#(    .N(32), // number of bits in counter
    		)
 	counter_1hz_unit 
    (
-    .clk(clk), .reset(n_rst),
+    .clk(clk50MHz), .reset(n_rst),
     .max_tick(counter_1hz_unit_ovf),
     .q()
    );
@@ -184,11 +190,59 @@ counter	#(    .N(32),
 		.tm1638_clk(tm1638_clk),
 		.tm1638_data_io(tm1638_data_io)
 		);
+
+	wire clk_hs;
 	
+	
+	`ifdef SIMULATION
+		assign clk_hs = clk50MHz;
+	`else
+	//clk_hs 11.538ns ~ 86.67 MHz for lcd operation
+	
+   DCM_SP #(
+      .CLKDV_DIVIDE(2.0),                   // CLKDV divide value
+                                            // (1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8,9,10,11,12,13,14,15,16).
+      .CLKFX_DIVIDE(15),                     // Divide value on CLKFX outputs - D - (1-32)
+      .CLKFX_MULTIPLY(26),                   // Multiply value on CLKFX outputs - M - (2-32)
+      .CLKIN_DIVIDE_BY_2("FALSE"),          // CLKIN divide by two (TRUE/FALSE)
+      .CLKIN_PERIOD(20.000),                // Input clock period specified in nS
+      .CLKOUT_PHASE_SHIFT("NONE"),          // Output phase shift (NONE, FIXED, VARIABLE)
+      .CLK_FEEDBACK("1X"),                  // Feedback source (NONE, 1X, 2X)
+      .DESKEW_ADJUST("SYSTEM_SYNCHRONOUS"), // SYSTEM_SYNCHRNOUS or SOURCE_SYNCHRONOUS
+      .DFS_FREQUENCY_MODE("LOW"),           // Unsupported - Do not change value
+      .DLL_FREQUENCY_MODE("LOW"),           // Unsupported - Do not change value
+      .DSS_MODE("NONE"),                    // Unsupported - Do not change value
+      .DUTY_CYCLE_CORRECTION("TRUE"),       // Unsupported - Do not change value
+      .FACTORY_JF(16'hc080),                // Unsupported - Do not change value
+      .PHASE_SHIFT(0),                      // Amount of fixed phase shift (-255 to 255)
+      .STARTUP_WAIT("FALSE")                // Delay config DONE until DCM_SP LOCKED (TRUE/FALSE)
+   )
+	   DCM_SP_inst (
+		  .CLK0(CLKFB),         // 1-bit output: 0 degree clock output
+		  //.CLK180(CLK180),     // 1-bit output: 180 degree clock output
+		  //.CLK270(CLK270),     // 1-bit output: 270 degree clock output
+		  //.CLK2X(CLK2X),       // 1-bit output: 2X clock frequency clock output
+		  //.CLK2X180(CLK2X180), // 1-bit output: 2X clock frequency, 180 degree clock output
+		  //.CLK90(CLK90),       // 1-bit output: 90 degree clock output
+		  //.CLKDV(CLKDV),       // 1-bit output: Divided clock output
+		  .CLKFX(clk_hs),         // 1-bit output: Digital Frequency Synthesizer output (DFS)
+		  //.CLKFX180(CLKFX180), // 1-bit output: 180 degree CLKFX output
+		  .LOCKED(reset_n),     // 1-bit output: DCM_SP Lock Output
+		  //.PSDONE(PSDONE),     // 1-bit output: Phase shift done output
+		  //.STATUS(STATUS),     // 8-bit output: DCM_SP status output
+		  .CLKFB(CLKFB),       // 1-bit input: Clock feedback input
+		  .CLKIN(clk50MHz),        // 1-bit input: Clock input
+		  .DSSEN(GND_PIN),       // 1-bit input: Unsupported, specify to GND.
+		  .PSCLK(GND_PIN),       // 1-bit input: Phase shift clock input
+		  .PSEN(GND_PIN),        // 1-bit input: Phase shift enable
+		  .PSINCDEC(GND_PIN),    // 1-bit input: Phase shift increment/decrement input
+		  .RST(GND_PIN)          // 1-bit input: Active high reset input
+		);
+	`endif
 	hx8352_controller
 		hx8352_controller_unit0
 		(
-		.clk(clk),
+		.clk(clk_hs),
 		.rst(n_rst),
 		.color(counter_low_frec[15:0] ),
 		.lcd_rs(hx8352_rs),

@@ -24,7 +24,7 @@ module hx8352_delay_ms
 	`ifdef SIMULATION
 		localparam RESET_COUTER_VALUE = 100;
 	`else
-		localparam RESET_COUTER_VALUE = 100_000;
+		localparam RESET_COUTER_VALUE = 500_000;
 	`endif
 	
 	counter	#(    .N(24),

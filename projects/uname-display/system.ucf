@@ -1,6 +1,6 @@
 # ==== Clock inputs (CLK) ====
-NET "clk" LOC = "P38" | IOSTANDARD = LVCMOS33 ; # GCLK10;
-NET "clk" PERIOD = 20 HIGH 50%;
+NET "clk50MHz" LOC = "P38" | IOSTANDARD = LVCMOS33 ; # GCLK10;
+NET "clk50MHz" PERIOD = 20 HIGH 50%;
 # ==== ON BOARD IO ====
 NET "rst" LOC = "P13" | IOSTANDARD = LVTTL;
 NET "leds(0)" LOC = "P61" | IOSTANDARD = LVTTL;

@@ -33,7 +33,7 @@
 # General Files and paths
 # Remember When you add a new rtl-generic driver include the paths here
 # 	The you can use it in a SRC file
-PATH_RTL_GENRIC_LIBS	=$(CURDIR)/../../../rtl-generic
+PATH_RTL_GENRIC_LIBS	=$(CURDIR)/../../rtl-generic
 PATH_MAIN_PROJ			=$(CURDIR)/..
 VINCDIR=										\
 	-I$(PATH_RTL_GENRIC_LIBS)/7segdriver		\
@@ -102,6 +102,7 @@ system_tb.vvp:
 
 system.prj:
 	rm -rf build && mkdir build
+	#mkdir build
 	@rm -f $@
 	for i in $(SRC); do echo verilog work $$i >> build/$@; done
 	for i in $(SRC_HDL); do echo VHDL work $$i >> build/$@; done
