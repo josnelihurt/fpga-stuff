@@ -52,9 +52,9 @@ SIM_SRC=					\
 #		For example:
 SRC=														\
 	../system.v												\
-	../tm1638.v												\
-	../tm1638_keys_display.v								\
-	../tm1638_keys_display_encoded.v						\
+	$(PATH_RTL_GENRIC_LIBS)/tm1638/tm1638.v					\
+	$(PATH_RTL_GENRIC_LIBS)/tm1638/tm1638_keys_display.v	\
+	$(PATH_RTL_GENRIC_LIBS)/tm1638/tm1638_keys_display_encoded.v\
 	../hx8352_controller.v									\
 	../hx8352_controller_bus_controller.v					\
 	../hx8352_reset_generator.v								\
