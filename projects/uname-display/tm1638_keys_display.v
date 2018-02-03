@@ -30,11 +30,9 @@ module tm1638_keys_display
         C_DISP  = 8'b1000_1111,
         C_ADDR  = 8'b1100_0000;
 
-    localparam CLK_DIV = 19; // speed of scanner
-
     reg [5:0] instruction_step;
     wire [5:0] instruction_step_next;
-    reg [CLK_DIV:0] counter;
+    reg flush_reg;
 
     // set up tristate IO pin for display
 	reg tm1638_data_oe ;
@@ -84,13 +82,13 @@ module tm1638_keys_display
             tm1638_strobe <= HIGH;
             tm1638_data_oe <= HIGH;
 
-            counter <= 0;
+            flush_reg <= 0;
             keys <= 8'b0;
 
         end else 
         begin
 
-            if (counter[0] && ~busy) 
+            if (flush_reg && ~busy) 
             begin
                 case (instruction_step)
                     // *** KEYS ***
@@ -157,7 +155,7 @@ module tm1638_keys_display
                 tm_latch <= LOW;
             end
 
-            counter <= counter + 1;
+            flush_reg <= ~flush_reg;
         end
     end
     

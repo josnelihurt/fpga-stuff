@@ -114,12 +114,6 @@ module system
 // General Purpose IO
 //---------------------------------------------------------------------------
 
-wire unused = io9  | io5  | io4  | io3  | io2  | io38 |
-			  io95 | io94 | io92 | io91 | io90 | i89  |
-			  i88  | io86 | io85 | io84 | io83 | io79 |
-			  io78 | io71 | i30  | i25  | io60 | uart_tx | uart_tx;
-assign io70 = unused;
-
 wire n_rst=~rst;
 
 wire counter_tm1638_ovf;
@@ -256,6 +250,13 @@ counter	#(    .N(32),
 //----------------------------------------------------------------------------
 // Wires Assigments
 //----------------------------------------------------------------------------
+wire unused = io9  | io5  | io4  | io3  | io2  | io38 |
+			  io95 | io94 | io92 | io91 | io90 | i89  |
+			  i88  | io86 | io85 | io84 | io83 | io79 |
+			  
+			  io78 | io71 | i30  | i25  | io60 | uart_tx | uart_tx;
+assign io70 = unused;
+
 assign io10 = hx8352_data[0];
 assign io11 = hx8352_data[1];
 assign io12 = hx8352_data[2];

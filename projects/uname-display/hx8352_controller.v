@@ -64,8 +64,7 @@ module hx8352_controller
 (
 	input  clk,
 	input  rst,
-	input  [15:0] color,
-	
+	input  [15:0] color,	
 	
 	output busy,
 	output [15:0] data_output,
@@ -141,7 +140,7 @@ module hx8352_controller
 	wire        init_commands_reset;
 	reg         enable_transfer;
 	reg         cs_reg;
-    reg  [7:0]  counter_value;
+    reg  counter_value;
 	reg  [31:0] instruction_step;
     wire [31:0] instruction_step_next;
     
@@ -159,7 +158,7 @@ module hx8352_controller
             cs_reg <= 1;
         end else begin
 			if(delay_done) begin
-				counter_value <= counter_value + 1;
+				counter_value <= ~counter_value;
 				cs_reg <= cs_reg;
 			end else begin
 				counter_value <= counter_value;
@@ -169,7 +168,7 @@ module hx8352_controller
 			
 			
 			enable_transfer <= enable_transfer;
-			if (counter_value[0] & delay_done) begin
+			if (counter_value & delay_done) begin
 				case (instruction_step)
 					32'h0001:  {cs_reg, instruction_step}     <= {1'b0, 16'h000F};
 					32'h000F:  {data_command, data_input}     <= {LCD_CMD,  16'h0083};
@@ -297,7 +296,7 @@ module hx8352_controller
         end
     end
     
-    assign transfer_step = counter_value[0] & enable_transfer & delay_done & ~delay_step;
+    assign transfer_step = counter_value & enable_transfer & delay_done & ~delay_step;
 	assign debug_instruction_step = instruction_step;
 	assign lcd_cs = cs_reg;
 endmodule
