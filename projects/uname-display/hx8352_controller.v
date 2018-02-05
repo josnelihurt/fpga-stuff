@@ -17,7 +17,7 @@ module hx8352_controller
 	output [15:0]debug_instruction_step
 );	
 	reg  [15:0] data_to_write;
-	reg  command_to_write;
+	reg  command_or_data;
 	wire  transfer_step;
 	wire  lcd_rst_done;
 	wire  bus_busy;
@@ -142,7 +142,7 @@ module hx8352_controller
 			.clk(clk),
 			.rst(~lcd_rst_done),
 			.data_input(data_to_write),
-			.data_command(command_to_write),
+			.data_command(command_or_data),
 			.transfer_step(transfer_step),
 			.busy(bus_busy),
 			.data_output(data_output),
@@ -150,23 +150,23 @@ module hx8352_controller
 			.lcd_wr(lcd_wr),
 			.lcd_rd(lcd_rd)
 		);
-	assign busy = bus_busy & ~lcd_rst_done;
+	assign busy = bus_busy | ~lcd_rst_done;
 	
 	wire init_commands_clk;
-	reg enable_load_reg;	
+	reg  init_commands_clk_reg;	
 	
 	always @(posedge clk or posedge rst)
 	begin
 		if(rst) begin
-			enable_load_reg <= 0;
+			init_commands_clk_reg <= 0;
 			data_in_reg <= 0;
 		end
 		else begin
-			enable_load_reg <= init_commands_clk;
+			init_commands_clk_reg <= init_commands_clk;
 		end
 	end
 	
-	assign init_commands_clk = ~enable_load_reg;
+	assign init_commands_clk = ~init_commands_clk_reg;
 	
 	
 	
@@ -216,6 +216,7 @@ module hx8352_controller
 	
 	wire        init_commands_reset;
 	reg         cs_reg;
+	reg         init_done;
     reg 		enable_load_reg;
     reg  [2:0]  state;
 	reg  [7:0] instruction_step;
@@ -226,152 +227,169 @@ module hx8352_controller
     
     always @(posedge init_commands_clk or posedge init_commands_reset) begin
         if (init_commands_reset) begin
-            instruction_step <= 8'b0;
+            instruction_step <= 8'h00;
             data_to_write <= 16'h0;
             enable_load_reg <= 0;
             delay_step <= 0;
+            init_done <= LOW;
             delay_value <= 8'h0;
+            command_or_data <= HIGH;
             cs_reg <= 1;
             state <= STATE_INITIALIZE;
         end else begin
         
 			if(delay_done) begin
-				enable_load_reg <= ~enable_load_reg;
 				cs_reg <= cs_reg;
+				if(state == STATE_IDLE) begin //! NOP
+					instruction_step <= 8'h00;
+					enable_load_reg <= 0;
+				end
+				else begin
+					instruction_step <= instruction_step_next;
+					enable_load_reg <= ~enable_load_reg;
+				end
 			end else begin
-				enable_load_reg <= enable_load_reg;
+				enable_load_reg <= 0;
 				delay_step <= 0;
 				cs_reg <= HIGH;
+				instruction_step <= instruction_step;
 			end
 			
-			case (state) begin
-				STATE_IDLE: begin
-					if(step_sync) begin
-						if(write_cmd_reg) begin 
-							state <= STATE_TRANSFER_CMD;
-						end 
-						else begin
-							state <= STATE_TRANSFER_PIXEL;						
+			if (enable_load_reg & delay_done) begin
+				case (state)
+					STATE_IDLE: begin
+						if(step_sync) begin
+							if(write_cmd_reg)
+								state <= STATE_TRANSFER_CMD;
+							else
+								state <= STATE_TRANSFER_PIXEL;
 						end
 					end
-				end
-				STATE_TRANSFER_CMD:begin
-				
-				end			
-				STATE_TRANSFER_PIXEL:begin
-				
-				end
-				STATE_INITIALIZE: begin
-					if (enable_load_reg & delay_done) begin
+					STATE_TRANSFER_CMD: begin
 						case (instruction_step)
-							32'h0001:  {cs_reg, instruction_step}     <= {LOW, 16'h000F};
-							32'h000F:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Test_Mode}};
-							32'h0010:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h02}};//TESTM=1 
-							32'h0012:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_VDDD_control}};
-							32'h0013:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h03}};//VDC_SEL=011
-							32'h0014:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_VGS_RES_control_1}};
-							32'h0015:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h01}};
-							32'h0016:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_VGS_RES_control_2}};
-							32'h0017:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h93}};//STBA[7]=1,STBA[5:4]=01,STBA[1:0]=11
-							32'h0018:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_PWM_Control_0}};
-							32'h0019:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h01}};//DCDC_SYNC=1
-							32'h001a:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Test_Mode}};
-							32'h001b:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h00}}; //TESTM=0
-							32'h001c:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Gamma_Control_1}};//Gamma Setting
-							32'h001d:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'hB0}};
-							32'h001e:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Gamma_Control_2}};
-							32'h001f:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h03}};
-							32'h0020:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Gamma_Control_3}};
-							32'h0021:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h10}};
-							32'h0022:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Gamma_Control_5}};
-							32'h0023:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h13}};
-							32'h0024:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Gamma_Control_6}};
-							32'h0025:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h46}};
-							32'h0026:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Gamma_Control_7}};
-							32'h0027:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h23}};
-							32'h0028:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Gamma_Control_8}};
-							32'h0029:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h76}};
-							32'h002a:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Gamma_Control_9}};
-							32'h002b:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h00}};
-							32'h002c:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Gamma_Control_10}};
-							32'h002d:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h5E}};
-							32'h002e:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Gamma_Control_11}};
-							32'h002f:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h4F}};
-							32'h0030:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Gamma_Control_12}};
-							32'h0031:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h40}};
-							32'h0032:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00,CMD_OSC_Control_1}};//**********Power On sequence************
-							32'h0033:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h91}};
-							32'h0034:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Cycle_Control_1}};
-							32'h0035:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'hF9}};
-							32'h0036:  {delay_step,  delay_value}     <= {1'b1, 8'd10};//! Delay 10 ms
-							32'h0037:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Power_Control_3}};
-							32'h0038:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h14}};
-							32'h0039:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Power_Control_2}};
-							32'h003a:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h11}};
-							32'h003b:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Power_Control_4}};
-							32'h003c:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h06}}; // 0d
-							32'h003e:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_VCOM_Control}};
-							32'h003f:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h42}};
-							32'h0040:  {delay_step,  delay_value}     <= {1'b1, 8'd20};//! Delay 20 ms
-							32'h0041:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Power_Control_1}};
-							32'h0042:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h0A}};
-							32'h0043:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Power_Control_1}};
-							32'h0044:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h1A}};
-							32'h0045:  {delay_step,  delay_value}     <= {1'b1, 8'd40};//! Delay 40 ms
-							32'h0046:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Power_Control_1}};
-							32'h0047:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h12}};
-							32'h0048:  {delay_step,  delay_value}     <= {1'b1, 8'd40};//! Delay 40 ms
-							32'h0049:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Power_Control_6}};
-							32'h004a:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h27}};
-							32'h004b:  {delay_step,  delay_value}     <= {1'b1, 8'd100};//! Delay 100 ms
-							32'h004c:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Display_Control_2}};//**********DISPLAY ON SETTING***********
-							32'h004d:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h60}};					
-							32'h004e:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Source_Control_2}};
-							32'h004f:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h40}};					
-							32'h0050:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Cycle_Control_10}};
-							32'h0051:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h38}};					
-							32'h0052:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Cycle_Control_11}};
-							32'h0053:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h38}};					
-							32'h0054:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Display_Control_2}};
-							32'h0055:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h38}};
-							32'h0056:  {delay_step,  delay_value}     <= {1'b1, 8'd40};//! Delay 40 ms					
-							32'h0057:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Display_Control_2}};
-							32'h0058:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h3C}};					
-							32'h0059:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Memory_Access_Control}};
-							32'h005a:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h1C}};					
-							32'h005b:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Display_mode}};
-							32'h005c:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h06}};					
-							32'h005e:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_PANEL_Control}};
-							32'h005f:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h00}};					
-							32'h0060:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Column_Address_Start_1}};
-							32'h0061:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h00}};
-							32'h0062:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Column_Address_Start_2}};
-							32'h0063:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h00}};
-							32'h0064:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Column_Address_End_1}};
-							32'h0065:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h00}};
-							32'h0066:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Column_Address_End_2}};
-							32'h0067:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'hEF}};					
-							32'h0068:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Row_Address_Start_1}};
-							32'h0069:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h00}};
-							32'h006a:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Row_Address_Start_2}};
-							32'h006b:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h00}};
-							32'h006c:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Row_Address_End_1}};
-							32'h006d:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h01}};
-							32'h006e:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Row_Address_End_2}};
-							32'h006f:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h8F}};					
-							32'h0070:  {cs_reg, command_to_write, data_to_write, state}     <= {HIGH, LCD_CMD,  {8'h00, CMD_Product_ID}, STATE_IDLE}; //! NOP
+							8'h01:  {cs_reg, instruction_step}     <= {LOW, 8'h00};
+							8'h02:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, cmd_in_reg}}; 
+							8'h03:  {command_or_data, data_to_write}     <= {LCD_DATA, data_in_reg}; 
+							8'h04:  {cs_reg, command_or_data, data_to_write, state}     <= {HIGH, LCD_CMD,  {8'h00, CMD_Product_ID}, STATE_IDLE}; //! NOP
 						endcase
-					
-					end	else begin
-						cs_reg <= cs_reg;						
+					end			
+					STATE_TRANSFER_PIXEL: begin
+						case (instruction_step)
+							8'h01:  {cs_reg, instruction_step}     <= {LOW, 8'h00};
+							8'h02:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Data_read_write}}; 
+							8'h03:  {command_or_data, data_to_write}     <= {LCD_DATA, data_in_reg}; 
+							8'h04:  {cs_reg, command_or_data, data_to_write, state}     <= {HIGH, LCD_CMD,  {8'h00, CMD_Product_ID}, STATE_IDLE}; //! NOP
+						endcase
 					end
-				end
-			end
-			
-			if(delay_done) begin
-				instruction_step <= instruction_step_next;
-			end else begin
-				instruction_step <= instruction_step;
+					STATE_INITIALIZE: begin
+						case (instruction_step)
+							8'h01:  {cs_reg, instruction_step}     <= {LOW, 8'h0F};
+							8'h0F:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Test_Mode}};
+							8'h10:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h02}};//TESTM=1 
+							8'h12:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_VDDD_control}};
+							8'h13:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h03}};//VDC_SEL=011
+							8'h14:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_VGS_RES_control_1}};
+							8'h15:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h01}};
+							8'h16:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_VGS_RES_control_2}};
+							8'h17:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h93}};//STBA[7]=1,STBA[5:4]=01,STBA[1:0]=11
+							8'h18:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_PWM_Control_0}};
+							8'h19:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h01}};//DCDC_SYNC=1
+							8'h1a:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Test_Mode}};
+							8'h1b:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h00}}; //TESTM=0
+							8'h1c:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Gamma_Control_1}};//Gamma Setting
+							8'h1d:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'hB0}};
+							8'h1e:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Gamma_Control_2}};
+							8'h1f:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h03}};
+							8'h20:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Gamma_Control_3}};
+							8'h21:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h10}};
+							8'h22:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Gamma_Control_5}};
+							8'h23:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h13}};
+							8'h24:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Gamma_Control_6}};
+							8'h25:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h46}};
+							8'h26:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Gamma_Control_7}};
+							8'h27:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h23}};
+							8'h28:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Gamma_Control_8}};
+							8'h29:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h76}};
+							8'h2a:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Gamma_Control_9}};
+							8'h2b:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h00}};
+							8'h2c:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Gamma_Control_10}};
+							8'h2d:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h5E}};
+							8'h2e:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Gamma_Control_11}};
+							8'h2f:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h4F}};
+							8'h30:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Gamma_Control_12}};
+							8'h31:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h40}};
+							8'h32:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00,CMD_OSC_Control_1}};//**********Power On sequence************
+							8'h33:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h91}};
+							8'h34:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Cycle_Control_1}};
+							8'h35:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'hF9}};
+							8'h36:  {delay_step,  delay_value}     <= {1'b1, 8'd10};//! Delay 10 ms
+							8'h37:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Power_Control_3}};
+							8'h38:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h14}};
+							8'h39:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Power_Control_2}};
+							8'h3a:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h11}};
+							8'h3b:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Power_Control_4}};
+							8'h3c:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h06}}; // 0d
+							8'h3e:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_VCOM_Control}};
+							8'h3f:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h42}};
+							8'h40:  {delay_step,  delay_value}     <= {1'b1, 8'd20};//! Delay 20 ms
+							8'h41:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Power_Control_1}};
+							8'h42:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h0A}};
+							8'h43:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Power_Control_1}};
+							8'h44:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h1A}};
+							8'h45:  {delay_step,  delay_value}     <= {1'b1, 8'd40};//! Delay 40 ms
+							8'h46:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Power_Control_1}};
+							8'h47:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h12}};
+							8'h48:  {delay_step,  delay_value}     <= {1'b1, 8'd40};//! Delay 40 ms
+							8'h49:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Power_Control_6}};
+							8'h4a:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h27}};
+							8'h4b:  {delay_step,  delay_value}     <= {1'b1, 8'd100};//! Delay 100 ms
+							8'h4c:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Display_Control_2}};//**********DISPLAY ON SETTING***********
+							8'h4d:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h60}};					
+							8'h4e:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Source_Control_2}};
+							8'h4f:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h40}};					
+							8'h50:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Cycle_Control_10}};
+							8'h51:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h38}};					
+							8'h52:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Cycle_Control_11}};
+							8'h53:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h38}};					
+							8'h54:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Display_Control_2}};
+							8'h55:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h38}};
+							8'h56:  {delay_step,  delay_value}     <= {1'b1, 8'd40};//! Delay 40 ms					
+							8'h57:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Display_Control_2}};
+							8'h58:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h3C}};					
+							8'h59:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Memory_Access_Control}};
+							8'h5a:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h1C}};					
+							8'h5b:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Display_mode}};
+							8'h5c:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h06}};					
+							8'h5e:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_PANEL_Control}};
+							8'h5f:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h00}};					
+							8'h60:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Column_Address_Start_1}};
+							8'h61:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h00}};
+							8'h62:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Column_Address_Start_2}};
+							8'h63:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h00}};
+							8'h64:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Column_Address_End_1}};
+							8'h65:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h00}};
+							8'h66:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Column_Address_End_2}};
+							8'h67:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'hEF}};					
+							8'h68:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Row_Address_Start_1}};
+							8'h69:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h00}};
+							8'h6a:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Row_Address_Start_2}};
+							8'h6b:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h00}};
+							8'h6c:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Row_Address_End_1}};
+							8'h6d:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h01}};
+							8'h6e:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Row_Address_End_2}};
+							8'h6f:  {command_or_data, data_to_write}     <= {LCD_DATA, {8'h00, 8'h8F}};					
+							8'h70:  begin //! NOP
+									cs_reg <= HIGH;
+									command_or_data <= LCD_CMD;
+									data_to_write <= {8'h00, CMD_Product_ID};
+									state <= STATE_IDLE;
+									init_done <= HIGH; 							
+									end
+							default: state <= STATE_IDLE; 
+						endcase
+					end
+				default: state <= STATE_INITIALIZE;
+				endcase
 			end
         end
     end
@@ -380,21 +398,3 @@ module hx8352_controller
 	assign debug_instruction_step = instruction_step;
 	assign lcd_cs = cs_reg;
 endmodule
-/*
-//! Initialization done 
-32'h0071:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Column_Address_Start_2}};	// set scan mode xstart xend				
-32'h0072:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h00}};  // x0 L
-32'h0073:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Row_Address_Start_1}};  
-32'h0074:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h00}};  // y0 H
-32'h0075:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Row_Address_Start_2}};  
-32'h0076:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h00}};  // y0 L
-32'h0078:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Column_Address_End_2}};   
-32'h0079:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'hEF}};  // x1  
-32'h007a:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Row_Address_End_1}};  
-32'h007b:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h01}};  // y1 H
-32'h007c:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Row_Address_End_2}}; 
-32'h008d:  {command_to_write, data_to_write}     <= {LCD_DATA, {8'h00, 8'h8F}};  // y1 L
-32'h008e:  {command_to_write, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Data_read_write}}; 
-*/
-
-

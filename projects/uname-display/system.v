@@ -167,7 +167,7 @@ counter	#(    .N(32),
 	wire hx8352_cs;
 	wire hx8352_rst;
 	wire [7:0] tm1638_keys;
-	wire[17:0] debug_instruction_step;
+	wire [7:0] debug_instruction_step;
 	tm1638_keys_display_encoded
 		tm1638_keys_display_encoded_unit0
 		(
@@ -238,7 +238,7 @@ counter	#(    .N(32),
 		(
 		.clk(clk_hs),
 		.rst(n_rst),
-		.color(counter_low_frec[15:0] ),
+		.data_in(counter_low_frec[15:0] ),
 		.lcd_rs(hx8352_rs),
 		.lcd_wr(hx8352_wr),
 		.lcd_rd(hx8352_rd),

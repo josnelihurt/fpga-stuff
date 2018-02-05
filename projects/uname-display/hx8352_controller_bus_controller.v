@@ -75,7 +75,7 @@ module hx8352_controller_bus_controller
         endcase
     end
 
-    always @(posedge clk, posedge rst)
+    always @(posedge clk or posedge rst)
     begin
         if (rst)
         begin
@@ -84,7 +84,7 @@ module hx8352_controller_bus_controller
             lcd_wr_reg <= LOW;
             lcd_rd_reg <= LOW;
             lcd_data_reg <= 16'h0;
-            
+            lcd_busy_reg <= HIGH;
         end
         else
         begin
@@ -93,6 +93,7 @@ module hx8352_controller_bus_controller
             lcd_wr_reg <= lcd_wr_next;
             lcd_rd_reg <= lcd_rd_next;
             lcd_data_reg <= lcd_data_next;
+            lcd_busy_reg <= lcd_busy_next;
         end
     end
 
@@ -100,5 +101,6 @@ assign data_output = lcd_data_reg;
 assign lcd_rs = lcd_rs_reg;
 assign lcd_wr = lcd_wr_reg;
 assign lcd_rd = lcd_rd_reg;
+assign busy = lcd_busy_reg;
 
 endmodule

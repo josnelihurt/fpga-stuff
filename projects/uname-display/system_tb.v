@@ -51,7 +51,7 @@ system #(
 	.clk_freq	(	clk_freq	),
 	.uart_baud_rate	(	uart_baud_rate	)
 ) dut  (
-	.clk(	clk_tb	),
+	.clk50MHz(	clk_tb	),
 	.io5( io5_tb ),
 	.io67(tm1638_data_io_tb),
 	// Debug
@@ -110,7 +110,7 @@ initial begin
 	
 	#100 	  lcd_cs <= 1;
 	
-	#(tck*10000) $finish;
+	#(tck*100_000) $finish;
 	//#(tck*750_000) $finish; // xx ms
 end
 endmodule
