@@ -18,7 +18,7 @@ module hx8352_controller
 );	
 	reg  [15:0] data_to_write;
 	reg  command_or_data;
-	wire  transfer_step;
+	wire  bus_controller_step;
 	wire  lcd_rst_done;
 	wire  bus_busy;
 	
@@ -143,14 +143,13 @@ module hx8352_controller
 			.rst(~lcd_rst_done),
 			.data_input(data_to_write),
 			.data_command(command_or_data),
-			.transfer_step(transfer_step),
+			.transfer_step(bus_controller_step),
 			.busy(bus_busy),
 			.data_output(data_output),
 			.lcd_rs(lcd_rs),
 			.lcd_wr(lcd_wr),
 			.lcd_rd(lcd_rd)
 		);
-	assign busy = bus_busy | ~lcd_rst_done;
 	
 	wire fsm_clk;
 	reg  fsm_clk_reg;	
@@ -217,8 +216,8 @@ module hx8352_controller
 	wire        fsm_rst;
 	reg         cs_reg;
 	reg         init_done;
-    reg 		transfer_step_reg;
-    reg  [2:0]  state;
+    reg 		bus_controller_step_reg;
+    reg  [2:0]  fsm_state;
 	reg  [7:0]  instruction_step_reg;
     wire [7:0]  instruction_step_next;
     
@@ -229,49 +228,59 @@ module hx8352_controller
         if (fsm_rst) begin
             instruction_step_reg <= 8'h00;
             data_to_write <= 16'h0;
-            transfer_step_reg <= 0;
+            bus_controller_step_reg <= 0;
             delay_step <= 0;
             init_done <= LOW;
             delay_value <= 8'h0;
             command_or_data <= HIGH;
             cs_reg <= 1;
-            state <= STATE_INITIALIZE;
+            fsm_state <= STATE_INITIALIZE;
         end 
         else begin
 			if (~bus_busy & delay_done) begin				
-				case (state)
+				case (fsm_state)
 					STATE_IDLE: begin
 						if(step_sync) begin
 							if(write_cmd_reg)
-								state <= STATE_TRANSFER_CMD;
+								fsm_state <= STATE_TRANSFER_CMD;
 							else
-								state <= STATE_TRANSFER_PIXEL;
+								fsm_state <= STATE_TRANSFER_PIXEL;
 						end
 						instruction_step_reg <= 8'h00;
-						transfer_step_reg <= LOW;
+						bus_controller_step_reg <= LOW;
 					end
 					STATE_TRANSFER_CMD: begin
-						transfer_step_reg <= HIGH;
+						bus_controller_step_reg <= HIGH;
 						case (instruction_step_reg)
 							8'h00:  cs_reg <= LOW;
 							8'h01:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, cmd_in_reg}}; 
 							8'h02:  {command_or_data, data_to_write}     <= {LCD_DATA, data_in_reg}; 
-							8'h03:  {cs_reg, command_or_data, data_to_write, state}     <= {HIGH, LCD_CMD,  {8'h00, CMD_Product_ID}, STATE_IDLE}; //! NOP
-							default: state <= STATE_IDLE; 
+							8'h03:  begin //! NOP
+									cs_reg <= HIGH;
+									command_or_data <= LCD_CMD;
+									data_to_write <= {8'h00, CMD_Product_ID};
+									fsm_state <= STATE_IDLE;						
+									end
+							default: fsm_state <= STATE_IDLE; 
 						endcase
 					end			
 					STATE_TRANSFER_PIXEL: begin
-						transfer_step_reg <= HIGH;
+						bus_controller_step_reg <= HIGH;
 						case (instruction_step_reg)
 							8'h00:  cs_reg <= LOW;
 							8'h01:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Data_read_write}}; 
 							8'h02:  {command_or_data, data_to_write}     <= {LCD_DATA, data_in_reg}; 
-							8'h03:  {cs_reg, command_or_data, data_to_write, state}     <= {HIGH, LCD_CMD,  {8'h00, CMD_Product_ID}, STATE_IDLE}; //! NOP
-							default: state <= STATE_IDLE; 
+							8'h03:  begin //! NOP
+									cs_reg <= HIGH;
+									command_or_data <= LCD_CMD;
+									data_to_write <= {8'h00, CMD_Product_ID};
+									fsm_state <= STATE_IDLE;						
+									end
+							default: fsm_state <= STATE_IDLE; 
 						endcase
 					end
 					STATE_INITIALIZE: begin
-						transfer_step_reg <= HIGH;
+						bus_controller_step_reg <= HIGH;
 						case (instruction_step_reg)
 							8'h00:  {cs_reg, instruction_step_reg}     <= {LOW, 8'h10};
 							8'h10:  {command_or_data, data_to_write}     <= {LCD_CMD,  {8'h00, CMD_Test_Mode}};
@@ -396,27 +405,28 @@ module hx8352_controller
 									cs_reg <= HIGH;
 									command_or_data <= LCD_CMD;
 									data_to_write <= {8'h00, CMD_Product_ID};
-									state <= STATE_IDLE;
+									fsm_state <= STATE_IDLE;
 									init_done <= HIGH; 							
 									end
-							default: state <= STATE_IDLE; 
+							default: fsm_state <= STATE_IDLE; 
 						endcase
 					end
-				default: state <= STATE_INITIALIZE;
+				default: fsm_state <= STATE_INITIALIZE;
 				endcase
 			end
 			else if(~delay_done) begin
 				delay_step <= LOW;
-				transfer_step_reg <= LOW;
+				bus_controller_step_reg <= LOW;
 			end 
 			else begin 
 				instruction_step_reg <= instruction_step_next;
-				transfer_step_reg <= LOW;
+				bus_controller_step_reg <= LOW;
 			end       
         end
     end
     
-    assign transfer_step = transfer_step_reg & delay_done & ~delay_step;
+    assign bus_controller_step = bus_controller_step_reg & delay_done & ~delay_step;
+	assign busy = bus_busy | ~lcd_rst_done | (fsm_state != STATE_IDLE) | step_sync | bus_controller_step; 
 	assign debug_instruction_step = instruction_step_reg;
 	assign lcd_cs = cs_reg;
 endmodule
