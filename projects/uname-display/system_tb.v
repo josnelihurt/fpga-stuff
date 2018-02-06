@@ -75,6 +75,9 @@ wire hx8352_rd;
 reg lcd_cs;
 reg lcd_rst;
 reg hx8352_transfer_step;
+reg  enable_cmd;
+reg  [7:0] cmd_value;
+reg  [15:0] data_to_send;
 hx8352_controller
 	hx8352_controller_unit0
 	(
@@ -82,7 +85,11 @@ hx8352_controller
 	.rst(n_rst),
 	.lcd_rs(hx8352_rs),
 	.lcd_wr(hx8352_wr),
-	.lcd_rd(hx8352_rd)
+	.lcd_rd(hx8352_rd),
+	.write_cmd(enable_cmd),
+	.step(hx8352_transfer_step),
+	.cmd_in(cmd_value),
+	.data_in(data_to_send)
 	);
 
 /* Clocking device */
@@ -99,16 +106,19 @@ initial begin
 	$dumpvars(-1, hx8352_controller_unit0);
 	//$dumpvars(-1,clk_tb,rst_tb);
 	#0  io5_tb <= 1;
-	#0  rst_tb <= 0;
-	#0 	lcd_cs <= 1;
+	#0  enable_cmd <= 0;
+	#0  hx8352_transfer_step <= 0;
+ 	#0  rst_tb <= 0;
 	#70 rst_tb <= 1;
 	#80 rst_tb <= 0;
 	#90 rst_tb <= 1;
 	
+	#280000 enable_cmd <= 1;
+	#280000 cmd_value <= 8'hAA;
+	#280000 data_to_send <= 16'hABCD;
+	#280000 hx8352_transfer_step <= 1;
+	#280050 hx8352_transfer_step <= 0;
 	
-	#100  lcd_cs <= 0;
-	
-	#100 	  lcd_cs <= 1;
 	
 	#(tck*100_000) $finish;
 	//#(tck*750_000) $finish; // xx ms
