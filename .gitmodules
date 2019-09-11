@@ -1,0 +1,6 @@
+[submodule "boards/CYCLONE_IV_EP4CE15"]
+	path = boards/CYCLONE_IV_EP4CE15
+	url = https://github.com/ChinaQMTECH/CYCLONE_IV_EP4CE15
+[submodule "doc/boards/CYCLONE_IV_STARTER_KIT"]
+	path = doc/boards/CYCLONE_IV_STARTER_KIT
+	url = https://github.com/ChinaQMTECH/CYCLONE_IV_STARTER_KIT
