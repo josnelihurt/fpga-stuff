@@ -55,6 +55,7 @@ SRC=														\
 	$(PATH_RTL_GENRIC_LIBS)/tm1638/tm1638.v					\
 	$(PATH_RTL_GENRIC_LIBS)/tm1638/tm1638_keys_display.v	\
 	$(PATH_RTL_GENRIC_LIBS)/tm1638/tm1638_keys_display_encoded.v\
+	../edge_detect.v									\
 	../hx8352_controller.v									\
 	../hx8352_controller_bus_controller.v					\
 	../hx8352_reset_generator.v								\

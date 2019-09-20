@@ -78,7 +78,7 @@ initial begin
 	delay_step <= 0;
 	
 	
-	#(tck*100_000) $finish;
+	#(tck*50000) $finish;
 	//#(tck*750_000) $finish; // xx ms
 end
 endmodule
