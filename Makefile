@@ -35,7 +35,7 @@
 # 	The you can use it in a SRC file
 PATH_RTL_GENRIC_LIBS	=$(CURDIR)/../../rtl-generic
 PATH_MAIN_PROJ			=$(CURDIR)/..
-VINCDIR=										\
+VINCDIR=\
 	-I$(PATH_RTL_GENRIC_LIBS)/7segdriver		\
 	-I$(PATH_RTL_GENRIC_LIBS)/counter		\
 	-I$(PATH_RTL_GENRIC_LIBS)/dataregister	\
@@ -87,10 +87,11 @@ install:
 
 system_tb.vvp:
 	echo $(PATH_RTL_GENRIC_LIBS)
-	rm -rf  simulation/*
-	cp system_tb.v system_conf.v system_tb.vcd.save.sav simulation && cd simulation && rm -f $@.list
+	rm -rf simulation/*
+	cp $(SIM_SRC) system_conf.v system_tb.vcd.save.sav simulation && cd simulation && rm -f $@.list
 	for i in $(SRC); do echo $$i >> simulation/$@.list; done
-	for i in $(SIM_SRC); do echo $$i >> simulation/$@.list; done
+	#echo system_tb.v >> simulation/$@.list
+	echo "@@@@@@@@@@@@@@@@@@@@@@@@@"
 	echo "Running: $(IVERILOG) -o $@ $(VINCDIR) -c $@.list -s $(@:.vvp=)"
 	cd simulation && $(IVERILOG) -DSIMULATION -o $@ $(VINCDIR) -c $@.list -s $(@:.vvp=)
 
@@ -99,7 +100,6 @@ system_tb.vvp:
 
 #############################################################################
 # ISE Synthesis
-
 system.prj:
 	rm -rf build && mkdir build
 	#mkdir build
