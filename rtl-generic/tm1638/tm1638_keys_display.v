@@ -75,7 +75,7 @@ module tm1638_keys_display
         .dio_out(tm1638_data_output)
     );
 
-	assign instruction_step_next = instruction_step + 1;
+	assign instruction_step_next = instruction_step + 6'h1;
     always @(posedge clk_5MHz, posedge n_rst) begin
         if (n_rst) begin
             instruction_step <= 6'b0;

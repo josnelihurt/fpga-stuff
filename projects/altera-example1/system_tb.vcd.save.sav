@@ -1,0 +1,58 @@
+[*]
+[*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
+[*] Tue Sep 17 00:07:03 2019
+[*]
+[dumpfile] "/home/jrb/code/fpga-stuff/projects/altera-example1/simulation/system_tb.vcd"
+[dumpfile_mtime] "Tue Sep 17 00:01:30 2019"
+[dumpfile_size] 16727682
+[savefile] "/home/jrb/code/fpga-stuff/projects/altera-example1/system_tb.vcd.save.sav"
+[timestart] 120000
+[size] 1920 1024
+[pos] 1920 0
+*-18.000000 208000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] system_tb.
+[sst_width] 285
+[signals_width] 254
+[sst_expanded] 1
+[sst_vpaned_height] 316
+@28
+system_tb.hx8352_controller_unit0.fsm_clk
+(31)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+@c00023
+system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+@28
+(0)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(1)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(2)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(3)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(4)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(5)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(6)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(7)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(8)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(9)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(10)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(11)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(12)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(13)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(14)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(15)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(16)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(17)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(18)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(19)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(20)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(21)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(22)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(23)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(24)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(25)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(26)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(27)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(28)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(29)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+(30)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+@1401201
+-group_end
+[pattern_trace] 1
+[pattern_trace] 0
