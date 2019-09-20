@@ -62,7 +62,7 @@ module hx8352_delay_us
 			.fall()
 			);	
 	counter_to_zero #(.N(16)) counter_to_zero_u0(
-		.clk(clk_1MHz),.rst(rst),.step(step),
+		.clk(clk_1MHz),.rst(rst),.step(step_sync),
 		.from(delay_us),
 		.done(done)
 	);
