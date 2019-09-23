@@ -142,15 +142,222 @@ module hx8352_lcd_init(
 	output reg [15:0]delay_value,
 	output reg command_or_data,
 	output reg [15:0]data_to_write,
-	output working,
-	output done,
-	output bus_step
+	output reg done,
+	output reg lcd_cs,
+	output reg bus_step
 	);
 localparam 
 HIGH    = 1'b1,
 LOW     = 1'b0,
 LCD_CMD    = 1'b0,
 LCD_DATA   = 1'b1,
+CMD_Custom_Delay							=	8'hFE,
+STATE_START =0,
+STATE_IDLE =1,
+STATE_LOAD_DATA =2,
+STATE_PROCESS_CMD =3,
+STATE_TRANSFER_CMD =4,
+STATE_TRANSFER_CMD_WAIT_FOR_BUS =5,
+STATE_TRANSFER_DATA =6,
+STATE_TRANSFER_DATA_WAIT_FOR_BUS =7,
+STATE_TRANSFER_DELAY =8,
+STATE_TRANSFER_DELAY_WAIT_FOR =9,
+STATE_END =10,
+;
+
+reg enable;
+
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		enable <= 0;
+	end
+	else begin
+		enable <= enable;
+		if(step) 
+			enable <= 1'b1;
+		if(done) 
+			enable <= 1'b0;
+	end
+end
+wire enabled_clk;
+assign enabled_clk = clk & enable; 
+reg [3:0]state;
+reg init_val_step;
+wire [7:0]  init_cmd;
+wire [15:0] init_val;
+wire init_data_rdy,init_data_finish;
+init_values init_values_u0(
+	.clk(clk),.rst(rst),
+	.next(init_val_step),
+	.cmd(init_cmd),.value(init_val),.data_rdy(init_data_rdy),.finish(init_data_finish)
+);
+always @(posedge enabled_clk or posedge rst) begin
+	if (rst) begin
+		state 			<= 0;
+		delay_step 		<= 0;
+		delay_value 	<= 0;
+		command_or_data	<= 0;
+		data_to_write	<= 0;
+		done 			<= 0;
+		bus_step 		<= 0;
+		lcs_cs			<= 1;
+		init_val_step 	<= 0;
+	end else begin
+		case(state)
+		STATE_START:begin
+			lcs_cs <= LOW;
+			state <= STATE_LOAD_FROM_ROM;
+		end
+		STATE_IDLE:begin
+			if(init_data_finish)begin
+				state <= STATE_END;
+			end else begin 
+				state <= STATE_LOAD_DATA;
+				init_val_step <= HIGH;
+			end
+		end
+		STATE_LOAD_DATA:begin
+			init_val_step <= LOW;
+			if(init_data_rdy)
+				state <= STATE_TRANSFER_CMD;
+			else
+				state <= STATE_LOAD_DATA;
+		end
+		STATE_PROCESS_CMD:begin
+			if(init_cmd == CMD_Custom_Delay)
+				state <= STATE_TRANSFER_DELAY; 
+			else
+				state <= STATE_TRANSFER_CMD;
+		end
+		STATE_TRANSFER_CMD:begin
+			command_or_data	<= LCD_CMD;
+			bus_step <= HIGH;
+			data_to_write <= init_cmd;
+			state <= STATE_TRANSFER_CMD_WAIT_FOR_BUS;
+		end
+		STATE_TRANSFER_CMD_WAIT_FOR_BUS:begin
+			bus_step <= LOW;
+			if(bus_done)
+				state <= STATE_TRANSFER_DATA;
+			else
+				state <= STATE_TRANSFER_CMD_WAIT_FOR_BUS;
+		end
+		STATE_TRANSFER_DATA:begin 
+			command_or_data	<= LCD_DATA;
+			bus_step <= HIGH;
+			data_to_write <= init_val;
+			state <= STATE_TRANSFER_DATA_WAIT_FOR_BUS;
+		end
+		STATE_TRANSFER_DATA_WAIT_FOR_BUS:begin 
+			bus_step <= LOW;
+			if(bus_done)
+				state <= STATE_IDLE;
+			else
+				state <= STATE_TRANSFER_DATA_WAIT_FOR_BUS;
+		end
+		STATE_TRANSFER_DELAY:begin
+			delay_step <= HIGH;
+			delay_value <= init_val;
+		end
+
+		STATE_TRANSFER_DELAY_WAIT_FOR:begin
+			delay_step <= LOW;
+			if(delay_done)
+				state <= STATE_IDLE;
+			else
+				state <= STATE_TRANSFER_DELAY_WAIT_FOR;
+		end
+		STATE_END:begin
+			lcs_cs <= HIGH;
+			state <= STATE_END;
+		end
+		default begin
+			state <= STATE_IDLE;
+		end
+		endcase
+	end
+end
+
+
+endmodule 
+
+module init_values(
+	input clk,
+	input rst,
+	input next,
+	reg [7:0]cmd,
+	reg [15:0]value,
+	reg data_rdy,
+	reg finish
+);
+localparam 
+HIGH    = 1'b1,
+LOW     = 1'b0,
+CMD_Custom_Done								=	8'hFF,
+STATE_START	= 0,
+STATE_IDLE 	= 1,
+STATE_LOAD	= 2,
+STATE_LOADED= 3,
+STATE_END 	= 0;
+
+reg 	[]rom_address;
+wire 	[]rom_cmd;
+wire 	[]rom_value;
+rom_init_cmd 
+	rom_init_cmd_u0(
+		.clk(enabled_clk),.addr(rom_address),
+		.data{rom_cmd,rom_value}
+	);
+reg [3:0]state;
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		state <= STATE_START;
+		data_rdy <= 0;
+		finish <= 0;
+	end else begin
+		case begin
+		STATE_START: begin
+			rom_address <= 0;
+			state <= STATE_IDLE;
+		end
+		STATE_IDLE: begin
+			data_rdy <= 0;
+			if(rom_cmd == CMD_Custom_Done)begin
+				state <= STATE_END;
+				finish <= 1;
+			end else begin
+				if(next) begin
+					rom_address <= rom_address+1;
+					state <= STATE_LOAD;
+				end
+			end
+		end
+		STATE_LOAD: begin
+			cmd <= rom_cmd;
+			value <= rom_value;
+			state <= STATE_LOADED;
+		end	
+		STATE_LOADED: begin
+			data_rdy <= 1;
+			state <= STATE_IDLE;
+		end
+		STATE_END: begin
+			state <= STATE_END;
+		end
+		default: begin
+			state <= STATE_IDLE;
+		end 	
+		endcase
+	end
+end
+
+endmodule
+module rom_init_cmd(
+	input clk,
+    input wire [7:0] addr,
+    output reg [31:0] data
+	);
+localparam 
 /* 6.1 Command set = Taken from datasheet */
 CMD_Product_ID								=	8'h00,
 CMD_Display_mode							=	8'h01,
@@ -250,177 +457,66 @@ CMD_CABC_Gain6								=	8'h74,
 CMD_CABC_Gain7								=	8'h75,
 CMD_CABC_Gain8								=	8'h76,
 CMD_CABC_Gain9								=	8'h77,
-PC_INDEX_DELAY_1							=	8'h4d,
-PC_INDEX_DELAY_2							=	8'h5f,
-PC_INDEX_DELAY_3							=	8'h69,
-PC_INDEX_DELAY_4							=	8'h6f,
-PC_INDEX_DELAY_5							=	8'h75,
-PC_INDEX_DELAY_6							=	8'h8b,
-PC_INDEX_DONE								=  8'hbd;
+CMD_Custom_Delay							=	8'hFE,
+CMD_Custom_Done								=	8'hFF;
 
-reg  [7:0] pc;
-wire [7:0] pc_next;
-reg enable;
+// {CMD_TO_WRITE,DATA_TO_WRITE}
+reg [7:0] rom [31:0];
 
-always @(posedge clk or posedge rst) begin
-	if (rst) begin
-		enable <= 0;
-	end
-	else begin
-		enable <= enable;
-		if(step) 
-			enable <= 1'b1;
-		if(done) 
-			enable <= 1'b0;
-	end
-end
-wire enabled_clk;
-assign enabled_clk = clk & enable; 
-always @(posedge enabled_clk or posedge rst) begin
-	if (rst) begin
-		pc <= 0;
-	end
-	else begin
-		pc <= pc_next;
-	end
-end
-
-assign pc_next = (step) ? 1'b0 : pc + 1'b1;
-
-always @(pc)
-case (pc)
-	8'h01:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Test_Mode}};
-	8'h03:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h02}};//TESTM=1 
-	8'h05:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_VDDD_control}};
-	8'h07:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h03}};//VDC_SEL=011
-	8'h09:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_VGS_RES_control_1}};
-	8'h0b:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h01}};
-	8'h0d:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_VGS_RES_control_2}};
-	8'h0f:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h93}};//STBA[7]=1,STBA[5:4]=01,STBA[1:0]=11
-	8'h11:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_PWM_Control_0}};
-	8'h13:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h01}};//DCDC_SYNC=1
-	8'h15:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Test_Mode}};
-	8'h17:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h00}}; //TESTM=0
-
-	8'h19:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Gamma_Control_1}};//Gamma Setting
-	8'h1b:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'hB0}};
-	8'h1d:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Gamma_Control_2}};
-	8'h1f:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h03}};
-	8'h21:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Gamma_Control_3}};
-	8'h23:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h10}};
-	8'h25:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Gamma_Control_5}};
-	8'h27:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h13}};
-	8'h29:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Gamma_Control_6}};
-	8'h2b:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h46}};
-	8'h2d:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Gamma_Control_7}};
-	8'h2f:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h23}};
-	8'h31:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Gamma_Control_8}};
-	8'h33:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h76}};
-	8'h35:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Gamma_Control_9}};
-	8'h37:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h00}};
-	8'h39:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Gamma_Control_10}};
-	8'h3b:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h5E}};
-	8'h3d:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Gamma_Control_11}};
-	8'h3f:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h4F}};
-	8'h41:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Gamma_Control_12}};
-	8'h43:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h40}};
-
-	8'h45:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00,CMD_OSC_Control_1}};//**********Power On sequence************
-	8'h47:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h91}};
-	8'h49:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Cycle_Control_1}};
-	8'h4b:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'hF9}};
-	PC_INDEX_DELAY_1:  
-			  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'hF9}};//10ms delay
-	8'h4f:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Power_Control_3}};
-	8'h51:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h14}};
-	8'h53:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Power_Control_2}};
-	8'h55:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h11}};
-	8'h57:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Power_Control_4}};
-	8'h59:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h06}}; // 0d
-	8'h5b:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_VCOM_Control}};
-	8'h5d:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h42}};
-	PC_INDEX_DELAY_2:  
-			  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h42}};//20ms delay
-	8'h61:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Power_Control_1}};
-	8'h63:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h0A}};
-	8'h65:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Power_Control_1}};
-	8'h67:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h1A}};
-	PC_INDEX_DELAY_3:  
-			  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h1A}};//60ms delay
-	8'h6a:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Power_Control_1}};
-	8'h6c:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h12}};
-	PC_INDEX_DELAY_4:  
-	        {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h12}};//40ms delay
-	8'h71:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Power_Control_6}};
-	PC_INDEX_DELAY_5:  
-			  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h27}};
-	8'h75:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h27}};//60ms delay
-
-	8'h77:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Display_Control_2}};//**********DISPLAY ON SETTING***********
-	8'h79:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h60}};					
-	8'h7b:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Source_Control_2}};
-	8'h7d:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h40}};					
-	8'h7f:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Cycle_Control_10}};
-	8'h81:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h38}};					
-	8'h83:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Cycle_Control_11}};
-	8'h85:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h38}};					
-	8'h87:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Display_Control_2}};
-	8'h89:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h38}};
-	PC_INDEX_DELAY_6:
-			  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h38}};//40ms delay
-	8'h8c:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Display_Control_2}};
-	8'h8f:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h3C}};					
-	8'h91:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Memory_Access_Control}};
-	8'h93:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h1C}};					
-	8'h95:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Display_mode}};
-	8'h97:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h06}};					
-	8'h99:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_PANEL_Control}};
-	8'h9b:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h00}};					
-	8'h9d:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Column_Address_Start_1}};
-	8'h9f:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h00}};
-	8'ha1:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Column_Address_Start_2}};
-	8'ha3:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h00}};
-	8'ha5:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Column_Address_End_1}};
-	8'ha7:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h00}};
-	8'ha9:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Column_Address_End_2}};
-	8'hab:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'hEF}};					
-	8'had:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Row_Address_Start_1}};
-	8'haf:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h00}};
-	8'hb1:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Row_Address_Start_2}};
-	8'hb3:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h00}};
-	8'hb5:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Row_Address_End_1}};
-	8'hb7:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h01}};
-	8'hb9:  {command_or_data, data_to_write}  = {LCD_CMD,  {8'h00, CMD_Row_Address_End_2}};
-	8'hbb:  {command_or_data, data_to_write}  = {LCD_DATA, {8'h00, 8'h8F}};					
-	8'hbd:  {command_or_data, data_to_write}  = {LCD_CMD, {8'h00, CMD_Product_ID}};  
-	default: {command_or_data, data_to_write} = {LCD_CMD, 16'h0000}; 
-endcase
+always @(posedge clk)
+	data <= rom[addr];
 
 
-always @(pc)
-case (pc)
-	PC_INDEX_DELAY_1: delay_value=15'd10_000;
-	PC_INDEX_DELAY_2: delay_value=15'd20_000;
-	PC_INDEX_DELAY_3: delay_value=15'd60_000;
-	PC_INDEX_DELAY_4: delay_value=15'd40_000;
-	PC_INDEX_DELAY_5: delay_value=15'd60_000;
-	PC_INDEX_DELAY_6: delay_value=15'd40_000;
-  default:delay_value=15'd0;
-endcase
-always @(pc)
-case (pc)
-	PC_INDEX_DELAY_1: delay_step=1'b1;
-	PC_INDEX_DELAY_2: delay_step=1'b1;
-	PC_INDEX_DELAY_3: delay_step=1'b1;
-	PC_INDEX_DELAY_4: delay_step=1'b1;
-	PC_INDEX_DELAY_5: delay_step=1'b1;
-	PC_INDEX_DELAY_6: delay_step=1'b1;
-  default:delay_step=1'b0;
-endcase
-
-
-assign done = pc == PC_INDEX_DONE;
-assign working = enable;
-assign bus_step = pc[0];
-
-endmodule 
+initial begin
+    rom[] = {CMD_Test_Mode				,16'h02}; //TESTM=1 
+    rom[] = {CMD_VDDD_control			,16'h03}; //VDC_SEL=011
+    rom[] = {CMD_VGS_RES_control_1		,16'h01}; //STBA[7]=1,STBA[5:4]=01,STBA[1:0]=11
+    rom[] = {CMD_VGS_RES_control_2		,16'h93};
+    rom[] = {CMD_PWM_Control_0			,16'h01}; //DCDC_SYNC=1
+    rom[] = {CMD_Test_Mode				,16'h00}; //TESTM=0
+    rom[] = {CMD_Gamma_Control_1		,16'hB0}; //Gamma Setting
+    rom[] = {CMD_Gamma_Control_2		,16'h03};
+    rom[] = {CMD_Gamma_Control_3		,16'h10}; 
+    rom[] = {CMD_Gamma_Control_5		,16'h13};
+    rom[] = {CMD_Gamma_Control_6		,16'h46}};
+    rom[] = {CMD_Gamma_Control_7		,16'h23};
+    rom[] = {CMD_Gamma_Control_8		,16'h76}; 
+    rom[] = {CMD_Gamma_Control_9		,16'h00};
+    rom[] = {CMD_Gamma_Control_10		,16'h5E};
+    rom[] = {CMD_Gamma_Control_11		,16'h4F};
+    rom[] = {CMD_Gamma_Control_12		,16'h40};
+	rom[] = {CMD_OSC_Control_1			,16'h91};//**********Power On sequence************
+	rom[] = {CMD_Cycle_Control_1		,16'hF9};
+	rom[] = {CMD_Custom_Delay			,16'd10_000}; // 10ms delay
+	rom[] = {CMD_Power_Control_3		,16'h14};
+	rom[] = {CMD_Power_Control_2		,16'h11};
+	rom[] = {CMD_Power_Control_4		,16'h06};// 0d
+	rom[] = {CMD_VCOM_Control			,16'h42};
+	rom[] = {CMD_Custom_Delay			,16'd20_000};//20ms delay
+	rom[] = {CMD_Power_Control_1		,16'h0A};
+	rom[] = {CMD_Power_Control_1		,16'h1A};
+	rom[] = {CMD_Custom_Delay			,16'd60_000};//60ms delay
+	rom[] = {CMD_Power_Control_1		,16'h12};
+	rom[] = {CMD_Custom_Delay			,16'd40_000};//40ms delay
+	rom[] = {CMD_Power_Control_6		,16'h27};
+	rom[] = {CMD_Custom_Delay			,16'd60_000};//60ms delay
+	rom[] = {CMD_Display_Control_2		,16'h60};//**********DISPLAY ON SETTING***********
+	rom[] = {CMD_Source_Control_2		,16'h40};
+	rom[] = {CMD_Cycle_Control_10		,16'h38};
+	rom[] = {CMD_Cycle_Control_11		,16'h38};
+	rom[] = {CMD_Display_Control_2		,16'h38};
+	rom[] = {CMD_Custom_Delay			,16'd40_000};//40ms delay
+	rom[] = {CMD_Display_Control_2		,16'h3C};
+	rom[] = {CMD_Memory_Access_Control	,16'h1C};
+	rom[] = {CMD_Display_mode			,16'h06};
+	rom[] = {CMD_PANEL_Control			,16'h00};
+	rom[] = {CMD_Column_Address_Start_1	,16'h00};
+	rom[] = {CMD_Column_Address_Start_2	,16'h00};
+	rom[] = {CMD_Column_Address_End_1	,16'h00};
+	rom[] = {CMD_Column_Address_End_2	,16'hEF};
+	rom[] = {CMD_Row_Address_Start_1	,16'h00};
+	rom[] = {CMD_Row_Address_Start_2	,16'h00};
+	rom[] = {CMD_Row_Address_End_1		,16'h01};
+	rom[] = {CMD_Row_Address_End_2		,16'h8F};
+	rom[] = {CMD_Custom_Done		,16'h00};
+   end
