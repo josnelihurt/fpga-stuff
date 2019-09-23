@@ -1,7 +1,7 @@
 module tm1638_keys_display_encoded
 (
-	input		clk_5MHz,
-	input		n_rst,
+	input		clk_1MHz,
+	input		rst,
 	input 		display_off,
     input [2:0] display_level,
 	input [31:0] display_value,
@@ -45,8 +45,8 @@ module tm1638_keys_display_encoded
 	tm1638_keys_display
 		tm1638_keys_display_unit_0
 		(
-			.clk_5MHz(clk_5MHz),
-			.n_rst(n_rst),
+			.clk_1MHz(clk_1MHz),
+			.rst(rst),
 			.display_level({display_off, display_level}),
 			.digit1({dots[0], digit8}),
 			.digit2({dots[1], digit7}),

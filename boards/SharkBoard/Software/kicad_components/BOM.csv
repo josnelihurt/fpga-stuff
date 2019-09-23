@@ -1,0 +1,61 @@
+"ITEM","QUANTITY","LOCATION","DESCRIPTION","SHEET PACKAGE","DATASHEET","DOWNLOAD FROM","VENDOR CONTACT ID"
+1,1,"U1","JZ4720","COB","v","http://www.ingenic.cn/pfWebPlus/Default.aspx","VC15"
+2,2,"U2, U3","EUP3406VIR1 1.5MHz, 600mA Synchronous Step-Down Converter","SOT23-5","v","http://www.eutechmicro.com/PD_62_EN.html","VC1"
+3,1,"U4","BL8555-33PRA","SOT23-5A","v","www.belling.com.cn/","VC14"
+,1,"U5","SE9016","SOT23-5L","v","http://www.seawardinc.com.cn/index.asp","VC6"
+4,1,"U6","BL8509-263DNRM","SOT23-3","v","www.belling.com.cn/","VC14"
+5,1,"U7","BL8506-30NRM","SOT23-3","v","www.belling.com.cn/","VC14"
+6,1,"U8","P3V56S40ETP-G6","n/a","n/a",,"VC5"
+,,,"Z2V56S40BTP-G6","54-PIN TSOP-II 400 mils","v","http://www.echip.com.cn/index.asp   http://www.deutron.com.tw/index.htm",
+7,1,"U9","HY27UG088G5M","n/a","n/a","http://www.hynix.com/",
+,,,"K9G8G08U0M","48-PIN TSOPI 400mils","v","http://www.samsung.com/global/business/semiconductor/productList.do?fmly_id=672","VC4"
+8,1,"U10","SPY0030A SOP8","SOIC8","v","http://w3.sunplus.com/","VC2"
+9,1,"U11/NC","SCIC SOP8/NC","n/a","n/a","No mount on C63 version",
+10,5,"Q1, Q2, Q4, Q6, Q11","TM2301FN","SOT23","v","http://www.techmos.com.tw/index.htm","VC3"
+11,3,"Q3, Q9, Q10","TM2302FN","SOT23","v","http://www.techmos.com.tw/index.htm","VC3"
+12,1,"Q5","2N3904","SOT23","v","N/A","VC7"
+13,2,"R9, R31",0,603,"n/a",,
+14,4,"R20, R21, R37, R38","33/5%",603,"n/a",,
+15,2,"R40, R41","100/5%",603,"n/a","1k at C63 version",
+16,1,"R8","330/5%",603,"n/a",,
+17,1,"R12","510/5%",603,"n/a",,
+18,2,"R33, R35","1K/5%",603,"n/a",,
+19,1,"R39","2.2K/5%",603,"n/a",,
+20,2,"R14, R32","2.5K/5%",603,"n/a",,
+21,16,"R4, R5, R7, R15, R22, R23, R24, R26, R27, R28, R29, R30, R34, R44, R45, R46","10K/5%",603,"n/a",,
+22,1,"R47","47K/5%",603,"n/a","n/c(C63)",
+23,6,"R16, R17, R18, R36, R42, R43","100K/5%",603,"n/a",,
+24,2,"R6, R11","150K/1%",603,"n/a",,
+25,1,"R10","300K/1%",603,"n/a",,
+26,2,"R13, R19","470K/5%",603,"n/a",,
+27,1,"R3","680K/1%",603,"n/a",,
+28,5,"R1, R2, R48, R49, R50","1M/5%",603,"n/a",,
+29,2,"BN1, BN2","33/5%","RP4","n/a",,
+30,5,"D1, D2, D4, D5, D6","MSCD104",805,"v",,"VC8"
+31,1,"D3","RED LED",1206,"n/a",,
+32,1,"Y1","32768KHz",,"n/a",,"VC9"
+33,1,"Y2","12MHz",,"n/a",,"VC9"
+34,2,"C7, C10","10pF/16V",402,"n/a",,
+35,4,"C1, C4, C5, C8","33pF/16V",402,"n/a",,
+36,13,"C2, C6, C13, C9, C11, C17, C22, C28, C37, C45, C50, C52, C72","10uF/10V",805,"n/a",,
+37,5,"C19, C35, C36, C49, C63","1uF/16V",603,"n/a",,
+38,38,"C3, C12, C14, C15, C18, C21, C23, C24, C25, C26, C27, C29, C30, C31, C32, C34, C38, C39, C40, C41, C42, C43, C44, C46, C47, C48, C51, C53, C54, C55, C57, C58, C61, C66, C67, C68, C69, C70","0.1uF/16V",402,"n/a","c69(nc, C63), c70(nc, C63)",
+39,2,"C16, C71","0.01uF/16V",402,"n/a",,
+40,3,"C20, C60, C65","47uF/6.3V",1206,"n/a",,
+41,2,"C59, C62","100uF/4V",1210,"n/a",,
+42,7,"BD2, BD3, BD6, BD7, BD8, BD9, BD10","PZ1608D221",603,"v","http://www.sunlordinc.com/chinese/about/dedication.asp","VC10"
+43,1,"BD4","33/5%",603,"n/a",,
+44,3,"L1, L2, L4","4.7uH/1A",,"v",,"VC11"
+45,2,"L3, L5","SDCW2012-2-900",,"v","http://www.sunlordinc.com/chinese/about/dedication.asp","VC10"
+46,1,"CON1","BAT CON",,"n/a",,
+47,1,"CON2","FPCCON24",,"n/a","http://www.cvilux.com.tw","VC17"
+48,1,"J1","MS_1D77",,"v",,"VC13"
+49,1,"J2","USB MINIB",,"n/a","http://www.cvilux.com.tw","VC17"
+50,1,"J3","PHONEJACK",,"v",,"VC12"
+51,1,"MIC","MIC",,"n/a",,
+52,1,"SPEAKER","SP",,"n/a",,
+53,1,"BUZ","BUZ",,"n/a",,
+54,1,"CON3","SERIAL_CON",,"v",,"VC16"
+55,1,"C73","3.3uF/16V",805,"n/a",,
+56,1,"U12","LT3925EDCB","DFN-8","v",,"VC18"
+57,1,"J4","USB_MICRO_AB",,"v",,"VC19"

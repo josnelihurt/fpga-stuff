@@ -1,0 +1,15 @@
+EESchema-LIBRARY Version 2.3  Date: 25/9/2009-00:45:49
+#
+# VRTC
+#
+DEF VRTC #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 0 -50 20 H I C C
+F1 "VRTC" 0 100 30 H V C C
+DRAW
+C 0 60 20 0 1 0 N
+P 3 0 1 0  0 0  0 40  0 40 N
+X +VRTC 1 0 0 0 U 20 20 0 0 B N
+ENDDRAW
+ENDDEF
+#
+#End Library

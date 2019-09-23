@@ -1,25 +1,32 @@
 [*]
-[*] GTKWave Analyzer v3.3.34 (w)1999-2012 BSI
-[*] Mon Jun 18 23:12:29 2012
+[*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
+[*] Tue Sep 17 12:03:30 2019
 [*]
-[dumpfile] "/home/fsegura/Dropbox/JOSNELIHURT/HDL/SharkBoard/Blinking_led/simulation/system_tb.vcd"
-[dumpfile_mtime] "Mon Jun 18 23:09:32 2012"
-[dumpfile_size] 16706750
-[savefile] "/home/fsegura/Dropbox/JOSNELIHURT/HDL/SharkBoard/Blinking_led/system_tb.vcd.save.sav"
+[dumpfile] "/home/jrb/code/fpga-stuff/projects/uname-display/simulation/system_tb.vcd"
+[dumpfile_mtime] "Tue Sep 17 11:45:35 2019"
+[dumpfile_size] 11767926
+[savefile] "/home/jrb/code/fpga-stuff/projects/uname-display/system_tb.vcd.save.sav"
 [timestart] 0
-[size] 1000 600
-[pos] 333 254
-*-18.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[size] 1920 1024
+[pos] 1920 -26
+*-23.000000 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] system_tb.
-[treeopen] system_tb.dut.
+[treeopen] system_tb.hx8352_controller_unit0.
 [sst_width] 223
-[signals_width] 86
+[signals_width] 156
 [sst_expanded] 1
-[sst_vpaned_height] 160
+[sst_vpaned_height] 316
 @28
-system_tb.dut.clk
-system_tb.dut.led_out
+system_tb.hx8352_controller_unit0.lcd_rst_done
+system_tb.hx8352_controller_unit0.lcd_rst
+system_tb.hx8352_controller_unit0.lcd_rs
+system_tb.hx8352_controller_unit0.delay_done
+system_tb.hx8352_controller_unit0.delay_step
+system_tb.hx8352_controller_unit0.hx8352_delay_ms_unit.clk
+system_tb.hx8352_controller_unit0.hx8352_delay_ms_unit.rst
+system_tb.hx8352_controller_unit0.hx8352_delay_ms_unit.step
+system_tb.hx8352_controller_unit0.hx8352_delay_ms_unit.step_reg
 @29
-system_tb.dut.rst
+system_tb.hx8352_controller_unit0.hx8352_delay_ms_unit.step_sync
 [pattern_trace] 1
 [pattern_trace] 0

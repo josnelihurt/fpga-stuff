@@ -53,10 +53,12 @@ set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_location_assignment PIN_T2 -to clk_50M
-set_location_assignment PIN_J4 -to key
+set_location_assignment PIN_J4 -to key0
+#set_location_assignment PIN_K5 -to key1
 set_location_assignment PIN_E3 -to led
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to clk_50M
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to key
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to key0
+#set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to key1
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led
 set_location_assignment PIN_W19 -to display_7seg_bus[7]
 set_location_assignment PIN_U19 -to display_7seg_bus[6]
@@ -128,6 +130,8 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hx8352_data[3]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hx8352_data[2]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hx8352_data[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hx8352_data[0]
+set_location_assignment PIN_C1 -to probe_bus2[1]
+set_location_assignment PIN_C2 -to probe_bus2[0]
 set_location_assignment PIN_J2 -to probe_bus[15]
 set_location_assignment PIN_J1 -to probe_bus[14]
 set_location_assignment PIN_H2 -to probe_bus[13]
@@ -144,6 +148,8 @@ set_location_assignment PIN_N2 -to probe_bus[3]
 set_location_assignment PIN_N1 -to probe_bus[2]
 set_location_assignment PIN_M2 -to probe_bus[1]
 set_location_assignment PIN_M1 -to probe_bus[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to probe_bus2[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to probe_bus2[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to probe_bus[15]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to probe_bus[14]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to probe_bus[13]
@@ -252,23 +258,6 @@ set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=8" -
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=0000000000000000000000000000000000000000000000000000" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=52" -section_id auto_signaltap_0
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[7] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
-set_global_assignment -name VERILOG_FILE testbenches/system_tb.v
-set_global_assignment -name VERILOG_FILE hx8352_delay_us.v
-set_global_assignment -name SIGNALTAP_FILE stp1.stp
-set_global_assignment -name VERILOG_FILE "../../rtl-generic/tm1638/tm1638_keys_display_encoded.v"
-set_global_assignment -name VERILOG_FILE "../../rtl-generic/tm1638/tm1638_keys_display.v"
-set_global_assignment -name VERILOG_FILE "../../rtl-generic/tm1638/tm1638.v"
-set_global_assignment -name SDC_FILE "blinking-test.sdc"
-set_global_assignment -name VERILOG_FILE hx8352_reset_generator.v
-set_global_assignment -name VERILOG_FILE hx8352_controller_bus_controller.v
-set_global_assignment -name VERILOG_FILE hx8352_controller.v
-set_global_assignment -name VERILOG_FILE seven_segments_decoder.v
-set_global_assignment -name VERILOG_FILE "../../rtl-generic/7segdriver/Led7Seg.v"
-set_global_assignment -name VERILOG_FILE "../../rtl-generic/counter/counter.v"
-set_global_assignment -name VERILOG_FILE system.v
-set_global_assignment -name VERILOG_FILE seven_segments_handler.v
-set_global_assignment -name QIP_FILE PLL.qip
-set_global_assignment -name VERILOG_FILE clock_divider.v
 set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
 set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH system_tb -section_id eda_simulation
 set_global_assignment -name EDA_TEST_BENCH_NAME system_tb -section_id eda_simulation
@@ -279,6 +268,40 @@ set_global_assignment -name EDA_ENABLE_GLITCH_FILTERING ON -section_id eda_simul
 set_global_assignment -name EDA_WRITE_NODES_FOR_POWER_ESTIMATION ALL_NODES -section_id eda_simulation
 set_global_assignment -name EDA_TEST_BENCH_DESIGN_INSTANCE_NAME uut -section_id eda_simulation
 set_global_assignment -name EDA_TEST_BENCH_FILE testbenches/system_tb.v -section_id system_tb
-set_global_assignment -name VERILOG_FILE edge_detect.v
-set_global_assignment -name SLD_FILE db/stp1_auto_stripped.stp
+set_global_assignment -name DEVICE_FILTER_PIN_COUNT 484
+set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 8
+set_global_assignment -name CRC_ERROR_OPEN_DRAIN OFF
+set_global_assignment -name CYCLONEII_RESERVE_NCEO_AFTER_CONFIGURATION "USE AS PROGRAMMING PIN"
+set_global_assignment -name ENABLE_BOOT_SEL_PIN OFF
+set_global_assignment -name ENABLE_CONFIGURATION_PINS OFF
+set_global_assignment -name ENABLE_OCT_DONE OFF
+set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -fall
+set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -rise
+set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -fall
+set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -rise
+set_global_assignment -name USE_CONFIGURATION_DEVICE OFF
+set_global_assignment -name RESERVE_FLASH_NCE_AFTER_CONFIGURATION "AS INPUT TRI-STATED"
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_bus_controller.v
+set_global_assignment -name VERILOG_FILE hdl/single_shot_counter.v
+set_global_assignment -name VERILOG_FILE hdl/seven_segments_handler.v
+set_global_assignment -name VERILOG_FILE hdl/edge_detect.v
+set_global_assignment -name VERILOG_FILE hdl/delay_us.v
+set_global_assignment -name VERILOG_FILE hdl/clock_divider.v
+set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_reset_generator.v
+set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_controller_fsmv.v
+set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_controller_fsm_enabler.v
+set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_controller_data_sync.v
+set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_controller.v
+set_global_assignment -name VERILOG_FILE testbenches/system_tb.v
+set_global_assignment -name SIGNALTAP_FILE stp1.stp
+set_global_assignment -name VERILOG_FILE "../../rtl-generic/tm1638/tm1638_keys_display_encoded.v"
+set_global_assignment -name VERILOG_FILE "../../rtl-generic/tm1638/tm1638_keys_display.v"
+set_global_assignment -name VERILOG_FILE "../../rtl-generic/tm1638/tm1638.v"
+set_global_assignment -name SDC_FILE "blinking-test.sdc"
+set_global_assignment -name VERILOG_FILE "../../rtl-generic/7segdriver/Led7Seg.v"
+set_global_assignment -name VERILOG_FILE "../../rtl-generic/counter/counter.v"
+set_global_assignment -name VERILOG_FILE system.v
+set_global_assignment -name QIP_FILE PLL.qip
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name SLD_FILE db/stp1_auto_stripped.stp

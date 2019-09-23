@@ -59,6 +59,7 @@ SRC=														\
 	../hx8352_controller_bus_controller.v					\
 	../hx8352_reset_generator.v								\
 	../hx8352_delay_ms.v									\
+    ../seven_segments_decoder.v\
 	$(PATH_RTL_GENRIC_LIBS)/dataregister/dataregister.v		\
 	$(PATH_RTL_GENRIC_LIBS)/counter/counter.v				
 

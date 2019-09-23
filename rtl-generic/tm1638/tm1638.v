@@ -2,7 +2,7 @@ module tm1638(
     input clk,
     input rst,
 
-    input data_latch,
+    input step,
     inout [7:0] data,
     input rw,
 
@@ -47,7 +47,7 @@ module tm1638(
         case(cur_state)
             S_IDLE: begin
                 sclk_d = 0;
-                if (data_latch) begin
+                if (step) begin
                     // if we're reading, set to zero, otherwise latch in
                     // data to send
                     data_d = rw ? data : 8'b0;

@@ -1,15 +1,13 @@
-//output [4:0] vga_r,
-//output [5:0] vga_g,
-//output [4:0] vga_b,
-//input uart_rx,
-//output uart_tx,
+
 module system(
 	input clk_50M,
-	input key,
+	input key0,
+	//input key1,
 	output led,
 	output [7:0]display_7seg_bus,
 	output [2:0]display_7seg_anodes,
 	output [15:0]probe_bus,
+	output [1:0] probe_bus2,
 	// tm1638 board
 	output tm1638_clk,
 	inout tm1638_data_io,
@@ -22,7 +20,7 @@ module system(
 	output 	hx8352_cs,
 	output 	hx8352_rst
 	);
-	wire rst = ~key;
+	wire rst = ~key0;
 	wire clk_200M;
 	wire clk_10M;
 	wire clk_5M;
@@ -58,9 +56,9 @@ module system(
 	wire hx8352_init_done;
 	wire hx8352_busy;
 	hx8352_controller
-		hx8352_controller_unit0
+		hx8352_u0
 		(
-		.clk(clk_50M),
+		.clk(clk_1M),
 		.clk_1MHz(clk_1M),
 		.rst(rst),
 		.data_in(counter_1s[15:0]),
@@ -70,14 +68,14 @@ module system(
 		.lcd_rd(hx8352_rd),
 		.lcd_rst(hx8352_rst),
 		.lcd_cs(hx8352_cs),
-		.data_output(hx8352_data),
+		.data_output(hx8352_data[15:0]),
 		.debug_instruction_step(hx8352_dbg),
 		.init_done(hx8352_init_done)
 		);
 	seven_segments_handler 
 		seven_segments_handler_unit0
 		(
-		.clk(clk_50M),
+		.clk_1MHz(clk_1M),
 		.rst(rst),
 		.input_hex(hx8352_dbg[27:16]),
 		.dots(3'b000),
@@ -88,8 +86,8 @@ module system(
 	tm1638_keys_display_encoded
 		tm1638_keys_display_encoded_unit0
 		(
-		.clk_5MHz(clk_5M),
-		.n_rst(rst),
+		.clk_1MHz(clk_1M),
+		.rst(rst),
 		.display_off(1'b0),
 		.display_level(3'b100),
 		.display_value( hx8352_dbg ),//{debug_instruction_step, hx8352_data}),
@@ -104,5 +102,17 @@ module system(
 		);
 
 	assign led=clk_1H;
-	assign probe_bus[15:0] = hx8352_dbg[15:0];
+	wire delay_done;
+	delay_us 
+	delay_uut(
+	.clk_1MHz(clk_1M),
+	.rst(rst),
+	.step(clk_1H),
+	.delay_us(100),
+	.done(delay_done)
+	);
+	
+	assign probe_bus[15:0] = {hx8352_dbg[15:0]};
+	assign probe_bus2[0] = clk_1H;
+	assign probe_bus2[1] = delay_done;
 endmodule

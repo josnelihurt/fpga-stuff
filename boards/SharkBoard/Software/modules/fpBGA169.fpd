@@ -1,0 +1,65 @@
+/* MACHINE-GENERATED ! */
+
+frame ball {
+	__0: vec @((col-N/2-0.5)*e, (N/2-row+0.5)*e)
+	__1: vec .(-d/2, -d/2)
+	__2: vec __0(d/2, d/2)
+	rpad "$rname$col" __1 .
+}
+
+frame cmid_full {
+	table
+	    { rname, row }
+	    { "A", 1 }
+	    { "B", 2 }
+	    { "C", 3 }
+	    { "D", 4 }
+	    { "E", 5 }
+	    { "F", 6 }
+	    { "G", 7 }
+	    { "H", 8 }
+	    { "J", 9 }
+	    { "K", 10 }
+	    { "L", 11 }
+	    { "M", 12 }
+	    { "N", 13 }
+
+	loop col = 1, 13
+
+	frame ball @
+}
+
+frame outline {
+	__0: vec @(-Ox/2, -Oy/2)
+	__1: vec @(Ox/2, Oy/2)
+	rect __0 . silk
+}
+
+frame one_mark {
+	__0: vec @(-Ox/2, Oy/2)
+	__1: vec @(-Ox/2-0.8mm, Oy/2+0.8mm)
+	rect __0 . silk
+}
+
+package "fpBGA169"
+unit mm
+set e = 0.8mm
+
+set N = 13
+
+set d = 0.4mm
+
+set Ox = 11mm
+
+set Oy = 11mm
+
+set silk = 0.1mm
+
+frame cmid_full @
+frame outline @
+frame one_mark @
+measy outline.__0 >> outline.__1 1.5mm
+measx outline.__0 >> outline.__1 Oy+1.5mm
+measy ball.__0 >> ball.__0 1.5mm
+measx ball.__0 >> ball.__0 Oy
+measx ball.__0 -> ball.__0 -1.5mm

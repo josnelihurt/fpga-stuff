@@ -1,0 +1,18 @@
+EESchema-DOCLIB  Version 2.0  Date: Fri 22 Jun 2012 08:44:02 PM COT
+#
+$CMP DOUBLE_SCH_AN
+D Double diode Shottky ANDs communes
+K DEV DIODE
+$ENDCMP
+#
+$CMP DOUBLE_SCH_KCOM
+D Double diode Shottky Cathodes communes
+K DEV DIODE
+$ENDCMP
+#
+$CMP DOUBLE_SCH_KCOM_3COM
+D Double diode Shottky Cathodes communes
+K DEV DIODE
+$ENDCMP
+#
+#End Doc Library

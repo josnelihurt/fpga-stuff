@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name video1-rescue)(type Legacy)(uri ${KIPRJMOD}/video1-rescue.lib)(options "")(descr ""))
+  (lib (name video1-cache)(type Legacy)(uri /home/jrb/code/fpga-stuff/boards/CYCLONE_IV/video1/video1-cache.lib)(options "")(descr ""))
+)

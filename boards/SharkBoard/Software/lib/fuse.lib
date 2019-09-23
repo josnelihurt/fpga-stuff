@@ -1,0 +1,1112 @@
+EESchema-LIBRARY Version 2.3  30/05/2011-14:40:20
+# Converted with eagle2kicad.ulp Version 0.9
+# Device count = 46
+#
+# Dev Name: 19559
+# Package Name: 19559
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF 19559 F 0 40 N Y 1 L N
+# Gate Name: 1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "19559" -150 -115 50 H V L B
+F2 "fuse-19559" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: 19560
+# Package Name: 19560
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF 19560 F 0 40 N Y 1 L N
+# Gate Name: F
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "19560" -150 -115 50 H V L B
+F2 "fuse-19560" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: F456
+# Package Name: F456
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF F456 F 0 40 N Y 1 L N
+# Gate Name: 1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "F456" -150 -115 50 H V L B
+F2 "fuse-F456" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: F457
+# Package Name: F457
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF F457 F 0 40 N Y 1 L N
+# Gate Name: 1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "F457" -150 -115 50 H V L B
+F2 "fuse-F457" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: FUSE1821
+# Package Name: FUSE_HOLDER_MENTOR-1821
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF FUSE1821 F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "FUSE1821" -150 -115 50 H V L B
+F2 "fuse-FUSE_HOLDER_MENTOR-1821" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 A -200 0 100 R 40 40 1 1 P 
+X 2 B 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: FUSE19559
+# Package Name: 19559
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF FUSE19559 F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "FUSE19559" -150 -115 50 H V L B
+F2 "fuse-19559" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: FUSE19560
+# Package Name: 19560
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF FUSE19560 F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "FUSE19560" -150 -115 50 H V L B
+F2 "fuse-19560" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: FUSE19596
+# Package Name: FUSE_HOLDER_WICKMANN-19596
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF FUSE19596 F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "FUSE19596" -150 -115 50 H V L B
+F2 "fuse-FUSE_HOLDER_WICKMANN-19596" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 A -200 0 100 R 40 40 1 1 P 
+X 2 B 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: FUSEBLANK_5X20MM
+# Package Name: FUSE_HOLDER_5X20MM
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF FUSEBLANK_5X20MM F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "FUSEBLANK_5X20MM" -150 -115 50 H V L B
+F2 "fuse-FUSE_HOLDER_5X20MM" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: FUSEF456
+# Package Name: F456
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF FUSEF456 F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "FUSEF456" -150 -115 50 H V L B
+F2 "fuse-F456" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: FUSEF457
+# Package Name: F457
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF FUSEF457 F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "FUSEF457" -150 -115 50 H V L B
+F2 "fuse-F457" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: FUSEFAS
+# Package Name: FUSE_HOLDER_SCHURTER-FAS
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF FUSEFAS F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "FUSEFAS" -150 -115 50 H V L B
+F2 "fuse-FUSE_HOLDER_SCHURTER-FAS" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 A -200 0 100 R 40 40 1 1 P 
+X 2 B 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: FUSEGSH15
+# Package Name: GSH15
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF FUSEGSH15 F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "FUSEGSH15" -150 -115 50 H V L B
+F2 "fuse-GSH15" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: FUSEKS9V
+# Package Name: KS9V
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF FUSEKS9V F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "FUSEKS9V" -150 -115 50 H V L B
+F2 "fuse-KS9V" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: FUSEKS10H
+# Package Name: KS10H
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF FUSEKS10H F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "FUSEKS10H" -150 -115 50 H V L B
+F2 "fuse-KS10H" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: FUSEKS16
+# Package Name: KS16
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF FUSEKS16 F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "FUSEKS16" -150 -115 50 H V L B
+F2 "fuse-KS16" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: FUSEKS17
+# Package Name: KS17
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF FUSEKS17 F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "FUSEKS17" -150 -115 50 H V L B
+F2 "fuse-KS17" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: FUSELITTLEFUSE
+# Package Name: LITTLEFUSE
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF FUSELITTLEFUSE F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "FUSELITTLEFUSE" -150 -115 50 H V L B
+F2 "fuse-LITTLEFUSE" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: FUSEPICOFUSE
+# Package Name: PICOFUSE
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF FUSEPICOFUSE F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "FUSEPICOFUSE" -150 -115 50 H V L B
+F2 "fuse-PICOFUSE" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: FUSESH22
+# Package Name: SH22
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF FUSESH22 F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "FUSESH22" -150 -115 50 H V L B
+F2 "fuse-SH22" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: FUSESH22,5
+# Package Name: SH22,5
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF FUSESH22,5 F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "FUSESH22,5" -150 -115 50 H V L B
+F2 "fuse-SH22,5" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: FUSESH22,5A
+# Package Name: SH22,5A
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF FUSESH22,5A F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "FUSESH22,5A" -150 -115 50 H V L B
+F2 "fuse-SH22,5A" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: FUSESH32
+# Package Name: SH32
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF FUSESH32 F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "FUSESH32" -150 -115 50 H V L B
+F2 "fuse-SH32" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1A -200 0 100 R 40 40 1 1 P 
+X 2 2A 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: FUSESH35
+# Package Name: SH25
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF FUSESH35 F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "FUSESH35" -150 -115 50 H V L B
+F2 "fuse-SH25" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: FUSESHK20L
+# Package Name: SHK20L
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF FUSESHK20L F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "FUSESHK20L" -150 -115 50 H V L B
+F2 "fuse-SHK20L" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1A -200 0 100 R 40 40 1 1 P 
+X 2 2A 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: FUSESHK20Q
+# Package Name: SHK20Q
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF FUSESHK20Q F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "FUSESHK20Q" -150 -115 50 H V L B
+F2 "fuse-SHK20Q" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1A -200 0 100 R 40 40 1 1 P 
+X 2 2A 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: FUSESHKOG
+# Package Name: SHKOG
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF FUSESHKOG F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "FUSESHKOG" -150 -115 50 H V L B
+F2 "fuse-SHKOG" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1A -200 0 100 R 40 40 1 1 P 
+X 2 2A 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: FUSETE5
+# Package Name: TE5
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF FUSETE5 F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "FUSETE5" -150 -115 50 H V L B
+F2 "fuse-TE5" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: FUSETR5
+# Package Name: TR5
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF FUSETR5 F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "FUSETR5" -150 -115 50 H V L B
+F2 "fuse-TR5" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: GSH15
+# Package Name: GSH15
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF GSH15 F 0 40 N Y 1 L N
+# Gate Name: 1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "GSH15" -150 -115 50 H V L B
+F2 "fuse-GSH15" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: KS9V
+# Package Name: KS9V
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF KS9V F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "KS9V" -150 -115 50 H V L B
+F2 "fuse-KS9V" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: KS10H
+# Package Name: KS10H
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF KS10H F 0 40 N Y 1 L N
+# Gate Name: 1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "KS10H" -150 -115 50 H V L B
+F2 "fuse-KS10H" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: KS16
+# Package Name: KS16
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF KS16 F 0 40 N Y 1 L N
+# Gate Name: 1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "KS16" -150 -115 50 H V L B
+F2 "fuse-KS16" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: KS17
+# Package Name: KS17
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF KS17 F 0 40 N Y 1 L N
+# Gate Name: 1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "KS17" -150 -115 50 H V L B
+F2 "fuse-KS17" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: LITTLEFUSE
+# Package Name: LITTLEFUSE
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF LITTLEFUSE F 0 40 N Y 1 L N
+# Gate Name: A
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "LITTLEFUSE" -150 -115 50 H V L B
+F2 "fuse-LITTLEFUSE" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: PICOFUSE
+# Package Name: PICOFUSE
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF PICOFUSE F 0 40 N Y 1 L N
+# Gate Name: 1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "PICOFUSE" -150 -115 50 H V L B
+F2 "fuse-PICOFUSE" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: SH22
+# Package Name: SH22
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF SH22 F 0 40 N Y 1 L N
+# Gate Name: 1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "SH22" -150 -115 50 H V L B
+F2 "fuse-SH22" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: SH22,5
+# Package Name: SH22,5
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF SH22,5 F 0 40 N Y 1 L N
+# Gate Name: 1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "SH22,5" -150 -115 50 H V L B
+F2 "fuse-SH22,5" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: SH22,5A
+# Package Name: SH22,5A
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF SH22,5A F 0 40 N Y 1 L N
+# Gate Name: 1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "SH22,5A" -150 -115 50 H V L B
+F2 "fuse-SH22,5A" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: SH25
+# Package Name: SH25
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF SH25 F 0 40 N Y 1 L N
+# Gate Name: 1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "SH25" -150 -115 50 H V L B
+F2 "fuse-SH25" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: SH32
+# Package Name: SH32
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF SH32 F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSED
+F0 "F" -150 55 50 H V L B
+F1 "SH32" -150 -115 50 H V L B
+F2 "fuse-SH32" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+X 1A 1A -200 0 100 R 40 40 1 1 P 
+X 1B 1B -100 0 100 R 40 40 1 1 P 
+X 2A 2A 200 0 100 L 40 40 1 1 P 
+X 2B 2B 100 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: SHK20L
+# Package Name: SHK20L
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF SHK20L F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSED
+F0 "F" -150 55 50 H V L B
+F1 "SHK20L" -150 -115 50 H V L B
+F2 "fuse-SHK20L" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+X 1A 1A -200 0 100 R 40 40 1 1 P 
+X 1B 1B -100 0 100 R 40 40 1 1 P 
+X 2A 2A 200 0 100 L 40 40 1 1 P 
+X 2B 2B 100 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: SHK20Q
+# Package Name: SHK20Q
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF SHK20Q F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSED
+F0 "F" -150 55 50 H V L B
+F1 "SHK20Q" -150 -115 50 H V L B
+F2 "fuse-SHK20Q" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+X 1A 1A -200 0 100 R 40 40 1 1 P 
+X 1B 1B -100 0 100 R 40 40 1 1 P 
+X 2A 2A 200 0 100 L 40 40 1 1 P 
+X 2B 2B 100 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: SHKOG
+# Package Name: SHKOG
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF SHKOG F 0 40 N Y 1 L N
+# Gate Name: G$1
+# Symbol Name: FUSED
+F0 "F" -150 55 50 H V L B
+F1 "SHKOG" -150 -115 50 H V L B
+F2 "fuse-SHKOG" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+X 1A 1A -200 0 100 R 40 40 1 1 P 
+X 1B 1B -100 0 100 R 40 40 1 1 P 
+X 2A 2A 200 0 100 L 40 40 1 1 P 
+X 2B 2B 100 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: TE5
+# Package Name: TE5
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF TE5 F 0 40 N Y 1 L N
+# Gate Name: 1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "TE5" -150 -115 50 H V L B
+F2 "fuse-TE5" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: TR5
+# Package Name: TR5
+# Dev Tech: ''
+# Dev Prefix: F
+# Gate count = 1
+#
+DEF TR5 F 0 40 N Y 1 L N
+# Gate Name: 1
+# Symbol Name: FUSE
+F0 "F" -150 55 50 H V L B
+F1 "TR5" -150 -115 50 H V L B
+F2 "fuse-TR5" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -150 -30 150 -30
+P 2 1 0 0 150 30 -150 30
+P 2 1 0 0 150 -30 150 30
+P 2 1 0 0 -150 30 -150 -30
+P 2 1 0 0 -100 0 100 0
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 2 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#End Library

@@ -1,0 +1,914 @@
+# EESchema Netlist Version 1.1 created  6/6/2012 12:57:31 AM
+(
+ ( /4FAF0EE8/4FCD56B2 SM0603_Capa C301 0.1uF
+  ( 1 GND )
+  ( 2 N-000047 )
+ )
+ ( /4FAF0EE8/4FCD56B7 SM0603_Capa C302 0.1uF
+  ( 1 GND )
+  ( 2 N-000057 )
+ )
+ ( /4FAF0EE8/4FCD55F9 SM0603_Capa C303 0.1uF
+  ( 1 GND )
+  ( 2 +5V )
+ )
+ ( /4FAF0EE8/4FCD560E SM0603_Capa C304 0.1uF
+  ( 1 GND )
+  ( 2 +5V )
+ )
+ ( /4FAF0EE8/4FCD5638 SM0603_Capa C305 0.1uF
+  ( 1 GND )
+  ( 2 +5V )
+ )
+ ( /4FAF0EE8/4FCD563C SM0603_Capa C306 0.1uF
+  ( 1 GND )
+  ( 2 N-000043 )
+ )
+ ( /4FAF0EE8/4FAF1740/4DE925C3 SM0603_Capa C904 33pF
+  ( 1 /FTDI_JTAG/USB/D- )
+  ( 2 /FTDI_JTAG/USB/D+ )
+ )
+ ( /4FAF0EE8/4FAF1740/4DE40ABF SM0603_Capa C906 15pF
+  ( 1 /FTDI_JTAG/USB/DDP )
+  ( 2 GND )
+ )
+ ( /4FAF0EE8/4FAF1740/4DE40AD5 SM0603_Capa C907 15pF
+  ( 1 /FTDI_JTAG/USB/DDM )
+  ( 2 GND )
+ )
+ ( /4FAF11BE/4DF929BF SM0805 C1601 330uF
+  ( 1 +5V )
+  ( 2 GND )
+ )
+ ( /4FAF11BE/4DF92AF1 SM0805 C1602 10uF
+  ( 1 +3.3V )
+  ( 2 GND )
+ )
+ ( /4FAF11BE/4E00ED7A SM0805 C1603 330uF
+  ( 1 +5V )
+  ( 2 GND )
+ )
+ ( /4FAF11BE/4E00F175 SM0805 C1604 10uF
+  ( 1 +1.2V )
+  ( 2 GND )
+ )
+ ( /4FAF11BE/4E00ED88 SM0805 C1605 10uF
+  ( 1 +2.5V )
+  ( 2 GND )
+ )
+ ( /4FAE678E/4DFFF078 SM0603_Capa C1701 100nF
+  ( 1 +3.3V )
+  ( 2 GND )
+ )
+ ( /4FAE678E/4DFFF079 SM0603_Capa C1702 100nF
+  ( 1 +3.3V )
+  ( 2 GND )
+ )
+ ( /4FAE678E/4DFFF07A SM0603_Capa C1703 100nF
+  ( 1 +3.3V )
+  ( 2 GND )
+ )
+ ( /4FAE678E/4DFFF07B SM0603_Capa C1704 100nF
+  ( 1 +3.3V )
+  ( 2 GND )
+ )
+ ( /4FAE678E/4DFFF087 SM0603_Capa C1705 100nF
+  ( 1 +3.3V )
+  ( 2 GND )
+ )
+ ( /4FAE678E/4DFFF086 SM0603_Capa C1706 100nF
+  ( 1 +3.3V )
+  ( 2 GND )
+ )
+ ( /4FAE678E/4DFFF085 SM0603_Capa C1707 100nF
+  ( 1 +3.3V )
+  ( 2 GND )
+ )
+ ( /4FAE678E/4DFFF084 SM0603_Capa C1708 100nF
+  ( 1 +3.3V )
+  ( 2 GND )
+ )
+ ( /4FAE678E/4DFFEF8A SM0603_Capa C1709 100nF
+  ( 1 +2.5V )
+  ( 2 GND )
+ )
+ ( /4FAE678E/4DFFEFDB SM0603_Capa C1710 100nF
+  ( 1 +2.5V )
+  ( 2 GND )
+ )
+ ( /4FAE678E/4DFFEFDF SM0603_Capa C1711 100nF
+  ( 1 +2.5V )
+  ( 2 GND )
+ )
+ ( /4FAE678E/4DFFEFE2 SM0603_Capa C1712 100nF
+  ( 1 +2.5V )
+  ( 2 GND )
+ )
+ ( /4FAE678E/4DFFF023 SM0603_Capa C1713 100nF
+  ( 1 +1.2V )
+  ( 2 GND )
+ )
+ ( /4FAE678E/4DFFF022 SM0603_Capa C1714 100nF
+  ( 1 +1.2V )
+  ( 2 GND )
+ )
+ ( /4FAE678E/4DFFF021 SM0603_Capa C1715 100nF
+  ( 1 +1.2V )
+  ( 2 GND )
+ )
+ ( /4FAE678E/4DFFF020 SM0603_Capa C1716 100nF
+  ( 1 +1.2V )
+  ( 2 GND )
+ )
+ ( /4FAE678E/4DFD8296/4E00BA51 SM0603_Capa C1901 1uF
+  ( 1 +3.3V )
+  ( 2 GND )
+ )
+ ( /4FAF0EE8/4FCD58F7 LED-0805 D301 LED
+  ( 1 +3.3V )
+  ( 2 N-000056 )
+ )
+ ( /4FAF0EE8/4FCD58FC LED-0805 D302 LED
+  ( 1 +3.3V )
+  ( 2 N-000055 )
+ )
+ ( /4FAF11BE/4EAB5DEC LED-0805 D1401 LED
+  ( 1 +5V )
+  ( 2 N-000063 )
+ )
+ ( /4FAE678E/4EAF3A2A LED-0805 D1402 LED
+  ( 1 N-000008 )
+  ( 2 GND )
+ )
+ ( /4FAE678E/4DFD739B LED-0805 D1702 LED
+  ( 1 /FPGA/DONE )
+  ( 2 GND )
+ )
+ ( /4FAE678E/4DF7E820 VQFP100 IC1701 XC3S250E-VQ100
+  ( 1 /FPGA/PROG_B )
+  ( 2 /FPGA_IO/IO50 )
+  ( 3 /FPGA/IO49 )
+  ( 4 /FPGA_IO/IO52 )
+  ( 5 /FPGA/IO51 )
+  ( 6 +1.2V )
+  ( 7 GND )
+  ( 8 +3.3V )
+  ( 9 /FPGA_IO/IO54 )
+  ( 10 /FPGA_IO/IO53 )
+  ( 11 /FPGA/IO56 )
+  ( 12 /FPGA/IO55 )
+  ( 13 /FPGA/IO48 )
+  ( 14 GND )
+  ( 15 /FPGA_IO/IO58 )
+  ( 16 /FPGA_IO/IO57 )
+  ( 17 /FPGA_IO/IO60 )
+  ( 18 /FPGA_IO/IO59 )
+  ( 19 GND )
+  ( 20 +3.3V )
+  ( 21 +2.5V )
+  ( 22 /FPGA_IO/IO62 )
+  ( 23 /FPGA_IO/IO61 )
+  ( 24 /FPGA/DF_CS )
+  ( 25 /FPGA/IO32 )
+  ( 26 /FPGA/IO33 )
+  ( 27 /FPGA/DF_SI )
+  ( 28 +1.2V )
+  ( 29 GND )
+  ( 30 /FPGA_IO/IO31 )
+  ( 31 +3.3V )
+  ( 32 /FPGA_IO/IO35 )
+  ( 33 /FPGA_IO/IO34 )
+  ( 34 /FPGA_IO/IO41 )
+  ( 35 /FPGA/IO37 )
+  ( 36 /FPGA_IO/IO36 )
+  ( 37 GND )
+  ( 38 /FPGA/OSC/OSC_50M )
+  ( 39 /FPGA_IO/M2 )
+  ( 40 /FPGA_IO/IO39 )
+  ( 41 /FPGA_IO/IO38 )
+  ( 42 GND )
+  ( 43 +3.3V )
+  ( 44 /FPGA/IO40 )
+  ( 45 +3.3V )
+  ( 46 +2.5V )
+  ( 47 +3.3V )
+  ( 48 +3.3V )
+  ( 49 +3.3V )
+  ( 50 /FPGA/DF_CLK )
+  ( 51 /FPGA/DONE )
+  ( 52 GND )
+  ( 53 /FPGA/DFPGA_RX )
+  ( 54 /FPGA/DFPGA_TX )
+  ( 55 +3.3V )
+  ( 56 +1.2V )
+  ( 57 /FPGA_IO/IO20 )
+  ( 58 /FPGA_IO/IO19 )
+  ( 59 GND )
+  ( 60 /FPGA_IO/IO22 )
+  ( 61 /FPGA/IO21 )
+  ( 62 /FPGA/IO24 )
+  ( 63 /FPGA_IO/IO23 )
+  ( 64 GND )
+  ( 65 /FPGA/IO26 )
+  ( 66 /FPGA_IO/IO25 )
+  ( 67 /FPGA/IO28 )
+  ( 68 /FPGA_IO/IO27 )
+  ( 69 /FPGA_IO/IO16 )
+  ( 70 /FPGA_IO/IO30 )
+  ( 71 /FPGA_IO/IO29 )
+  ( 72 GND )
+  ( 73 +3.3V )
+  ( 74 +2.5V )
+  ( 75 /FPGA/FPGA_TMS )
+  ( 76 /FPGA/FPGA_TDO )
+  ( 77 /FPGA/FPGA_TCK )
+  ( 78 /FPGA/IO2 )
+  ( 79 /FPGA_IO/IO1 )
+  ( 80 +1.2V )
+  ( 81 GND )
+  ( 82 +3.3V )
+  ( 83 /FPGA_IO/IO4 )
+  ( 84 /FPGA/IO3 )
+  ( 85 /FPGA_IO/IO6 )
+  ( 86 /FPGA_IO/IO5 )
+  ( 87 GND )
+  ( 88 /FPGA_IO/IO8 )
+  ( 89 /FPGA_IO/IO7 )
+  ( 90 /FPGA_IO/IO10 )
+  ( 91 /FPGA_IO/IO9 )
+  ( 92 /FPGA/IO0 )
+  ( 93 GND )
+  ( 94 /FPGA_IO/IO12 )
+  ( 95 /FPGA_IO/IO11 )
+  ( 96 +2.5V )
+  ( 97 +3.3V )
+  ( 98 /FPGA_IO/IO13 )
+  ( 99 /FPGA/HSWAP )
+  ( 100 /FPGA/FPGA_TDI )
+ )
+ ( /4FAE678E/4FAE8D81 PIN_ARRAY_3X1 K501 CONN_3
+  ( 1 +3.3V )
+  ( 2 /FPGA_IO/M2 )
+  ( 3 GND )
+ )
+ ( /4FAE678E/4FAE8D88 smd-special-JUMP-3 K502 CONN_3
+  ( 1 +3.3V )
+  ( 2 GND )
+  ( 3 GND )
+ )
+ ( /4FAE678E/4FAE8D8A smd-special-JUMP-3 K503 CONN_3
+  ( 1 +3.3V )
+  ( 2 +3.3V )
+  ( 3 GND )
+ )
+ ( /4FAE678E/4FAF0268 PIN_ARRAY_3X1 K504 CONN_3
+  ( 1 +3.3V )
+  ( 2 /FPGA/HSWAP )
+  ( 3 GND )
+ )
+ ( /4FAF0EE8/4FAF1740/4DF92811 SM0805 L901 HZ0805C202R-10
+  ( 1 /FTDI_JTAG/USB/USB_SHIELD )
+  ( 2 GND )
+ )
+ ( /4FAE678E/4DFD8296/4E00B9FA OSC OSC1901 FXO-HC73
+  ( 1 +3.3V )
+  ( 2 ? )
+  ( 3 GND )
+  ( 4 /FPGA/OSC/OSC_50M )
+  ( 5 ? )
+  ( 6 +3.3V )
+ )
+ ( /4FAF0E53/4FCD7744 PIN_ARRAY_5x1 P501 CONN_5
+  ( 1 /FPGA_IO/IO29 )
+  ( 2 /FPGA_IO/IO30 )
+  ( 3 /FPGA_IO/IO16 )
+  ( 4 /FPGA_IO/IO27 )
+  ( 5 /FPGA/IO28 )
+ )
+ ( /4FAF0E53/4FCD774C PIN_ARRAY_5x1 P502 CONN_5
+  ( 1 /FPGA_IO/IO25 )
+  ( 2 /FPGA/IO26 )
+  ( 3 /FPGA_IO/IO23 )
+  ( 4 /FPGA/IO24 )
+  ( 5 /FPGA/IO21 )
+ )
+ ( /4FAF0E53/4FCD774F PIN_ARRAY_5x1 P503 CONN_5
+  ( 1 /FPGA_IO/IO22 )
+  ( 2 /FPGA_IO/IO19 )
+  ( 3 /FPGA_IO/IO20 )
+  ( 4 +3.3V )
+  ( 5 GND )
+ )
+ ( /4FAF0E53/4FCD774E PIN_ARRAY_5x1 P504 CONN_5
+  ( 1 GND )
+  ( 2 /FPGA_IO/IO13 )
+  ( 3 /FPGA_IO/IO11 )
+  ( 4 /FPGA_IO/IO12 )
+  ( 5 /FPGA/IO0 )
+ )
+ ( /4FAF0E53/4FCD7754 PIN_ARRAY_5x1 P505 CONN_5
+  ( 1 /FPGA_IO/IO9 )
+  ( 2 /FPGA_IO/IO10 )
+  ( 3 /FPGA_IO/IO7 )
+  ( 4 /FPGA_IO/IO8 )
+  ( 5 /FPGA_IO/IO5 )
+ )
+ ( /4FAF0E53/4FCD7753 PIN_ARRAY_5x1 P506 CONN_5
+  ( 1 /FPGA_IO/IO50 )
+  ( 2 /FPGA/IO49 )
+  ( 3 /FPGA_IO/IO52 )
+  ( 4 /FPGA/IO51 )
+  ( 5 /FPGA_IO/IO54 )
+ )
+ ( /4FAF0E53/4FCD7751 PIN_ARRAY_5x1 P507 CONN_5
+  ( 1 /FPGA_IO/IO53 )
+  ( 2 /FPGA/IO56 )
+  ( 3 /FPGA/IO55 )
+  ( 4 /FPGA/IO48 )
+  ( 5 /FPGA_IO/IO58 )
+ )
+ ( /4FAF0E53/4FCD7752 PIN_ARRAY_5x1 P508 CONN_5
+  ( 1 /FPGA_IO/IO57 )
+  ( 2 /FPGA_IO/IO60 )
+  ( 3 /FPGA_IO/IO59 )
+  ( 4 /FPGA_IO/IO62 )
+  ( 5 /FPGA_IO/IO61 )
+ )
+ ( /4FAF0E53/4FCD777C PIN_ARRAY_5x1 P509 CONN_5
+  ( 1 /FPGA/IO32 )
+  ( 2 /FPGA/IO33 )
+  ( 3 /FPGA_IO/IO31 )
+  ( 4 /FPGA_IO/IO35 )
+  ( 5 /FPGA_IO/IO34 )
+ )
+ ( /4FAF0E53/4FCD777B PIN_ARRAY_5x1 P510 CONN_5
+  ( 1 /FPGA_IO/IO41 )
+  ( 2 /FPGA/IO37 )
+  ( 3 /FPGA_IO/IO36 )
+  ( 4 /FPGA_IO/M2 )
+  ( 5 /FPGA_IO/IO39 )
+ )
+ ( /4FAF0E53/4FCEB8B4 PIN_ARRAY_5x1 P511 CONN_5
+  ( 1 /FPGA_IO/IO38 )
+  ( 2 GND )
+  ( 3 +3.3V )
+  ( 4 /FPGA/IO40 )
+  ( 5 +5V )
+ )
+ ( /4FAF0E53/4FCEB8AE PIN_ARRAY_5x1 P512 CONN_5
+  ( 1 /FPGA_IO/IO6 )
+  ( 2 /FPGA/IO3 )
+  ( 3 /FPGA_IO/IO4 )
+  ( 4 /FPGA_IO/IO1 )
+  ( 5 /FPGA/IO2 )
+ )
+ ( /4FAE678E/4FCD7434 pin_array_4x2 P601 CONN_4X2
+  ( 1 /FPGA/C_FPGA_TCK )
+  ( 2 N-000019 )
+  ( 3 /FPGA/C_FPGA_TDI )
+  ( 4 N-000017 )
+  ( 5 /FPGA/C_FPGA_TDO )
+  ( 6 N-000018 )
+  ( 7 /FPGA/C_FPGA_TMS )
+  ( 8 N-000016 )
+ )
+ ( /4FAE678E/4FCE9C63 PIN_ARRAY_4x1 P602 CONN_4
+  ( 1 /FPGA/DF_SI )
+  ( 2 /FPGA/DF_SO )
+  ( 3 /FPGA/DF_CS )
+  ( 4 /FPGA/DF_CLK )
+ )
+ ( /4FAE678E/4FAF092E SM0603 PAD501 PAD2
+  ( 1 GND )
+  ( 2 N-000023 )
+ )
+ ( /4FAF0EE8/4FAF1740/4FA836FD SM0603_PAD_NC PAD801 PAD2_NC
+  ( 1 /FTDI_JTAG/USB/PPRE_V5USB )
+  ( 2 +5V )
+ )
+ ( /4FAF0EE8/4FCD5ACC SM0603 R301 1.5KR
+  ( 1 +5V )
+  ( 2 N-000053 )
+ )
+ ( /4FAF0EE8/4FCD55B2 SM0603 R302 470R
+  ( 1 +5V )
+  ( 2 N-000060 )
+ )
+ ( /4FAF0EE8/4FCD5688 SM0603 R303 1.5KR
+  ( 1 /FTDI_JTAG/USB/DDP )
+  ( 2 N-000048 )
+ )
+ ( /4FAF0EE8/4FCD5857 SM0603 R307 330R
+  ( 1 N-000049 )
+  ( 2 N-000056 )
+ )
+ ( /4FAF0EE8/4FCD585B SM0603 R308 330R
+  ( 1 N-000054 )
+  ( 2 N-000055 )
+ )
+ ( /4FAE678E/4FAF0222 SM0603 R501 330R
+  ( 1 +3.3V )
+  ( 2 /FPGA/DONE )
+ )
+ ( /4FAE678E/4FAF0165 SM0603 R502 3.3K
+  ( 1 /FPGA/PROG_B )
+  ( 2 +3.3V )
+ )
+ ( /4FAE678E/4FAF0F3C SM0603 R503 3.3K
+  ( 1 /FPGA/DF_CLK )
+  ( 2 +3.3V )
+ )
+ ( /4FAE678E/4FAF0F4F SM0603 R504 NCR
+  ( 1 /FPGA/DF_CS )
+  ( 2 +3.3V )
+ )
+ ( /4FAE678E/4FAF0F6E SM0603 R505 NCR
+  ( 1 GND )
+  ( 2 /FPGA/DF_CS )
+ )
+ ( /4FAF0EE8/4FAF1740/4DE92548 SM0603 R906 1.5k
+  ( 1 /FTDI_JTAG/USB/D+ )
+  ( 2 +3.3V )
+ )
+ ( /4FAF0EE8/4FAF1740/4DE40A6F SM0603 R909 39R
+  ( 1 /FTDI_JTAG/USB/DDP )
+  ( 2 /FTDI_JTAG/USB/D+ )
+ )
+ ( /4FAF0EE8/4FAF1740/4DE40A75 SM0603 R910 39R
+  ( 1 /FTDI_JTAG/USB/DDM )
+  ( 2 /FTDI_JTAG/USB/D- )
+ )
+ ( /4FAF11BE/4EAB5DF2 SM0603 R1401 330R
+  ( 1 N-000063 )
+  ( 2 GND )
+ )
+ ( /4FAE678E/4EAF3A1F SM0603 R1402 10K
+  ( 1 +3.3V )
+  ( 2 /FPGA/IO0 )
+ )
+ ( /4FAE678E/4EAF3A24 SM0603 R1405 330R
+  ( 1 N-000008 )
+  ( 2 ? )
+ )
+ ( /4FAE678E/4DFD6662 SM0603 R1702 100R
+  ( 1 /FPGA/FPGA_TCK )
+  ( 2 N-000019 )
+ )
+ ( /4FAE678E/4DFD6660 SM0603 R1703 100R
+  ( 1 /FPGA/FPGA_TDI )
+  ( 2 N-000017 )
+ )
+ ( /4FAE678E/4DFD665C SM0603 R1704 100R
+  ( 1 /FPGA/FPGA_TDO )
+  ( 2 N-000018 )
+ )
+ ( /4FAE678E/4DFD65ED SM0603 R1705 100R
+  ( 1 /FPGA/FPGA_TMS )
+  ( 2 N-000016 )
+ )
+ ( /4FAE678E/4FAF006C SW_PUSH_SMALL SW501 SPULSE
+  ( 1 GND )
+  ( 2 /FPGA/PROG_B )
+ )
+ ( /4FAE678E/4EAF3A27 SW_PUSH_SMALL SW1402 SPULSE
+  ( 1 /FPGA/IO0 )
+  ( 2 GND )
+ )
+ ( /4FAF0EE8/4FCD5529 freescale-TQFP48_7X7 U301 FT2232D
+  ( 1 ? )
+  ( 2 N-000053 )
+  ( 3 +5V )
+  ( 4 +5V )
+  ( 5 N-000048 )
+  ( 6 N-000043 )
+  ( 7 /FTDI_JTAG/USB/DDP )
+  ( 8 /FTDI_JTAG/USB/DDM )
+  ( 9 GND )
+  ( 10 +3.3V )
+  ( 11 ? )
+  ( 12 ? )
+  ( 13 ? )
+  ( 14 +3.3V )
+  ( 15 ? )
+  ( 16 ? )
+  ( 17 ? )
+  ( 18 GND )
+  ( 19 ? )
+  ( 20 ? )
+  ( 21 /FPGA/C_FPGA_TMS )
+  ( 22 /FPGA/C_FPGA_TDO )
+  ( 23 /FPGA/C_FPGA_TDI )
+  ( 24 /FPGA/C_FPGA_TCK )
+  ( 25 GND )
+  ( 26 +3.3V )
+  ( 27 N-000054 )
+  ( 28 N-000049 )
+  ( 29 ? )
+  ( 30 ? )
+  ( 31 +3.3V )
+  ( 32 ? )
+  ( 33 ? )
+  ( 34 GND )
+  ( 35 ? )
+  ( 36 ? )
+  ( 37 ? )
+  ( 38 ? )
+  ( 39 /FPGA/DFPGA_RX )
+  ( 40 /FPGA/DFPGA_TX )
+  ( 42 +5V )
+  ( 43 N-000047 )
+  ( 44 N-000057 )
+  ( 45 GND )
+  ( 46 N-000060 )
+  ( 47 GND )
+  ( 48 ? )
+  ( ~ ? )
+ )
+ ( /4FAE678E/4FAE94E0 SO8N U501 AT45DB4D
+  ( 1 /FPGA/DF_SI )
+  ( 2 /FPGA/DF_CLK )
+  ( 3 +3.3V )
+  ( 4 /FPGA/DF_CS )
+  ( 5 N-000023 )
+  ( 6 +3.3V )
+  ( 7 GND )
+  ( 8 /FPGA/DF_SO )
+ )
+ ( /4FAF11BE/4EAB5F92 SOT223 U1401 AP1122_3.3
+  ( 1 GND )
+  ( 2 +3.3V )
+  ( 3 +5V )
+  ( 4 +3.3V )
+ )
+ ( /4FAF11BE/4EAB5F97 SOT223 U1402 AP1122_2.5
+  ( 1 GND )
+  ( 2 +2.5V )
+  ( 3 +5V )
+  ( 4 +2.5V )
+ )
+ ( /4FAF11BE/4E00DD41 SOT223 U1601 AP1122_1.2
+  ( 1 GND )
+  ( 2 +1.2V )
+  ( 3 +5V )
+  ( 4 +1.2V )
+ )
+ ( /4FAF0EE8/4FCD56F9 CrystalSMD X301 6MHz
+  ( 1 N-000057 )
+  ( 2 N-000047 )
+ )
+ ( /4FAF0EE8/4FAF1740/4EAB47BF con-cypressindustries-32005-201 X901 MINI-USB
+  ( 1 /FTDI_JTAG/USB/PPRE_V5USB )
+  ( 2 /FTDI_JTAG/USB/D- )
+  ( 3 /FTDI_JTAG/USB/D+ )
+  ( 4 GND )
+  ( 5 GND )
+  ( M1 /FTDI_JTAG/USB/USB_SHIELD )
+  ( M2 /FTDI_JTAG/USB/USB_SHIELD )
+  ( M3 /FTDI_JTAG/USB/USB_SHIELD )
+  ( M4 /FTDI_JTAG/USB/USB_SHIELD )
+ )
+)
+*
+{ Allowed footprints by component:
+$component C301
+ SM*
+ C?
+ C1-1
+$endlist
+$component C302
+ SM*
+ C?
+ C1-1
+$endlist
+$component C303
+ SM*
+ C?
+ C1-1
+$endlist
+$component C304
+ SM*
+ C?
+ C1-1
+$endlist
+$component C305
+ SM*
+ C?
+ C1-1
+$endlist
+$component C306
+ SM*
+ C?
+ C1-1
+$endlist
+$component C904
+ SM*
+ C?
+ C1-1
+$endlist
+$component C906
+ SM*
+ C?
+ C1-1
+$endlist
+$component C907
+ SM*
+ C?
+ C1-1
+$endlist
+$component C1601
+ SM*
+ C?
+ C1-1
+$endlist
+$component C1602
+ SM*
+ C?
+ C1-1
+$endlist
+$component C1603
+ SM*
+ C?
+ C1-1
+$endlist
+$component C1604
+ SM*
+ C?
+ C1-1
+$endlist
+$component C1605
+ SM*
+ C?
+ C1-1
+$endlist
+$component C1701
+ SM*
+ C?
+ C1-1
+$endlist
+$component C1702
+ SM*
+ C?
+ C1-1
+$endlist
+$component C1703
+ SM*
+ C?
+ C1-1
+$endlist
+$component C1704
+ SM*
+ C?
+ C1-1
+$endlist
+$component C1705
+ SM*
+ C?
+ C1-1
+$endlist
+$component C1706
+ SM*
+ C?
+ C1-1
+$endlist
+$component C1707
+ SM*
+ C?
+ C1-1
+$endlist
+$component C1708
+ SM*
+ C?
+ C1-1
+$endlist
+$component C1709
+ SM*
+ C?
+ C1-1
+$endlist
+$component C1710
+ SM*
+ C?
+ C1-1
+$endlist
+$component C1711
+ SM*
+ C?
+ C1-1
+$endlist
+$component C1712
+ SM*
+ C?
+ C1-1
+$endlist
+$component C1713
+ SM*
+ C?
+ C1-1
+$endlist
+$component C1714
+ SM*
+ C?
+ C1-1
+$endlist
+$component C1715
+ SM*
+ C?
+ C1-1
+$endlist
+$component C1716
+ SM*
+ C?
+ C1-1
+$endlist
+$component C1901
+ SM*
+ C?
+ C1-1
+$endlist
+$component D301
+ LED-3MM
+ LED-5MM
+ LED-10MM
+ LED-0603
+ LED-0805
+ LED-1206
+ LEDV
+$endlist
+$component D302
+ LED-3MM
+ LED-5MM
+ LED-10MM
+ LED-0603
+ LED-0805
+ LED-1206
+ LEDV
+$endlist
+$component D1401
+ LED-3MM
+ LED-5MM
+ LED-10MM
+ LED-0603
+ LED-0805
+ LED-1206
+ LEDV
+$endlist
+$component D1402
+ LED-3MM
+ LED-5MM
+ LED-10MM
+ LED-0603
+ LED-0805
+ LED-1206
+ LEDV
+$endlist
+$component D1702
+ LED-3MM
+ LED-5MM
+ LED-10MM
+ LED-0603
+ LED-0805
+ LED-1206
+ LEDV
+$endlist
+$component R301
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R302
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R303
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R307
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R308
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R501
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R502
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R503
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R504
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R505
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R906
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R909
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R910
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R1401
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R1402
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R1405
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R1702
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R1703
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R1704
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R1705
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$endfootprintlist
+}

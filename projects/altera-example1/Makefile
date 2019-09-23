@@ -43,7 +43,7 @@ VINCDIR=						\
 SYN_SRC=
 
 SIM_SRC=					\
-	testbenches/system_tb.v				
+	testbenches/hx8352_tb.v				
 		
 # Include here the files that you need to build your project,
 #	Remember in PATH_RTL_GENRIC_LIBS the git provide constant updates for the
@@ -51,15 +51,21 @@ SIM_SRC=					\
 #	In the local folder rtl you can add your own system description
 #		For example:
 SRC=														\
-	../testbenches/system_tb.v												\
+	../testbenches/hx8352_tb.v												\
 	$(PATH_RTL_GENRIC_LIBS)/tm1638/tm1638.v					\
 	$(PATH_RTL_GENRIC_LIBS)/tm1638/tm1638_keys_display.v	\
 	$(PATH_RTL_GENRIC_LIBS)/tm1638/tm1638_keys_display_encoded.v\
-	../edge_detect.v									\
-	../hx8352_controller.v									\
-	../hx8352_controller_bus_controller.v					\
-	../hx8352_reset_generator.v								\
-	../hx8352_delay_us.v									\
+	../hdl/clock_divider.v																			\
+	../hdl/delay_us.v	\
+	../hdl/edge_detect.v	\
+	../hdl/hx8352/hx8352_bus_controller.v	\
+	../hdl/hx8352/hx8352_controller_data_sync.v	\
+	../hdl/hx8352/hx8352_controller_fsm_enabler.v	\
+	../hdl/hx8352/hx8352_controller_fsmv.v	\
+	../hdl/hx8352/hx8352_controller.v	\
+	../hdl/hx8352/hx8352_reset_generator.v	\
+	../hdl/seven_segments_handler.v	\
+	../hdl/single_shot_counter.v	\
 	../PLL.v									\
 	$(PATH_RTL_GENRIC_LIBS)/dataregister/dataregister.v		\
 	$(PATH_RTL_GENRIC_LIBS)/counter/counter.v				

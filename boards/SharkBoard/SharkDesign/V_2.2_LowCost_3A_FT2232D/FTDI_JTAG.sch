@@ -1,0 +1,437 @@
+EESchema Schematic File Version 2  date Thu 07 Mar 2013 01:48:10 AM COT
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:special
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:usba-plug
+LIBS:usb_a
+LIBS:fsusb20
+LIBS:usbconn
+LIBS:con-cypressindustries
+LIBS:at45db321d
+LIBS:devices_mod
+LIBS:smd-special
+LIBS:my_dev
+LIBS:ft2232d
+LIBS:xilinx_virtexii-xc2v80&flashprom
+LIBS:m25pxx
+LIBS:lacedaemonia-cache
+EELAYER 25  0
+EELAYER END
+$Descr A4 11700 8267
+encoding utf-8
+Sheet 7 9
+Title ""
+Date "7 mar 2013"
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L +5V #PWR034
+U 1 1 51381CD3
+P 2500 1800
+F 0 "#PWR034" H 2500 1890 20  0001 C CNN
+F 1 "+5V" H 2500 1890 30  0000 C CNN
+	1    2500 1800
+	1    0    0    -1  
+$EndComp
+NoConn ~ 6350 3500
+NoConn ~ 6350 3400
+Wire Wire Line
+	6250 3400 6350 3400
+Wire Wire Line
+	6250 3500 6350 3500
+Wire Wire Line
+	6250 950  8150 950 
+Wire Wire Line
+	8150 1250 6250 1250
+Wire Wire Line
+	4250 3050 4550 3050
+Wire Wire Line
+	4550 2450 2950 2450
+Wire Wire Line
+	6250 1800 6350 1800
+Wire Wire Line
+	6350 1650 6250 1650
+Wire Wire Line
+	6350 1450 6250 1450
+Wire Wire Line
+	6350 2000 6250 2000
+Wire Wire Line
+	6500 2200 6250 2200
+Wire Wire Line
+	6250 2650 6350 2650
+Wire Wire Line
+	6250 2450 6950 2450
+Wire Wire Line
+	6350 2850 6250 2850
+Wire Wire Line
+	6250 3050 6350 3050
+Wire Wire Line
+	6250 3300 6350 3300
+Connection ~ 4200 3750
+Wire Wire Line
+	4200 3850 4200 3250
+Connection ~ 3250 1750
+Wire Wire Line
+	3250 1900 3250 950 
+Connection ~ 3100 2450
+Wire Wire Line
+	3100 2500 3100 2450
+Wire Wire Line
+	4550 2950 4300 2950
+Connection ~ 4200 3350
+Wire Wire Line
+	4550 3350 4200 3350
+Connection ~ 4200 3550
+Wire Wire Line
+	4550 3550 4200 3550
+Wire Wire Line
+	4200 3750 4550 3750
+Wire Wire Line
+	4200 3250 4550 3250
+Connection ~ 3850 2150
+Wire Wire Line
+	3850 2150 3850 2350
+Wire Wire Line
+	3850 2350 3950 2350
+Wire Wire Line
+	3250 1750 3400 1750
+Connection ~ 3950 1500
+Wire Wire Line
+	3250 950  3400 950 
+Connection ~ 3950 950 
+Wire Wire Line
+	3950 950  3950 1550
+Wire Wire Line
+	4550 1150 4200 1150
+Wire Wire Line
+	4200 1150 4200 800 
+Wire Wire Line
+	4550 2150 2250 2150
+Connection ~ 4200 1150
+Connection ~ 4050 1250
+Wire Wire Line
+	4050 800  4050 1350
+Connection ~ 4200 1050
+Wire Wire Line
+	4200 1050 4550 1050
+Wire Wire Line
+	2250 1950 2500 1950
+Wire Wire Line
+	2500 1950 2500 1800
+Connection ~ 4200 950 
+Wire Wire Line
+	4050 1250 4550 1250
+Wire Wire Line
+	4050 1350 4550 1350
+Wire Wire Line
+	4450 1550 4550 1550
+Wire Wire Line
+	4550 2050 2250 2050
+Wire Wire Line
+	4550 1650 3950 1650
+Wire Wire Line
+	3800 950  4550 950 
+Wire Wire Line
+	3950 1650 3950 1750
+Wire Wire Line
+	3950 1750 3800 1750
+Wire Wire Line
+	4550 2350 4450 2350
+Wire Wire Line
+	2550 2450 2400 2450
+Wire Wire Line
+	4550 3650 4200 3650
+Connection ~ 4200 3650
+Wire Wire Line
+	4550 3450 4200 3450
+Connection ~ 4200 3450
+Wire Wire Line
+	4550 2850 4300 2850
+Wire Wire Line
+	2950 3100 3300 3100
+Connection ~ 3100 3100
+Wire Wire Line
+	2400 3100 2550 3100
+Wire Wire Line
+	2400 2450 2400 3200
+Connection ~ 2400 3100
+Wire Wire Line
+	6250 3750 6350 3750
+Wire Wire Line
+	6450 3600 6250 3600
+Wire Wire Line
+	6250 3200 6350 3200
+Wire Wire Line
+	6250 2950 6350 2950
+Wire Wire Line
+	6250 2350 6950 2350
+Wire Wire Line
+	6250 2750 6350 2750
+Wire Wire Line
+	6250 2550 6350 2550
+Wire Wire Line
+	6250 2100 6350 2100
+Wire Wire Line
+	6250 1350 6350 1350
+Wire Wire Line
+	6250 1550 6350 1550
+Wire Wire Line
+	6350 1900 6250 1900
+Wire Wire Line
+	4550 2600 3300 2600
+Wire Wire Line
+	3300 2600 3300 3100
+Wire Wire Line
+	3750 3050 3700 3050
+Wire Wire Line
+	3700 3050 3700 2800
+Wire Wire Line
+	8150 1150 6250 1150
+Wire Wire Line
+	6250 1050 8150 1050
+Text HLabel 6950 2350 2    60   Input ~ 0
+TX
+Text HLabel 6950 2450 2    60   Input ~ 0
+RX
+Text HLabel 8150 1250 2    60   Input ~ 0
+TMS
+Text HLabel 8150 1050 2    60   Input ~ 0
+TDI
+Text HLabel 8150 1150 2    60   Input ~ 0
+TDO
+Text HLabel 8150 950  2    60   Input ~ 0
+TCK
+NoConn ~ 4300 2950
+NoConn ~ 4300 2850
+$Comp
+L VCC #PWR035
+U 1 1 4FCD5AD8
+P 3700 2800
+F 0 "#PWR035" H 3700 2900 30  0001 C CNN
+F 1 "VCC" H 3700 2900 30  0000 C CNN
+	1    3700 2800
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R701
+U 1 1 4FCD5ACC
+P 4000 3050
+F 0 "R701" V 4080 3050 50  0000 C CNN
+F 1 "1.5KR" V 4000 3050 50  0000 C CNN
+	1    4000 3050
+	0    -1   -1   0   
+$EndComp
+NoConn ~ 6350 3750
+NoConn ~ 6350 1800
+NoConn ~ 6350 1900
+Text Label 7500 1250 0    60   ~ 0
+TMS
+Text Label 7500 1150 0    60   ~ 0
+TDO
+Text Label 7500 1050 0    60   ~ 0
+TDI
+Text Label 6400 1250 0    60   ~ 0
+FT_TMS
+Text Label 6400 1150 0    60   ~ 0
+FT_TDO
+Text Label 6400 1050 0    60   ~ 0
+FT_TDI
+Text Label 7500 950  0    60   ~ 0
+TCK
+Text Label 6400 950  0    60   ~ 0
+FT_TCK
+NoConn ~ 6350 2650
+NoConn ~ 6350 2750
+NoConn ~ 6350 2850
+NoConn ~ 6350 2950
+NoConn ~ 6350 3050
+NoConn ~ 6350 3200
+NoConn ~ 6350 3300
+NoConn ~ 6350 2550
+NoConn ~ 6350 2100
+NoConn ~ 6350 2000
+NoConn ~ 6350 1650
+NoConn ~ 6350 1550
+NoConn ~ 6350 1450
+NoConn ~ 6350 1350
+Text Label 6550 2450 0    60   ~ 0
+FT_RXD
+Text Label 6550 2350 0    60   ~ 0
+FT_TXD
+$Comp
+L +3.3V #PWR036
+U 1 1 4FCD5770
+P 6500 2200
+F 0 "#PWR036" H 6500 2160 30  0001 C CNN
+F 1 "+3.3V" H 6500 2310 30  0000 C CNN
+	1    6500 2200
+	0    1    1    0   
+$EndComp
+$Comp
+L +3.3V #PWR037
+U 1 1 4FCD5743
+P 6450 3600
+F 0 "#PWR037" H 6450 3560 30  0001 C CNN
+F 1 "+3.3V" H 6450 3710 30  0000 C CNN
+	1    6450 3600
+	0    1    1    0   
+$EndComp
+$Comp
+L GND #PWR038
+U 1 1 4FCD572B
+P 3250 1900
+F 0 "#PWR038" H 3250 1900 30  0001 C CNN
+F 1 "GND" H 3250 1830 30  0001 C CNN
+	1    3250 1900
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR039
+U 1 1 4FCD5727
+P 4200 3850
+F 0 "#PWR039" H 4200 3850 30  0001 C CNN
+F 1 "GND" H 4200 3780 30  0001 C CNN
+	1    4200 3850
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR040
+U 1 1 4FCD5723
+P 2400 3200
+F 0 "#PWR040" H 2400 3200 30  0001 C CNN
+F 1 "GND" H 2400 3130 30  0001 C CNN
+	1    2400 3200
+	1    0    0    -1  
+$EndComp
+$Comp
+L CRYSTAL X701
+U 1 1 4FCD56F9
+P 3100 2800
+F 0 "X701" H 3100 2950 60  0000 C CNN
+F 1 "6MHz" H 3100 2650 60  0000 C CNN
+	1    3100 2800
+	0    -1   -1   0   
+$EndComp
+$Comp
+L C C702
+U 1 1 4FCD56B7
+P 2750 3100
+F 0 "C702" H 2800 3200 50  0000 L CNN
+F 1 "47pF" H 2800 3000 50  0000 L CNN
+	1    2750 3100
+	0    -1   -1   0   
+$EndComp
+$Comp
+L C C701
+U 1 1 4FCD56B2
+P 2750 2450
+F 0 "C701" H 2800 2550 50  0000 L CNN
+F 1 "47pF" H 2800 2350 50  0000 L CNN
+	1    2750 2450
+	0    -1   -1   0   
+$EndComp
+$Comp
+L R R703
+U 1 1 4FCD5688
+P 4200 2350
+F 0 "R703" V 4280 2350 50  0000 C CNN
+F 1 "1.5KR" V 4200 2350 50  0000 C CNN
+	1    4200 2350
+	0    -1   -1   0   
+$EndComp
+$Comp
+L C C705
+U 1 1 4FCD563C
+P 3600 1750
+F 0 "C705" H 3650 1850 50  0000 L CNN
+F 1 "0.1uF" H 3650 1650 50  0000 L CNN
+	1    3600 1750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L C C703
+U 1 1 4FCD55F9
+P 3600 950
+F 0 "C703" H 3650 1050 50  0000 L CNN
+F 1 "0.1uF" H 3650 850 50  0000 L CNN
+	1    3600 950 
+	0    -1   -1   0   
+$EndComp
+$Comp
+L R R702
+U 1 1 4FCD55B2
+P 4200 1550
+F 0 "R702" V 4280 1550 50  0000 C CNN
+F 1 "470R" V 4200 1550 50  0000 C CNN
+	1    4200 1550
+	0    -1   -1   0   
+$EndComp
+$Comp
+L +3.3V #PWR041
+U 1 1 4FCD5596
+P 4050 800
+F 0 "#PWR041" H 4050 760 30  0001 C CNN
+F 1 "+3.3V" H 4050 910 30  0000 C CNN
+	1    4050 800 
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR042
+U 1 1 4FCD557E
+P 4200 800
+F 0 "#PWR042" H 4200 890 20  0001 C CNN
+F 1 "+5V" H 4200 890 30  0000 C CNN
+	1    4200 800 
+	1    0    0    -1  
+$EndComp
+$Comp
+L FT2232D U701
+U 1 1 4FCD5529
+P 5400 2500
+F 0 "U701" H 5400 2600 60  0000 C CNN
+F 1 "FT2232D" H 5400 2300 60  0000 C CNN
+	1    5400 2500
+	1    0    0    -1  
+$EndComp
+$Sheet
+S 1700 1900 550  800 
+U 4FAF1740
+F0 "USB" 60
+F1 "USB.sch" 60
+F2 "DDP" B R 2250 2150 60 
+F3 "DDM" B R 2250 2050 60 
+F4 "V5USB" B R 2250 1950 60 
+$EndSheet
+$EndSCHEMATC

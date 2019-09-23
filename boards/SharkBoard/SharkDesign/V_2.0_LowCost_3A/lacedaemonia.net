@@ -1,0 +1,1008 @@
+# EESchema Netlist Version 1.1 created  Mon 24 Sep 2012 12:28:29 AM COT
+(
+ ( /4FAE678E/505FA54E $noname  U201 XC3S50A-VQ100 {Lib=XC3S50A-VQ100}
+  (    1 /FPGA/FPGA_TMS )
+  (    2 /FPGA/FPGA_TDI )
+  (    3 /FPGA_IO/P3 )
+  (    4 /FPGA/P4 )
+  (    5 /FPGA/P5 )
+  (    6 /FPGA/P6 )
+  (    7 /FPGA_IO/P7 )
+  (    8 GND )
+  (    9 /FPGA/P9 )
+  (   10 /FPGA/P10 )
+  (   11 +3.3V )
+  (   12 /FPGA_IO/P12 )
+  (   13 /FPGA/P13 )
+  (   14 GND )
+  (   15 /FPGA/P15 )
+  (   16 /FPGA/P16 )
+  (   17 +1.2V )
+  (   18 GND )
+  (   19 /FPGA/P19 )
+  (   20 /FPGA_IO/P20 )
+  (   21 /FPGA/SW0 )
+  (   22 +3.3V )
+  (   23 +3.3V )
+  (   24 GND )
+  (   25 +3.3V )
+  (   26 +3.3V )
+  (   27 /FPGA/DF_CS )
+  (   28 /FPGA_IO/P28 )
+  (   29 +3.3V )
+  (   30 +3.3V )
+  (   31 +3.3V )
+  (   32 /FPGA/P32 )
+  (   33 /FPGA/P33 )
+  (   34 /FPGA/P34 )
+  (   35 /FPGA_IO/P35 )
+  (   36 /FPGA_IO/P36 )
+  (   37 /FPGA/P37 )
+  (   38 +1.2V )
+  (   39 /FPGA_IO/P39 )
+  (   40 /FPGA_IO/P40 )
+  (   41 /FPGA/P41 )
+  (   42 GND )
+  (   43 /FPGA/OSC/OSC_50M )
+  (   44 /FPGA/P44 )
+  (   45 +3.3V )
+  (   46 /FPGA/DF_SI )
+  (   47 GND )
+  (   48 ? )
+  (   49 /FPGA/P49 )
+  (   50 /FPGA/P50 )
+  (   51 /FPGA/DF_SO )
+  (   52 /FPGA_IO/P52 )
+  (   53 /FPGA/DF_CLK )
+  (   54 /FPGA/DONE )
+  (   55 +3.3V )
+  (   56 /FPGA_IO/P56 )
+  (   57 /FPGA_IO/P57 )
+  (   58 GND )
+  (   59 /FPGA/P59 )
+  (   60 /FPGA/P60 )
+  (   61 /FPGA/P61 )
+  (   62 /FPGA/P62 )
+  (   63 GND )
+  (   64 /FPGA_IO/P64 )
+  (   65 /FPGA_IO/P65 )
+  (   66 +1.2V )
+  (   67 +3.3V )
+  (   68 /FPGA_IO/P68 )
+  (   69 GND )
+  (   70 /FPGA/P70 )
+  (   71 /FPGA/P71 )
+  (   72 /FPGA/P72 )
+  (   73 /FPGA_IO/P73 )
+  (   74 GND )
+  (   75 /FPGA/FPGA_TDO )
+  (   76 /FPGA/FPGA_TCK )
+  (   77 /FPGA_IO/P77 )
+  (   78 /FPGA/P78 )
+  (   79 +3.3V )
+  (   80 GND )
+  (   81 +1.2V )
+  (   82 /FPGA_IO/P82 )
+  (   83 /FPGA_IO/P83 )
+  (   84 /FPGA/P84 )
+  (   85 /FPGA_IO/P85 )
+  (   86 /FPGA_IO/P86 )
+  (   87 GND )
+  (   88 /FPGA_IO/P88 )
+  (   89 /FPGA/L0 )
+  (   90 /FPGA/L1 )
+  (   91 GND )
+  (   92 +3.3V )
+  (   93 ? )
+  (   94 ? )
+  (   95 GND )
+  (   96 +3.3V )
+  (   97 ? )
+  (   98 ? )
+  (   99 +3.3V )
+  (  100 /FPGA/PROG_B )
+ )
+ ( /4FAE678E/4FED2F66 $noname  U202 M25PXX {Lib=M25PXX}
+  (    1 /FPGA/DF_CS )
+  (    2 /FPGA/DF_SO )
+  (    3 +3.3V )
+  (    4 GND )
+  (    5 /FPGA/DF_SI )
+  (    6 /FPGA/DF_CLK )
+  (    7 +3.3V )
+  (    8 +3.3V )
+ )
+ ( /4FAE678E/4FEA8097 $noname  R207 330R {Lib=R}
+  (    1 N-000013 )
+  (    2 /FPGA/L1 )
+ )
+ ( /4FAE678E/4FEA8096 $noname  D202 LED {Lib=LED}
+  (    1 N-000013 )
+  (    2 GND )
+ )
+ ( /4FAE678E/4EAF3A27 $noname  SW202 SPULSE {Lib=SW_PUSH_SMALL}
+  (    1 /FPGA/PROG_B )
+  (    2 GND )
+ )
+ ( /4FAE678E/4FAF0222 $noname  R209 330R {Lib=R}
+  (    1 +3.3V )
+  (    2 /FPGA/DONE )
+ )
+ ( /4FAE678E/4FAF0165 $noname  R208 10K {Lib=R}
+  (    1 /FPGA/SW0 )
+  (    2 +3.3V )
+ )
+ ( /4FAE678E/4FAF006C $noname  SW201 SPULSE {Lib=SW_PUSH_SMALL}
+  (    1 /FPGA/SW0 )
+  (    2 GND )
+ )
+ ( /4FAE678E/4EAF3A2A $noname  D201 LED {Lib=LED}
+  (    1 N-000007 )
+  (    2 GND )
+ )
+ ( /4FAE678E/4EAF3A24 $noname  R206 330R {Lib=R}
+  (    1 N-000007 )
+  (    2 /FPGA/L0 )
+ )
+ ( /4FAE678E/4EAF3A1F $noname  R205 10K {Lib=R}
+  (    1 +3.3V )
+  (    2 /FPGA/PROG_B )
+ )
+ ( /4FAE678E/4DFFF087 $noname  C205 100nF {Lib=C}
+  (    1 +3.3V )
+  (    2 GND )
+ )
+ ( /4FAE678E/4DFFF086 $noname  C206 100nF {Lib=C}
+  (    1 +3.3V )
+  (    2 GND )
+ )
+ ( /4FAE678E/4DFFF085 $noname  C207 100nF {Lib=C}
+  (    1 +3.3V )
+  (    2 GND )
+ )
+ ( /4FAE678E/4DFFF084 $noname  C208 100nF {Lib=C}
+  (    1 +3.3V )
+  (    2 GND )
+ )
+ ( /4FAE678E/4DFFF07B $noname  C204 100nF {Lib=C}
+  (    1 +3.3V )
+  (    2 GND )
+ )
+ ( /4FAE678E/4DFFF07A $noname  C203 100nF {Lib=C}
+  (    1 +3.3V )
+  (    2 GND )
+ )
+ ( /4FAE678E/4DFFF079 $noname  C202 100nF {Lib=C}
+  (    1 +3.3V )
+  (    2 GND )
+ )
+ ( /4FAE678E/4DFFF078 $noname  C201 100nF {Lib=C}
+  (    1 +3.3V )
+  (    2 GND )
+ )
+ ( /4FAE678E/4DFFF023 $noname  C213 100nF {Lib=C}
+  (    1 +1.2V )
+  (    2 GND )
+ )
+ ( /4FAE678E/4DFFF022 $noname  C214 100nF {Lib=C}
+  (    1 +1.2V )
+  (    2 GND )
+ )
+ ( /4FAE678E/4DFFF021 $noname  C215 100nF {Lib=C}
+  (    1 +1.2V )
+  (    2 GND )
+ )
+ ( /4FAE678E/4DFFF020 $noname  C216 100nF {Lib=C}
+  (    1 +1.2V )
+  (    2 GND )
+ )
+ ( /4FAE678E/4DFFEFE2 $noname  C212 100nF {Lib=C}
+  (    1 +3.3V )
+  (    2 GND )
+ )
+ ( /4FAE678E/4DFFEFDF $noname  C211 100nF {Lib=C}
+  (    1 +3.3V )
+  (    2 GND )
+ )
+ ( /4FAE678E/4DFFEFDB $noname  C210 100nF {Lib=C}
+  (    1 +3.3V )
+  (    2 GND )
+ )
+ ( /4FAE678E/4DFFEF8A $noname  C209 100nF {Lib=C}
+  (    1 +3.3V )
+  (    2 GND )
+ )
+ ( /4FAE678E/4DFD739B $noname  D203 LED {Lib=LED}
+  (    1 /FPGA/DONE )
+  (    2 GND )
+ )
+ ( /4FAE678E/4DFD6662 $noname  R201 100R {Lib=R}
+  (    1 /FPGA/FPGA_TCK )
+  (    2 /FPGA/C_FPGA_TCK )
+ )
+ ( /4FAE678E/4DFD6660 $noname  R202 100R {Lib=R}
+  (    1 /FPGA/FPGA_TDO )
+  (    2 /FPGA/C_FPGA_TDO )
+ )
+ ( /4FAE678E/4DFD665C $noname  R203 100R {Lib=R}
+  (    1 /FPGA/FPGA_TDI )
+  (    2 /FPGA/C_FPGA_TDI )
+ )
+ ( /4FAE678E/4DFD65ED $noname  R204 100R {Lib=R}
+  (    1 /FPGA/FPGA_TMS )
+  (    2 /FPGA/C_FPGA_TMS )
+ )
+ ( /4FAE678E/4DFD8296/4E00BA51 $noname  C301 100nF {Lib=C}
+  (    1 +3.3V )
+  (    2 GND )
+ )
+ ( /4FAE678E/4DFD8296/4E00B9FA $noname  OSC301 FXO-HC73 {Lib=FXO-HC73}
+  (    1 +3.3V )
+  (    2 ? )
+  (    3 GND )
+  (    4 /FPGA/OSC/OSC_50M )
+  (    5 ? )
+  (    6 +3.3V )
+ )
+ ( /4FAF11BE/4E00DD41 $noname  U402 AP1122_1.2 {Lib=AP1122}
+  (    1 GND )
+  (    2 +1.2V )
+  (    3 +5V )
+  (    4 +1.2V )
+ )
+ ( /4FAF11BE/4EAB5F92 $noname  U401 AP1122_3.3 {Lib=AP1122}
+  (    1 GND )
+  (    2 +3.3V )
+  (    3 +5V )
+  (    4 +3.3V )
+ )
+ ( /4FAF11BE/4EAB5DF2 $noname  R401 330R {Lib=R}
+  (    1 N-000043 )
+  (    2 GND )
+ )
+ ( /4FAF11BE/4EAB5DEC $noname  D401 LED {Lib=LED}
+  (    1 +3.3V )
+  (    2 N-000043 )
+ )
+ ( /4FAF0EE8/505FC413 $noname  U501 FT232RL {Lib=FT232RL}
+  (    1 ? )
+  (    2 ? )
+  (    3 ? )
+  (    4 +3.3V )
+  (    5 /FPGA/C_FPGA_TMS )
+  (    6 /FPGA/C_FPGA_TCK )
+  (    7 GND )
+  (    9 /FPGA/C_FPGA_TDI )
+  (   10 /FPGA/C_FPGA_TDO )
+  (   11 ? )
+  (   12 ? )
+  (   13 ? )
+  (   14 ? )
+  (   15 /FTDI_JTAG/USB/DDM )
+  (   16 /FTDI_JTAG/USB/DDP )
+  (   17 ? )
+  (   18 GND )
+  (   19 ? )
+  (   20 +5V )
+  (   21 GND )
+  (   22 ? )
+  (   23 ? )
+  (   25 GND )
+  (   26 GND )
+  (   27 ? )
+  (   28 ? )
+ )
+ ( /4FAF0EE8/4FAF1740/4FA836FD $noname  PAD601 PAD2_NC {Lib=PAD2_NC}
+  (    1 /FTDI_JTAG/USB/PPRE_V5USB )
+  (    2 +5V )
+ )
+ ( /4FAF0EE8/4FAF1740/4EAB47BF con-cypressindustries-32005-201  X601 MINI-USB {Lib=MINI-USB-32005-201}
+  (    1 /FTDI_JTAG/USB/PPRE_V5USB )
+  (    2 /FTDI_JTAG/USB/D- )
+  (    3 /FTDI_JTAG/USB/D+ )
+  (    4 GND )
+  (    5 GND )
+  (   M1 /FTDI_JTAG/USB/USB_SHIELD )
+  (   M2 /FTDI_JTAG/USB/USB_SHIELD )
+  (   M3 /FTDI_JTAG/USB/USB_SHIELD )
+  (   M4 /FTDI_JTAG/USB/USB_SHIELD )
+ )
+ ( /4FAF0EE8/4FAF1740/4DE925C3 $noname  C601 33pF {Lib=C}
+  (    1 /FTDI_JTAG/USB/D- )
+  (    2 /FTDI_JTAG/USB/D+ )
+ )
+ ( /4FAF0EE8/4FAF1740/4DE92548 $noname  R601 1.5k {Lib=R}
+  (    1 /FTDI_JTAG/USB/D+ )
+  (    2 +3.3V )
+ )
+ ( /4FAF0EE8/4FAF1740/4DE40AD5 $noname  C603 15pF {Lib=C}
+  (    1 /FTDI_JTAG/USB/DDM )
+  (    2 GND )
+ )
+ ( /4FAF0EE8/4FAF1740/4DE40ABF $noname  C602 15pF {Lib=C}
+  (    1 /FTDI_JTAG/USB/DDP )
+  (    2 GND )
+ )
+ ( /4FAF0EE8/4FAF1740/4DE40A75 $noname  R603 39R {Lib=R}
+  (    1 /FTDI_JTAG/USB/DDM )
+  (    2 /FTDI_JTAG/USB/D- )
+ )
+ ( /4FAF0EE8/4FAF1740/4DE40A6F $noname  R602 39R {Lib=R}
+  (    1 /FTDI_JTAG/USB/DDP )
+  (    2 /FTDI_JTAG/USB/D+ )
+ )
+ ( /4FAF0E53/4FCEB8B4 $noname  P706 CONN_5 {Lib=CONN_5}
+  (    1 /FPGA_IO/P7 )
+  (    2 /FPGA/P6 )
+  (    3 /FPGA/P5 )
+  (    4 /FPGA/P4 )
+  (    5 /FPGA_IO/P3 )
+ )
+ ( /4FAF0E53/4FCEB8AE $noname  P709 CONN_5 {Lib=CONN_5}
+  (    1 +3.3V )
+  (    2 GND )
+  (    3 /FPGA_IO/P73 )
+  (    4 /FPGA/P72 )
+  (    5 /FPGA/P71 )
+ )
+ ( /4FAF0E53/4FCD777C $noname  P704 CONN_5 {Lib=CONN_5}
+  (    1 /FPGA_IO/P20 )
+  (    2 /FPGA/P19 )
+  (    3 /FPGA/P16 )
+  (    4 /FPGA/P15 )
+  (    5 /FPGA/P13 )
+ )
+ ( /4FAF0E53/4FCD777B $noname  P705 CONN_5 {Lib=CONN_5}
+  (    1 +3.3V )
+  (    2 GND )
+  (    3 /FPGA_IO/P12 )
+  (    4 /FPGA/P10 )
+  (    5 /FPGA/P9 )
+ )
+ ( /4FAF0E53/4FCD7754 $noname  P708 CONN_5 {Lib=CONN_5}
+  (    1 /FPGA/P84 )
+  (    2 /FPGA_IO/P83 )
+  (    3 /FPGA_IO/P82 )
+  (    4 /FPGA/P78 )
+  (    5 /FPGA_IO/P77 )
+ )
+ ( /4FAF0E53/4FCD7753 $noname  P701 CONN_5 {Lib=CONN_5}
+  (    1 +3.3V )
+  (    2 GND )
+  (    3 /FPGA/P44 )
+  (    4 /FPGA/P41 )
+  (    5 /FPGA_IO/P40 )
+ )
+ ( /4FAF0E53/4FCD7752 $noname  P703 CONN_5 {Lib=CONN_5}
+  (    1 +3.3V )
+  (    2 GND )
+  (    3 /FPGA/P33 )
+  (    4 /FPGA/P32 )
+  (    5 /FPGA_IO/P28 )
+ )
+ ( /4FAF0E53/4FCD7751 $noname  P702 CONN_5 {Lib=CONN_5}
+  (    1 /FPGA_IO/P39 )
+  (    2 /FPGA/P37 )
+  (    3 /FPGA_IO/P36 )
+  (    4 /FPGA_IO/P35 )
+  (    5 /FPGA/P34 )
+ )
+ ( /4FAF0E53/4FCD774F $noname  P712 CONN_5 {Lib=CONN_5}
+  (    1 /FPGA_IO/P57 )
+  (    2 /FPGA_IO/P56 )
+  (    3 /FPGA_IO/P52 )
+  (    4 /FPGA/P50 )
+  (    5 /FPGA/P49 )
+ )
+ ( /4FAF0E53/4FCD774E $noname  P707 CONN_5 {Lib=CONN_5}
+  (    1 +3.3V )
+  (    2 GND )
+  (    3 /FPGA_IO/P88 )
+  (    4 /FPGA_IO/P86 )
+  (    5 /FPGA_IO/P85 )
+ )
+ ( /4FAF0E53/4FCD774C $noname  P711 CONN_5 {Lib=CONN_5}
+  (    1 +3.3V )
+  (    2 GND )
+  (    3 /FPGA/P61 )
+  (    4 /FPGA/P60 )
+  (    5 /FPGA/P59 )
+ )
+ ( /4FAF0E53/4FCD7744 $noname  P710 CONN_5 {Lib=CONN_5}
+  (    1 /FPGA/P70 )
+  (    2 /FPGA_IO/P68 )
+  (    3 /FPGA_IO/P65 )
+  (    4 /FPGA_IO/P64 )
+  (    5 /FPGA/P62 )
+ )
+)
+*
+{ Allowed footprints by component:
+$component R207
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component D202
+ LED-3MM
+ LED-5MM
+ LED-10MM
+ LED-0603
+ LED-0805
+ LED-1206
+ LEDV
+$endlist
+$component R209
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R208
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component D201
+ LED-3MM
+ LED-5MM
+ LED-10MM
+ LED-0603
+ LED-0805
+ LED-1206
+ LEDV
+$endlist
+$component R206
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R205
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component C205
+ SM*
+ C?
+ C1-1
+$endlist
+$component C206
+ SM*
+ C?
+ C1-1
+$endlist
+$component C207
+ SM*
+ C?
+ C1-1
+$endlist
+$component C208
+ SM*
+ C?
+ C1-1
+$endlist
+$component C204
+ SM*
+ C?
+ C1-1
+$endlist
+$component C203
+ SM*
+ C?
+ C1-1
+$endlist
+$component C202
+ SM*
+ C?
+ C1-1
+$endlist
+$component C201
+ SM*
+ C?
+ C1-1
+$endlist
+$component C213
+ SM*
+ C?
+ C1-1
+$endlist
+$component C214
+ SM*
+ C?
+ C1-1
+$endlist
+$component C215
+ SM*
+ C?
+ C1-1
+$endlist
+$component C216
+ SM*
+ C?
+ C1-1
+$endlist
+$component C212
+ SM*
+ C?
+ C1-1
+$endlist
+$component C211
+ SM*
+ C?
+ C1-1
+$endlist
+$component C210
+ SM*
+ C?
+ C1-1
+$endlist
+$component C209
+ SM*
+ C?
+ C1-1
+$endlist
+$component D203
+ LED-3MM
+ LED-5MM
+ LED-10MM
+ LED-0603
+ LED-0805
+ LED-1206
+ LEDV
+$endlist
+$component R201
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R202
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R203
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R204
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component C301
+ SM*
+ C?
+ C1-1
+$endlist
+$component R401
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component D401
+ LED-3MM
+ LED-5MM
+ LED-10MM
+ LED-0603
+ LED-0805
+ LED-1206
+ LEDV
+$endlist
+$component C601
+ SM*
+ C?
+ C1-1
+$endlist
+$component R601
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component C603
+ SM*
+ C?
+ C1-1
+$endlist
+$component C602
+ SM*
+ C?
+ C1-1
+$endlist
+$component R603
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R602
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$endfootprintlist
+}
+{ Pin List by Nets
+Net 1 "/FPGA/C_FPGA_TMS" "C_FPGA_TMS"
+ R204 2
+ U501 5
+Net 2 "/FPGA/C_FPGA_TDI" "C_FPGA_TDI"
+ U501 9
+ R203 2
+Net 3 "/FPGA/C_FPGA_TDO" "C_FPGA_TDO"
+ R202 2
+ U501 10
+Net 4 "/FPGA/C_FPGA_TCK" "C_FPGA_TCK"
+ U501 6
+ R201 2
+Net 5 "+3.3V" "+3.3V"
+ U201 96
+ P703 1
+ U201 99
+ P701 1
+ U401 2
+ U401 4
+ D401 1
+ R208 2
+ U201 92
+ U201 23
+ R209 1
+ U201 67
+ C201 1
+ U501 4
+ U201 26
+ U201 30
+ U201 11
+ U201 31
+ U201 55
+ U201 45
+ U201 22
+ U201 25
+ U201 79
+ R205 1
+ U201 29
+ C207 1
+ C206 1
+ C205 1
+ C301 1
+ OSC301 1
+ P707 1
+ P709 1
+ P705 1
+ P711 1
+ C202 1
+ C203 1
+ C204 1
+ C208 1
+ U202 7
+ R601 2
+ C211 1
+ C212 1
+ U202 3
+ C210 1
+ C209 1
+ OSC301 6
+ U202 8
+Net 6 "GND" "GND"
+ C201 2
+ C213 2
+ C214 2
+ C215 2
+ U202 4
+ U201 87
+ U201 18
+ C216 2
+ P703 2
+ U501 7
+ SW202 2
+ C210 2
+ P709 2
+ U501 26
+ D201 2
+ U501 25
+ P705 2
+ U201 47
+ P707 2
+ P701 2
+ P711 2
+ C204 2
+ C212 2
+ U201 69
+ D202 2
+ D203 2
+ C208 2
+ U201 95
+ C207 2
+ C206 2
+ C205 2
+ U201 58
+ U501 21
+ C211 2
+ C202 2
+ SW201 2
+ C209 2
+ C203 2
+ OSC301 3
+ C301 2
+ C603 2
+ C602 2
+ X601 4
+ X601 5
+ U201 91
+ U201 80
+ U201 8
+ U201 74
+ U501 18
+ U201 63
+ U201 42
+ R401 2
+ U401 1
+ U402 1
+ U201 24
+ U201 14
+Net 7 "" ""
+ D201 1
+ R206 1
+Net 8 "/FPGA/L0" "L0"
+ R206 2
+ U201 89
+Net 9 "/FPGA/DF_CS" "DF_CS"
+ U202 1
+ U201 27
+Net 10 "/FPGA/DF_SO" "DF_SO"
+ U202 2
+ U201 51
+Net 11 "/FPGA/DF_SI" "DF_SI"
+ U201 46
+ U202 5
+Net 12 "/FPGA/L1" "L1"
+ U201 90
+ R207 2
+Net 13 "" ""
+ D202 1
+ R207 1
+Net 14 "/FPGA/DONE" "DONE"
+ U201 54
+ R209 2
+ D203 1
+Net 15 "/FPGA/FPGA_TCK" "FPGA_TCK"
+ R201 1
+ U201 76
+Net 16 "/FPGA/FPGA_TDO" "FPGA_TDO"
+ U201 75
+ R202 1
+Net 17 "/FPGA/FPGA_TDI" "FPGA_TDI"
+ U201 2
+ R203 1
+Net 18 "+1.2V" "+1.2V"
+ U201 81
+ U402 4
+ U402 2
+ C216 1
+ U201 38
+ U201 66
+ U201 17
+ C213 1
+ C214 1
+ C215 1
+Net 19 "/FPGA/OSC/OSC_50M" "OSC_50M"
+ U201 43
+ OSC301 4
+Net 20 "/FPGA/SW0" "SW0"
+ U201 21
+ R208 1
+ SW201 1
+Net 21 "/FPGA/PROG_B" "PROG_B"
+ SW202 1
+ R205 2
+ U201 100
+Net 23 "/FPGA/FPGA_TMS" "FPGA_TMS"
+ U201 1
+ R204 1
+Net 24 "/FPGA/DF_CLK" "DF_CLK"
+ U202 6
+ U201 53
+Net 30 "/FTDI_JTAG/USB/DDM" "DDM"
+ C603 1
+ U501 15
+ R603 1
+Net 34 "/FTDI_JTAG/USB/DDP" "DDP"
+ U501 16
+ R602 1
+ C602 1
+Net 42 "+5V" "+5V"
+ PAD601 2
+ U401 3
+ U402 3
+ U501 20
+Net 43 "" ""
+ R401 1
+ D401 2
+Net 46 "/FTDI_JTAG/USB/PPRE_V5USB" "PPRE_V5USB"
+ PAD601 1
+ X601 1
+Net 47 "/FTDI_JTAG/USB/D-" "D-"
+ R603 2
+ X601 2
+ C601 1
+Net 48 "/FTDI_JTAG/USB/D+" "D+"
+ R602 2
+ X601 3
+ R601 1
+ C601 2
+Net 49 "/FTDI_JTAG/USB/USB_SHIELD" "USB_SHIELD"
+ X601 M1
+ X601 M2
+ X601 M3
+ X601 M4
+Net 57 "/FPGA_IO/P28" "P28"
+ U201 28
+ P703 5
+Net 61 "/FPGA/P32" "P32"
+ U201 32
+ P703 4
+Net 62 "/FPGA/P33" "P33"
+ U201 33
+ P703 3
+Net 63 "/FPGA/P34" "P34"
+ U201 34
+ P702 5
+Net 64 "/FPGA_IO/P35" "P35"
+ P702 4
+ U201 35
+Net 65 "/FPGA_IO/P36" "P36"
+ P702 3
+ U201 36
+Net 66 "/FPGA/P37" "P37"
+ P702 2
+ U201 37
+Net 68 "/FPGA_IO/P39" "P39"
+ P702 1
+ U201 39
+Net 69 "/FPGA_IO/P40" "P40"
+ U201 40
+ P701 5
+Net 70 "/FPGA/P41" "P41"
+ U201 41
+ P701 4
+Net 73 "/FPGA/P44" "P44"
+ U201 44
+ P701 3
+Net 81 "/FPGA_IO/P3" "P3"
+ U201 3
+ P706 5
+Net 82 "/FPGA/P4" "P4"
+ U201 4
+ P706 4
+Net 83 "/FPGA/P5" "P5"
+ U201 5
+ P706 3
+Net 84 "/FPGA/P6" "P6"
+ P706 2
+ U201 6
+Net 85 "/FPGA_IO/P7" "P7"
+ U201 7
+ P706 1
+Net 87 "/FPGA/P9" "P9"
+ U201 9
+ P705 5
+Net 88 "/FPGA/P10" "P10"
+ U201 10
+ P705 4
+Net 90 "/FPGA_IO/P12" "P12"
+ P705 3
+ U201 12
+Net 91 "/FPGA/P13" "P13"
+ U201 13
+ P704 5
+Net 93 "/FPGA/P15" "P15"
+ P704 4
+ U201 15
+Net 94 "/FPGA/P16" "P16"
+ U201 16
+ P704 3
+Net 97 "/FPGA/P19" "P19"
+ U201 19
+ P704 2
+Net 98 "/FPGA_IO/P20" "P20"
+ U201 20
+ P704 1
+Net 102 "/FPGA_IO/P77" "P77"
+ P708 5
+ U201 77
+Net 103 "/FPGA/P78" "P78"
+ P708 4
+ U201 78
+Net 107 "/FPGA_IO/P82" "P82"
+ U201 82
+ P708 3
+Net 108 "/FPGA_IO/P83" "P83"
+ P708 2
+ U201 83
+Net 109 "/FPGA/P84" "P84"
+ P708 1
+ U201 84
+Net 110 "/FPGA_IO/P85" "P85"
+ U201 85
+ P707 5
+Net 111 "/FPGA_IO/P86" "P86"
+ P707 4
+ U201 86
+Net 113 "/FPGA_IO/P88" "P88"
+ P707 3
+ U201 88
+Net 125 "/FPGA/P49" "P49"
+ P712 5
+ U201 49
+Net 126 "/FPGA/P50" "P50"
+ P712 4
+ U201 50
+Net 128 "/FPGA_IO/P52" "P52"
+ U201 52
+ P712 3
+Net 132 "/FPGA_IO/P56" "P56"
+ P712 2
+ U201 56
+Net 133 "/FPGA_IO/P57" "P57"
+ P712 1
+ U201 57
+Net 135 "/FPGA/P59" "P59"
+ P711 5
+ U201 59
+Net 136 "/FPGA/P60" "P60"
+ U201 60
+ P711 4
+Net 137 "/FPGA/P61" "P61"
+ U201 61
+ P711 3
+Net 138 "/FPGA/P62" "P62"
+ U201 62
+ P710 5
+Net 140 "/FPGA_IO/P64" "P64"
+ P710 4
+ U201 64
+Net 141 "/FPGA_IO/P65" "P65"
+ P710 3
+ U201 65
+Net 144 "/FPGA_IO/P68" "P68"
+ P710 2
+ U201 68
+Net 146 "/FPGA/P70" "P70"
+ U201 70
+ P710 1
+Net 147 "/FPGA/P71" "P71"
+ U201 71
+ P709 5
+Net 148 "/FPGA/P72" "P72"
+ U201 72
+ P709 4
+Net 149 "/FPGA_IO/P73" "P73"
+ P709 3
+ U201 73
+}
+#End

@@ -1,0 +1,150 @@
+PCBNEW-LibModule-V1  Thu 19 Apr 2012 10:02:47 AM COT
+# encoding utf-8
+$INDEX
+16QSOP
+$EndINDEX
+$MODULE 16QSOP
+Po 0 0 0 15 4F9028E7 00000000 ~~
+Li 16QSOP
+Sc 00000000
+AR 16QSOP
+Op 0 0 0
+T0 1496 1654 600 600 0 120 N V 21 N "16QSOP"
+T1 630 -1575 600 600 0 120 N V 21 N "U**"
+DS -79 -197 157 -197 150 21
+DS 157 -197 157 118 150 21
+DS 157 118 -79 118 150 21
+DS -79 -551 1850 -551 150 21
+DS 1850 -551 1850 551 150 21
+DS 1850 551 -79 551 150 21
+DS -79 551 -79 -551 150 21
+$PAD
+Sh "1" R 118 394 0 0 0
+Dr 0 0 0
+At SMD N 00A88000
+Ne 0 ""
+Po 0 770
+.LocalClearance 39
+$EndPAD
+$PAD
+Sh "2" R 118 394 0 0 0
+Dr 0 0 0
+At SMD N 00A88000
+Ne 0 ""
+Po 252 770
+.LocalClearance 39
+$EndPAD
+$PAD
+Sh "3" R 118 394 0 0 0
+Dr 0 0 0
+At SMD N 00A88000
+Ne 0 ""
+Po 504 770
+.LocalClearance 39
+$EndPAD
+$PAD
+Sh "4" R 118 394 0 0 0
+Dr 0 0 0
+At SMD N 00A88000
+Ne 0 ""
+Po 756 770
+.LocalClearance 39
+$EndPAD
+$PAD
+Sh "5" R 118 394 0 0 0
+Dr 0 0 0
+At SMD N 00A88000
+Ne 0 ""
+Po 1008 770
+.LocalClearance 39
+$EndPAD
+$PAD
+Sh "6" R 118 394 0 0 0
+Dr 0 0 0
+At SMD N 00A88000
+Ne 0 ""
+Po 1260 770
+.LocalClearance 39
+$EndPAD
+$PAD
+Sh "7" R 118 394 0 0 0
+Dr 0 0 0
+At SMD N 00A88000
+Ne 0 ""
+Po 1512 770
+.LocalClearance 39
+$EndPAD
+$PAD
+Sh "8" R 118 394 0 0 0
+Dr 0 0 0
+At SMD N 00A88000
+Ne 0 ""
+Po 1764 770
+.LocalClearance 39
+$EndPAD
+$PAD
+Sh "9" R 118 394 0 0 0
+Dr 0 0 0
+At SMD N 00A88000
+Ne 0 ""
+Po 1764 -770
+.LocalClearance 39
+$EndPAD
+$PAD
+Sh "10" R 118 394 0 0 0
+Dr 0 0 0
+At SMD N 00A88000
+Ne 0 ""
+Po 1512 -770
+.LocalClearance 39
+$EndPAD
+$PAD
+Sh "11" R 118 394 0 0 0
+Dr 0 0 0
+At SMD N 00A88000
+Ne 0 ""
+Po 1260 -770
+.LocalClearance 39
+$EndPAD
+$PAD
+Sh "12" R 118 394 0 0 0
+Dr 0 0 0
+At SMD N 00A88000
+Ne 0 ""
+Po 1008 -770
+.LocalClearance 39
+$EndPAD
+$PAD
+Sh "13" R 118 394 0 0 0
+Dr 0 0 0
+At SMD N 00A88000
+Ne 0 ""
+Po 756 -770
+.LocalClearance 39
+$EndPAD
+$PAD
+Sh "14" R 118 394 0 0 0
+Dr 0 0 0
+At SMD N 00A88000
+Ne 0 ""
+Po 504 -770
+.LocalClearance 39
+$EndPAD
+$PAD
+Sh "15" R 118 394 0 0 0
+Dr 0 0 0
+At SMD N 00A88000
+Ne 0 ""
+Po 252 -770
+.LocalClearance 39
+$EndPAD
+$PAD
+Sh "16" R 118 394 0 0 0
+Dr 0 0 0
+At SMD N 00A88000
+Ne 0 ""
+Po 0 -770
+.LocalClearance 39
+$EndPAD
+$EndMODULE  16QSOP
+$EndLIBRARY

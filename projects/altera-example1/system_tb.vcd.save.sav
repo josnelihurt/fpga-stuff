@@ -1,58 +1,67 @@
 [*]
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
-[*] Tue Sep 17 00:07:03 2019
+[*] Mon Sep 23 01:32:18 2019
 [*]
 [dumpfile] "/home/jrb/code/fpga-stuff/projects/altera-example1/simulation/system_tb.vcd"
-[dumpfile_mtime] "Tue Sep 17 00:01:30 2019"
-[dumpfile_size] 16727682
+[dumpfile_mtime] "Sun Sep 22 23:35:34 2019"
+[dumpfile_size] 10979829
 [savefile] "/home/jrb/code/fpga-stuff/projects/altera-example1/system_tb.vcd.save.sav"
-[timestart] 120000
+[timestart] 989650000
 [size] 1920 1024
 [pos] 1920 0
-*-18.000000 208000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-22.977295 1017100000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] system_tb.
+[treeopen] system_tb.uut0.
+[treeopen] system_tb.uut0.delay_u0.
+[treeopen] system_tb.uut0.fsm_u0.
 [sst_width] 285
-[signals_width] 254
+[signals_width] 291
 [sst_expanded] 1
 [sst_vpaned_height] 316
 @28
-system_tb.hx8352_controller_unit0.fsm_clk
-(31)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-@c00023
-system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
+system_tb.uut0.lcd_rst_done
+system_tb.uut0.hx8352_bus_u0.lcd_rd
+system_tb.uut0.fsm_clk
+@22
+system_tb.uut0.fsm_u0.init_ut0.pc[7:0]
 @28
-(0)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(1)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(2)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(3)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(4)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(5)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(6)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(7)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(8)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(9)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(10)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(11)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(12)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(13)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(14)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(15)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(16)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(17)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(18)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(19)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(20)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(21)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(22)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(23)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(24)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(25)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(26)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(27)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(28)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(29)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-(30)system_tb.hx8352_controller_unit0.debug_instruction_step[31:0]
-@1401201
--group_end
+system_tb.uut0.delay_step
+system_tb.uut0.delay_done
+system_tb.uut0.enabler_u0.fsm_enable
+system_tb.uut0.bus_controller_step
+system_tb.uut0.delay_busy
+system_tb.uut0.delay_done
+system_tb.uut0.delay_step
+system_tb.uut0.delay_u0.cnt_ut0.enable
+@24
+system_tb.uut0.delay_u0.cnt_ut0.counter_us_next[15:0]
+system_tb.uut0.delay_u0.cnt_ut0.counter_us[15:0]
+system_tb.uut0.delay_u0.cnt_ut0.til[15:0]
+@28
+system_tb.uut0.enabler_u0.bus_busy
+@22
+system_tb.uut0.fsm_u0.init_ut0.pc[7:0]
+system_tb.uut0.data_to_write[15:0]
+@28
+system_tb.uut0.bus_controller_step
+@22
+system_tb.uut0.hx8352_bus_u0.data_output[15:0]
+@28
+system_tb.uut0.hx8352_bus_u0.transfer_step
+system_tb.uut0.fsm_u0.lcd_init_working
+system_tb.uut0.init_done
+@22
+system_tb.uut0.hx8352_bus_u0.data_input[15:0]
+@28
+system_tb.uut0.lcd_cs
+system_tb.uut0.hx8352_bus_u0.transfer_step
+@22
+system_tb.uut0.hx8352_bus_u0.data_output[15:0]
+@28
+system_tb.uut0.hx8352_bus_u0.lcd_wr
+system_tb.uut0.hx8352_bus_u0.lcd_rs
+system_tb.uut0.hx8352_bus_u0.data_command
+@29
+system_tb.uut0.command_or_data
 [pattern_trace] 1
 [pattern_trace] 0

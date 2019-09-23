@@ -1,0 +1,51 @@
+[*]
+[*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
+[*] Sun Sep 22 00:18:02 2019
+[*]
+[dumpfile] "/home/jrb/code/fpga-stuff/projects/altera-example1/simulation/system_tb.vcd"
+[dumpfile_mtime] "Sun Sep 22 00:11:51 2019"
+[dumpfile_size] 4944138
+[savefile] "/home/jrb/code/fpga-stuff/projects/system_tb.vcd.save.sav"
+[timestart] 1048050000
+[size] 1920 1024
+[pos] 1920 0
+*-21.000000 1053710000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] system_tb.
+[treeopen] system_tb.uut0.
+[treeopen] system_tb.uut0.fsm_ut.
+[treeopen] system_tb.uut0.hx8352_delay_us_ut.
+[sst_width] 285
+[signals_width] 502
+[sst_expanded] 1
+[sst_vpaned_height] 316
+@28
+system_tb.uut0.clk
+system_tb.uut0.rst
+system_tb.uut0.lcd_rst_done
+system_tb.uut0.fsm_clk
+@24
+system_tb.uut0.fsm_ut.fsm_state[2:0]
+@22
+system_tb.uut0.fsm_ut.init_ut0.pc[7:0]
+@28
+system_tb.uut0.delay_step
+system_tb.uut0.delay_done
+system_tb.uut0.fsm_clk
+@22
+system_tb.uut0.hx8352_delay_us_ut.cnt_ut0.counter_us[15:0]
+@28
+system_tb.uut0.hx8352_delay_us_ut.cnt_ut0.clk
+@24
+system_tb.uut0.hx8352_delay_us_ut.cnt_ut0.counter_us[15:0]
+@28
+system_tb.uut0.hx8352_delay_us_ut.cnt_ut0.done
+@29
+system_tb.uut0.hx8352_delay_us_ut.cnt_ut0.enable
+@28
+system_tb.uut0.hx8352_delay_us_ut.cnt_ut0.enabled_clk
+system_tb.uut0.hx8352_delay_us_ut.cnt_ut0.rst
+system_tb.uut0.hx8352_delay_us_ut.cnt_ut0.step
+@24
+system_tb.uut0.hx8352_delay_us_ut.cnt_ut0.til[15:0]
+[pattern_trace] 1
+[pattern_trace] 0

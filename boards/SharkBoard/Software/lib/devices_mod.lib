@@ -1,0 +1,23 @@
+EESchema-LIBRARY Version 2.3  Date: Tue 07 Jun 2011 12:07:01 PM COT
+#encoding utf-8
+#
+# Cs
+#
+DEF Cs C 0 10 N Y 1 F N
+F0 "C" 50 100 50 H V L CNN
+F1 "C" 50 -100 50 H V L CNN
+$FPLIST
+ SM*
+ C?
+ C1-1
+$ENDFPLIST
+DRAW
+P 2 0 1 10  -100 -30  100 -30 N
+P 2 0 1 10  -100 30  100 30 N
+X ~ 1 0 150 120 D 40 40 1 1 P
+X ~ 2 0 -150 120 U 40 40 1 1 P
+ENDDRAW
+ENDDEF
+
+#
+#End Library

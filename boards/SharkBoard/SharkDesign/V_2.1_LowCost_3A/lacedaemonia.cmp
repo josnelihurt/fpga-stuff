@@ -1,0 +1,367 @@
+Cmp-Mod V01 Created by CvPcb (2012-01-19 BZR 3256)-stable date = Mon 18 Feb 2013 09:21:31 PM COT
+
+BeginCmp
+TimeStamp = /4FAE678E/4DFFF078;
+Reference = C201;
+ValeurCmp = 100nF;
+IdModule  = SM0603_Capa;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4DFFF079;
+Reference = C202;
+ValeurCmp = 100nF;
+IdModule  = SM0603_Capa;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4DFFF07A;
+Reference = C203;
+ValeurCmp = 100nF;
+IdModule  = SM0603_Capa;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4DFFF07B;
+Reference = C204;
+ValeurCmp = 100nF;
+IdModule  = SM0603_Capa;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4DFFF087;
+Reference = C205;
+ValeurCmp = 100nF;
+IdModule  = SM0603_Capa;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4DFFF086;
+Reference = C206;
+ValeurCmp = 100nF;
+IdModule  = SM0603_Capa;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4DFFF085;
+Reference = C207;
+ValeurCmp = 100nF;
+IdModule  = SM0603_Capa;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4DFFF084;
+Reference = C208;
+ValeurCmp = 100nF;
+IdModule  = SM0603_Capa;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4DFFEF8A;
+Reference = C209;
+ValeurCmp = 100nF;
+IdModule  = SM0603_Capa;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4DFFEFDB;
+Reference = C210;
+ValeurCmp = 100nF;
+IdModule  = SM0603_Capa;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4DFFEFDF;
+Reference = C211;
+ValeurCmp = 100nF;
+IdModule  = SM0603_Capa;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4DFFEFE2;
+Reference = C212;
+ValeurCmp = 100nF;
+IdModule  = SM0603_Capa;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4DFFF023;
+Reference = C213;
+ValeurCmp = 100nF;
+IdModule  = SM0603_Capa;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4DFFF022;
+Reference = C214;
+ValeurCmp = 100nF;
+IdModule  = SM0603_Capa;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4DFFF021;
+Reference = C215;
+ValeurCmp = 100nF;
+IdModule  = SM0603_Capa;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4DFFF020;
+Reference = C216;
+ValeurCmp = 100nF;
+IdModule  = SM0603_Capa;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4DFD8296/4E00BA51;
+Reference = C301;
+ValeurCmp = 100nF;
+IdModule  = SM0603_Capa;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAF0EE8/4FAF1740/4DE925C3;
+Reference = C601;
+ValeurCmp = 33pF;
+IdModule  = SM0603_Capa;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAF0EE8/4FAF1740/4DE40ABF;
+Reference = C602;
+ValeurCmp = 15pF;
+IdModule  = SM0603_Capa;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAF0EE8/4FAF1740/4DE40AD5;
+Reference = C603;
+ValeurCmp = 15pF;
+IdModule  = SM0603_Capa;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4EAF3A2A;
+Reference = D201;
+ValeurCmp = LED;
+IdModule  = LED-0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4FEA8096;
+Reference = D202;
+ValeurCmp = LED;
+IdModule  = LED-0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4DFD739B;
+Reference = D203;
+ValeurCmp = LED;
+IdModule  = LED-0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/5122CA29;
+Reference = D204;
+ValeurCmp = LED;
+IdModule  = LED-0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAF11BE/4EAB5DEC;
+Reference = D401;
+ValeurCmp = LED;
+IdModule  = LED-0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4DFD8296/4E00B9FA;
+Reference = OSC301;
+ValeurCmp = FXO-HC73;
+IdModule  = OSC;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAF0E53/5122BE81;
+Reference = P701;
+ValeurCmp = CONN_25;
+IdModule  = PIN_ARRAY_25X1;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAF0E53/5122BE86;
+Reference = P702;
+ValeurCmp = CONN_25;
+IdModule  = PIN_ARRAY_25X1;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4DFD6662;
+Reference = R201;
+ValeurCmp = 100R;
+IdModule  = SM0603_Resistor;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4DFD6660;
+Reference = R202;
+ValeurCmp = 100R;
+IdModule  = SM0603_Resistor;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4DFD665C;
+Reference = R203;
+ValeurCmp = 100R;
+IdModule  = SM0603_Resistor;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4DFD65ED;
+Reference = R204;
+ValeurCmp = 100R;
+IdModule  = SM0603_Resistor;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4EAF3A1F;
+Reference = R205;
+ValeurCmp = 10K;
+IdModule  = SM0603_Resistor;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4EAF3A24;
+Reference = R206;
+ValeurCmp = 330R;
+IdModule  = SM0603_Resistor;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4FEA8097;
+Reference = R207;
+ValeurCmp = 330R;
+IdModule  = SM0603_Resistor;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4FAF0165;
+Reference = R208;
+ValeurCmp = 10K;
+IdModule  = SM0603_Resistor;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4FAF0222;
+Reference = R209;
+ValeurCmp = 330R;
+IdModule  = SM0603_Resistor;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/5122CA28;
+Reference = R210;
+ValeurCmp = 330R;
+IdModule  = SM0603_Resistor;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAF11BE/4EAB5DF2;
+Reference = R401;
+ValeurCmp = 330R;
+IdModule  = SM0603_Resistor;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAF0EE8/4FAF1740/4DE92548;
+Reference = R601;
+ValeurCmp = 1.5k;
+IdModule  = SM0603_Resistor;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAF0EE8/4FAF1740/4DE40A6F;
+Reference = R602;
+ValeurCmp = 39R;
+IdModule  = SM0603_Resistor;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAF0EE8/4FAF1740/4DE40A75;
+Reference = R603;
+ValeurCmp = 39R;
+IdModule  = SM0603_Resistor;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4FAF006C;
+Reference = SW201;
+ValeurCmp = SPULSE;
+IdModule  = Pulse_smd_KFC-A04-02;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4EAF3A27;
+Reference = SW202;
+ValeurCmp = SPULSE;
+IdModule  = Pulse_smd_KFC-A04-02;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/505FA54E;
+Reference = U201;
+ValeurCmp = XC3S50A-VQ100;
+IdModule  = VQFP100;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/4FED2F66;
+Reference = U202;
+ValeurCmp = M25PXX;
+IdModule  = SO8N;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/5122CDC8/5122E08C;
+Reference = U301;
+ValeurCmp = ADC081C021;
+IdModule  = tsot-6;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAF11BE/4EAB5F92;
+Reference = U401;
+ValeurCmp = AP1122_3.3;
+IdModule  = SOT223;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAF11BE/4E00DD41;
+Reference = U402;
+ValeurCmp = AP1122_1.2;
+IdModule  = SOT223;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAE678E/5122CDBC/5122DAA5;
+Reference = U403;
+ValeurCmp = DAC5311;
+IdModule  = sc70-6;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAF0EE8/505FC413;
+Reference = U501;
+ValeurCmp = FT232RL;
+IdModule  = SSOP28;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FAF0EE8/4FAF1740/4EAB47BF;
+Reference = X601;
+ValeurCmp = MINI-USB;
+IdModule  = CON_USB_MB;
+EndCmp
+
+EndListe

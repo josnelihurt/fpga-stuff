@@ -1,0 +1,13 @@
+EESchema-LIBRARY Version 2.3  Date: 12/9/2009-17:20:02
+#
+# HD
+#
+DEF HD H 0 40 Y Y 1 F N
+F0 "H" 0 0 60 H V C C
+F1 "HD" 0 150 60 H V C C
+DRAW
+C 0 0 100 0 1 0 N
+ENDDRAW
+ENDDEF
+#
+#End Library
