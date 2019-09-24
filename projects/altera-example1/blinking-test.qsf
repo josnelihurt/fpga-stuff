@@ -282,15 +282,16 @@ set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -rise
 set_global_assignment -name USE_CONFIGURATION_DEVICE OFF
 set_global_assignment -name RESERVE_FLASH_NCE_AFTER_CONFIGURATION "AS INPUT TRI-STATED"
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_main_fsm.v
+set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_init_values.v
+set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_lcd_init.v
+set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_rom_init_cmd.v
 set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_bus_controller.v
 set_global_assignment -name VERILOG_FILE hdl/single_shot_counter.v
 set_global_assignment -name VERILOG_FILE hdl/seven_segments_handler.v
 set_global_assignment -name VERILOG_FILE hdl/edge_detect.v
 set_global_assignment -name VERILOG_FILE hdl/delay_us.v
 set_global_assignment -name VERILOG_FILE hdl/clock_divider.v
-set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_reset_generator.v
-set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_controller_fsmv.v
-set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_controller_fsm_enabler.v
 set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_controller_data_sync.v
 set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_controller.v
 set_global_assignment -name VERILOG_FILE testbenches/system_tb.v
@@ -303,5 +304,5 @@ set_global_assignment -name VERILOG_FILE "../../rtl-generic/7segdriver/Led7Seg.v
 set_global_assignment -name VERILOG_FILE "../../rtl-generic/counter/counter.v"
 set_global_assignment -name VERILOG_FILE system.v
 set_global_assignment -name QIP_FILE PLL.qip
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name SLD_FILE db/stp1_auto_stripped.stp
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

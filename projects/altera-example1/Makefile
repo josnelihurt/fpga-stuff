@@ -58,12 +58,15 @@ SRC=														\
 	../hdl/clock_divider.v																			\
 	../hdl/delay_us.v	\
 	../hdl/edge_detect.v	\
-	../hdl/hx8352/hx8352_bus_controller.v	\
-	../hdl/hx8352/hx8352_controller_data_sync.v	\
-	../hdl/hx8352/hx8352_controller_fsm_enabler.v	\
-	../hdl/hx8352/hx8352_controller_fsmv.v	\
-	../hdl/hx8352/hx8352_controller.v	\
-	../hdl/hx8352/hx8352_reset_generator.v	\
+	../hdl/hx8352/hx8352_bus_controller.v \
+	../hdl/hx8352/hx8352_controller_data_sync.v \
+	../hdl/hx8352/hx8352_controller_fsm_enabler.v \
+	../hdl/hx8352/hx8352_controller.v \
+	../hdl/hx8352/hx8352_init_values.v \
+	../hdl/hx8352/hx8352_lcd_init.v \
+	../hdl/hx8352/hx8352_main_fsm.v \
+	../hdl/hx8352/hx8352_reset_generator.v \
+	../hdl/hx8352/hx8352_rom_init_cmd.v \
 	../hdl/seven_segments_handler.v	\
 	../hdl/single_shot_counter.v	\
 	../PLL.v									\

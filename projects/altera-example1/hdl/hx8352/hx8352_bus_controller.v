@@ -7,10 +7,11 @@ module hx8352_bus_controller
 	input  transfer_step,
 	
 	output reg busy,
+	output reg done,
 	output reg [15:0] data_output,
-	output lcd_rs,
 	output reg lcd_wr,
-	output reg lcd_rd
+	output lcd_rs,
+	output lcd_rd
 );
     localparam [2:0]
         STATE_IDLE      				= 3'h0,
@@ -27,14 +28,14 @@ reg [2:0]fsm_bus_step;
 always @(posedge clk or posedge rst) begin
   if (rst) begin
 		lcd_wr<=HIGH;
-		lcd_rd<=HIGH;//Never shold be low because this never will be readed
 		busy <= LOW;
 		data_output<=16'h0000;
+		done <= LOW;
 	end else begin 	
 		case(fsm_bus_step) 
 		STATE_IDLE: begin
 			busy <= LOW;
-			//lcd_cs<=HIGH;
+			done <= LOW;
 			if (transfer_step) begin
 				fsm_bus_step <= STATE_LOAD_DATA;
 				busy <= HIGH;
@@ -51,7 +52,8 @@ always @(posedge clk or posedge rst) begin
 		STATE_WR_LOW_END:begin 
 			lcd_wr<=HIGH;
 			busy <= LOW;
-			fsm_bus_step <= STATE_IDLE; // Wait
+			done <= HIGH;
+			fsm_bus_step <= STATE_IDLE;
 		end
 		default:
 			fsm_bus_step <= STATE_IDLE;
@@ -59,4 +61,5 @@ always @(posedge clk or posedge rst) begin
 	end
 end
 assign lcd_rs = data_command;
+assign lcd_rd = HIGH;//Never shold be low because this never will be readed
 endmodule

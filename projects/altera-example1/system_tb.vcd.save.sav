@@ -1,67 +1,60 @@
 [*]
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
-[*] Mon Sep 23 01:32:18 2019
+[*] Tue Sep 24 00:32:39 2019
 [*]
 [dumpfile] "/home/jrb/code/fpga-stuff/projects/altera-example1/simulation/system_tb.vcd"
-[dumpfile_mtime] "Sun Sep 22 23:35:34 2019"
-[dumpfile_size] 10979829
+[dumpfile_mtime] "Tue Sep 24 00:29:57 2019"
+[dumpfile_size] 46146899
 [savefile] "/home/jrb/code/fpga-stuff/projects/altera-example1/system_tb.vcd.save.sav"
-[timestart] 989650000
+[timestart] 340840940000
 [size] 1920 1024
 [pos] 1920 0
-*-22.977295 1017100000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-22.977295 110429000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] system_tb.
 [treeopen] system_tb.uut0.
 [treeopen] system_tb.uut0.delay_u0.
 [treeopen] system_tb.uut0.fsm_u0.
+[treeopen] system_tb.uut0.fsm_u0.init_ut0.
+[treeopen] system_tb.uut0.fsm_u0.init_ut0.init_values_u0.
 [sst_width] 285
 [signals_width] 291
 [sst_expanded] 1
 [sst_vpaned_height] 316
 @28
-system_tb.uut0.lcd_rst_done
-system_tb.uut0.hx8352_bus_u0.lcd_rd
-system_tb.uut0.fsm_clk
-@22
-system_tb.uut0.fsm_u0.init_ut0.pc[7:0]
-@28
-system_tb.uut0.delay_step
-system_tb.uut0.delay_done
-system_tb.uut0.enabler_u0.fsm_enable
-system_tb.uut0.bus_controller_step
-system_tb.uut0.delay_busy
-system_tb.uut0.delay_done
-system_tb.uut0.delay_step
-system_tb.uut0.delay_u0.cnt_ut0.enable
-@24
-system_tb.uut0.delay_u0.cnt_ut0.counter_us_next[15:0]
-system_tb.uut0.delay_u0.cnt_ut0.counter_us[15:0]
-system_tb.uut0.delay_u0.cnt_ut0.til[15:0]
-@28
-system_tb.uut0.enabler_u0.bus_busy
-@22
-system_tb.uut0.fsm_u0.init_ut0.pc[7:0]
-system_tb.uut0.data_to_write[15:0]
-@28
-system_tb.uut0.bus_controller_step
-@22
-system_tb.uut0.hx8352_bus_u0.data_output[15:0]
-@28
-system_tb.uut0.hx8352_bus_u0.transfer_step
-system_tb.uut0.fsm_u0.lcd_init_working
+system_tb.uut0.clk
+system_tb.uut0.rst
 system_tb.uut0.init_done
 @22
-system_tb.uut0.hx8352_bus_u0.data_input[15:0]
+system_tb.uut0.fsm_u0.fsm_state[3:0]
+@24
+system_tb.uut0.fsm_u0.delay_value[15:0]
 @28
-system_tb.uut0.lcd_cs
-system_tb.uut0.hx8352_bus_u0.transfer_step
+system_tb.uut0.fsm_u0.delay_step
+system_tb.uut0.fsm_u0.init_delay_step
+system_tb.uut0.fsm_u0.delay_done
+system_tb.uut0.lcd_rst
+system_tb.uut0.fsm_u0.init_ut0.init_val_step
+system_tb.uut0.fsm_u0.lcd_init_step
+@24
+system_tb.uut0.fsm_u0.init_ut0.state[3:0]
+@28
+system_tb.uut0.fsm_u0.init_ut0.init_data_rdy
+system_tb.uut0.fsm_u0.init_ut0.init_values_u0.clk
+system_tb.uut0.fsm_u0.init_ut0.init_values_u0.next
 @22
-system_tb.uut0.hx8352_bus_u0.data_output[15:0]
+system_tb.uut0.fsm_u0.init_ut0.init_cmd[7:0]
+system_tb.uut0.fsm_u0.init_ut0.init_val[15:0]
 @28
-system_tb.uut0.hx8352_bus_u0.lcd_wr
-system_tb.uut0.hx8352_bus_u0.lcd_rs
-system_tb.uut0.hx8352_bus_u0.data_command
-@29
-system_tb.uut0.command_or_data
+system_tb.uut0.fsm_u0.init_ut0.delay_step
+system_tb.uut0.lcd_cs
+system_tb.uut0.lcd_rd
+system_tb.uut0.lcd_rs
+system_tb.uut0.lcd_rst
+system_tb.uut0.lcd_wr
+system_tb.uut0.bus_controller_step
+system_tb.uut0.fsm_u0.init_bus_step
+system_tb.uut0.fsm_u0.bus_step_reg
+@23
+system_tb.uut0.fsm_u0.fsm_state[3:0]
 [pattern_trace] 1
 [pattern_trace] 0

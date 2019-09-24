@@ -53,8 +53,7 @@ wire[15:0] lcd_data_in;
 		.lcd_rd(hx8352_rd),
 		.lcd_rst(hx8352_rst),
 		.lcd_cs(hx8352_cs),
-		.data_output(hx8352_data[15:0]),
-		//.debug_instruction_step(hx8352_dbg),
+		.data_bus(hx8352_data[15:0]),
 		.init_done(hx8352_init_done)
 		);
 
@@ -78,7 +77,7 @@ initial begin
 	rst_tb <= 0;
 	
 	
-	#(tck*110000) $finish;
+	#(tck*500000) $finish;
 	//#(tck*750_000) $finish; // xx ms
 end
 endmodule

@@ -68,7 +68,7 @@ module system(
 		.lcd_rd(hx8352_rd),
 		.lcd_rst(hx8352_rst),
 		.lcd_cs(hx8352_cs),
-		.data_output(hx8352_data[15:0]),
+		.data_bus(hx8352_data[15:0]),
 		.debug_instruction_step(hx8352_dbg),
 		.init_done(hx8352_init_done)
 		);
