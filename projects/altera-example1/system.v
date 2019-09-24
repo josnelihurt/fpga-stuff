@@ -55,13 +55,26 @@ module system(
 	
 	wire hx8352_init_done;
 	wire hx8352_busy;
+	wire [15:0] hx8352_data_in;
+	wire [4:0]  pixel_r;
+	wire [5:0]  pixel_g;
+	wire [4:0]  pixel_b;
+	assign hx8352_data_in = {pixel_r,pixel_g,pixel_b};
+	
+	assign pixel_r = {counter_1s[0],counter_1s[0],counter_1s[0],counter_1s[0],counter_1s[0]};
+	assign pixel_g = {counter_1s[1],counter_1s[1],counter_1s[1],counter_1s[1],counter_1s[1],counter_1s[1]};
+	assign pixel_b = {counter_1s[2],counter_1s[2],counter_1s[2],counter_1s[2],counter_1s[2]};
+	
 	hx8352_controller
 		hx8352_u0
 		(
 		.clk(clk_1M),
 		.clk_1MHz(clk_1M),
 		.rst(rst),
-		.data_in(counter_1s[15:0]),
+		.data_in(hx8352_data_in),
+		.cmd_in(),
+		.cmd_step(),	
+		.data_step(),
 		.busy(hx8352_busy),
 		.lcd_rs(hx8352_rs),
 		.lcd_wr(hx8352_wr),
@@ -90,7 +103,7 @@ module system(
 		.rst(rst),
 		.display_off(1'b0),
 		.display_level(3'b100),
-		.display_value( hx8352_dbg ),//{debug_instruction_step, hx8352_data}),
+		.display_value(counter_1s),//{debug_instruction_step, hx8352_data}),
 		.dots(8'h00),
 		.leds_green({ hx8352_cs, hx8352_rst, hx8352_rs, hx8352_wr, hx8352_rd, clk_1H, counter_1s[1], counter_1s[0]}),
 		.leds_red(8'h00),
@@ -100,19 +113,8 @@ module system(
 		.tm1638_clk(tm1638_clk),
 		.tm1638_data_io(tm1638_data_io)
 		);
-
-	assign led=clk_1H;
-	wire delay_done;
-	delay_us 
-	delay_uut(
-	.clk_1MHz(clk_1M),
-	.rst(rst),
-	.step(clk_1H),
-	.delay_us(100),
-	.done(delay_done)
-	);
 	
 	assign probe_bus[15:0] = {hx8352_dbg[15:0]};
 	assign probe_bus2[0] = clk_1H;
-	assign probe_bus2[1] = delay_done;
+	assign probe_bus2[1] = clk_1H;
 endmodule

@@ -4,6 +4,12 @@ module hx8352_main_fsm(
 	input rst,
 	input bus_done,
 	input delay_done,
+	
+	input  [7:0] cmd_in,
+	input  cmd_step,
+	input  [15:0] data_in,	
+	input  data_step,
+	
 	output init_done,
 	output reg [15:0]data_to_write,
 	output reg command_or_data,
@@ -112,7 +118,7 @@ always @(posedge clk or posedge rst) begin
 			end
 			STATE_TRANSFER_PIXEL_LOAD_DATA: begin 
 				command_or_data_reg <= LCD_DATA;
-				data_to_write_reg <= 16'hAABB; // no real data
+				data_to_write_reg <= data_in;
 				bus_step_reg <= HIGH;
 				fsm_state <= STATE_TRANSFER_PIXEL_LOAD_DATA_END; 
 			end

@@ -7,7 +7,9 @@ module hx8352_controller
 	input  clk_1MHz,
 	input  rst,
 	input  [7:0] cmd_in,
+	input  cmd_step,
 	input  [15:0] data_in,	
+	input  data_step,
 	output busy,
 	output [15:0] data_bus,
 	output lcd_rs,
@@ -18,13 +20,23 @@ module hx8352_controller
 	output init_done,
 	output [31:0]debug_instruction_step
 );		
-	wire  [15:0] data_in_reg;
+	wire data_step_sync, cmd_step_sync;
+	edge_detect 
+		edge_data_step(.async_sig(data_step),.clk(clk),
+			.rise(data_step_sync),.fall());
+	
+	edge_detect 
+		edge_cmd_step(.async_sig(cmd_step),.clk(clk),
+			.rise(cmd_step_sync),.fall());
+	
 	// Data Synchronization
+	wire [15:0] data_in_sync;
+	wire [7:0]	cmd_in_sync;
 	hx8352_controller_data_sync 
 	data_sync_ut0(
 	.clk(clk),.rst(rst),
-	.cmd_in(),.data_in(data_in), 
-	.cmd_in_sync(),.data_in_sync(data_in_reg)
+	.cmd_in(cmd_in),.data_in(data_in), 
+	.cmd_in_sync(cmd_in_sync),.data_in_sync(data_in_sync)
 	);
 	
 	// Bus
@@ -52,7 +64,7 @@ module hx8352_controller
 	wire delay_busy;
     delay_us
 	   delay_u0
-	   (.clk_1MHz(clk),.rst(rst),
+	   (.clk_1MHz(clk_1MHz),.rst(rst),
 		.step(delay_step),.delay_us(delay_value),
 		.busy(delay_busy),.done(delay_done)
 	   );
@@ -60,14 +72,12 @@ module hx8352_controller
 	hx8352_main_fsm 
 		fsm_u0(
 		.clk(clk),.rst(rst),.bus_done(bus_done),.delay_done(delay_done),
+		.data_in(data_in_sync), .cmd_in(cmd_in_sync),
+		.data_step(data_step_sync), .cmd_step(cmd_step_sync),
 		.init_done(init_done),
-		.data_to_write(data_to_write),
-		.command_or_data(command_or_data),
-		.bus_step(bus_controller_step),
-		.delay_value(delay_value),
-		.delay_step(delay_step),
-		.lcd_cs(lcd_cs),
-		.lcd_rst(lcd_rst)
+		.data_to_write(data_to_write),.command_or_data(command_or_data),.bus_step(bus_controller_step),
+		.delay_value(delay_value),.delay_step(delay_step),
+		.lcd_cs(lcd_cs), .lcd_rst(lcd_rst)
 		);
 		
 	assign busy = bus_busy | bus_busy | delay_busy; 
