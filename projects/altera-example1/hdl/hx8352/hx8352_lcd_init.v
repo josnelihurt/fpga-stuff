@@ -101,7 +101,7 @@ always @(posedge clk or posedge rst) begin
 		STATE_TRANSFER_DATA:begin 
 			command_or_data	<= LCD_DATA;
 			bus_step <= HIGH;
-			data_to_write <= init_val;
+			data_to_write <= {8'h00, init_val};
 			state <= STATE_TRANSFER_DATA_WAIT_FOR_BUS;
 		end
 		STATE_TRANSFER_DATA_WAIT_FOR_BUS:begin 
@@ -113,7 +113,7 @@ always @(posedge clk or posedge rst) begin
 		end
 		STATE_TRANSFER_DELAY:begin
 			delay_step <= HIGH;
-			delay_value <= init_val;
+			delay_value <= {8'h00, init_val};
 			state <= STATE_TRANSFER_DELAY_WAIT_FOR;
 		end
 

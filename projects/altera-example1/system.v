@@ -68,8 +68,7 @@ module system(
 	hx8352_controller
 		hx8352_u0
 		(
-		.clk(clk_1M),
-		.clk_1MHz(clk_1M),
+		.clk(clk_50M),
 		.rst(rst),
 		.data_in(hx8352_data_in),
 		.cmd_in(),

@@ -131,7 +131,7 @@ always @(posedge clk or posedge rst) begin
 			STATE_INITIALIZE: begin
 				lcd_rst <= LOW;
 				delay_step_reg <= HIGH;
-				delay_value_reg <= 16'd50_000;
+				delay_value_reg <= 16'd50;
 				fsm_state <= STATE_RESET_WAIT; 
 			end
 			STATE_RESET_WAIT: begin
@@ -140,7 +140,7 @@ always @(posedge clk or posedge rst) begin
 					lcd_rst <= HIGH;
 					fsm_state <= STATE_RESET_WAIT_DONE;
 					delay_step_reg <= HIGH;
-					delay_value_reg <= 16'd60_000;
+					delay_value_reg <= 16'd60;
 					fsm_state <= STATE_RESET_WAIT_DONE; 
 				end else
 					fsm_state <= STATE_RESET_WAIT; 

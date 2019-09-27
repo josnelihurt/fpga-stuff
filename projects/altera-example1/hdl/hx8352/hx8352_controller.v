@@ -4,7 +4,6 @@
 module hx8352_controller
 (
 	input  clk,
-	input  clk_1MHz,
 	input  rst,
 	input  [7:0] cmd_in,
 	input  cmd_step,
@@ -62,10 +61,10 @@ module hx8352_controller
 	wire delay_step;
 	wire delay_done;
 	wire delay_busy;
-    delay_us
+    delay_ms #(.PER_MS_COUNTER_VALUE(32'd50_000))
 	   delay_u0
-	   (.clk_1MHz(clk_1MHz),.rst(rst),
-		.step(delay_step),.delay_us(delay_value),
+	   (.clk(clk),.rst(rst),
+		.step(delay_step),.delay_ms(delay_value),
 		.busy(delay_busy),.done(delay_done)
 	   );
 	// Fsm

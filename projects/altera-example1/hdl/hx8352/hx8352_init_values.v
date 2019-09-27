@@ -4,7 +4,7 @@ module init_values(
 	input rst,
 	input next,
 	output reg [7:0]cmd,
-	output reg [15:0]value,
+	output reg [7:0]value,
 	output reg data_rdy,
 	output reg finish
 );
@@ -20,7 +20,7 @@ STATE_END 	= 4;
 
 reg 	[7:0]rom_address;
 wire 	[7:0]rom_cmd;
-wire 	[15:0]rom_value;
+wire 	[7:0]rom_value;
 rom_init_cmd 
 	rom_init_cmd_u0(
 		.clk(clk),.addr(rom_address),
