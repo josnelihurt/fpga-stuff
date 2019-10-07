@@ -1,0 +1,427 @@
+!SESSION 2019-10-06 16:32:47.203 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product -pluginCustomization /opt/intelFPGA_lite/18.1/nios2eds/bin/eclipse_nios2/plugin_customization.ini
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.cpp.product -pluginCustomization /opt/intelFPGA_lite/18.1/nios2eds/bin/eclipse_nios2/plugin_customization.ini
+
+!ENTRY org.eclipse.epp.logging.aeri.ide 2 16 2019-10-06 16:33:01.824
+!MESSAGE Server ‘org.eclipse.epp.logging.aeri.ide.server’ failed with exception: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1. ; version: 1.100.0.v20160217-0435
+!STACK 0
+com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1
+	at com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read(ReflectiveTypeAdapterFactory.java:176)
+	at com.google.gson.Gson.fromJson(Gson.java:803)
+	at com.google.gson.Gson.fromJson(Gson.java:768)
+	at com.google.gson.Gson.fromJson(Gson.java:717)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.json.Json.deserialize(Json.java:88)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.IO.refreshConfiguration(IO.java:70)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.ServerConnection.startUp(ServerConnection.java:101)
+	at com.google.common.util.concurrent.AbstractIdleService$2$1.run(AbstractIdleService.java:54)
+	at com.google.common.util.concurrent.Callables$3.run(Callables.java:93)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1
+	at com.google.gson.stream.JsonReader.beginObject(JsonReader.java:374)
+	at com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read(ReflectiveTypeAdapterFactory.java:165)
+	... 9 more
+
+!ENTRY org.eclipse.cdt.core 1 0 2019-10-06 16:34:30.843
+!MESSAGE Indexed 'hellow_bsp' (79 sources, 51 headers) in 1.2 sec: 1,085 declarations; 2,385 references; 109 unresolved inclusions; 4 syntax errors; 190 unresolved names (5.2%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2019-10-06 16:34:33.170
+!MESSAGE Indexed 'hellow' (1 sources, 0 headers) in 0.005 sec: 1 declarations; 1 references; 1 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 16:37:08.257
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6.2.2]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 16:37:09.736
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6.2.2]', --device=1, --instance=0, --stop] return code: 8
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 16:37:09.761
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6.2.2]' --device=1 --instance=0 --go /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 16:37:11.195
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6.2.2]', --device=1, --instance=0, --go, /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf] return code: 8
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 16:37:11.199
+!MESSAGE Downloading ELF Process failed
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 16:37:28.125
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6.2.2]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 16:37:29.552
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6.2.2]', --device=1, --instance=0, --stop] return code: 8
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 16:37:29.576
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6.2.2]' --device=1 --instance=0 --go /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 16:37:31.014
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6.2.2]', --device=1, --instance=0, --go, /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf] return code: 8
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 16:37:31.017
+!MESSAGE Downloading ELF Process failed
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 16:37:54.223
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6.2.2]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 16:37:55.650
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6.2.2]', --device=1, --instance=0, --stop] return code: 8
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 16:37:55.670
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6.2.2]' --device=1 --instance=0 --go /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 16:37:57.110
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6.2.2]', --device=1, --instance=0, --go, /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf] return code: 8
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 16:37:57.111
+!MESSAGE Downloading ELF Process failed
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 16:38:07.840
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6.2.2]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 16:38:09.245
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6.2.2]', --device=1, --instance=0, --stop] return code: 8
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 16:38:09.255
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6.2.2]' --device=1 --instance=0 --go /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 16:38:10.698
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6.2.2]', --device=1, --instance=0, --go, /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf] return code: 8
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 16:38:10.700
+!MESSAGE Downloading ELF Process failed
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 16:38:36.196
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6.2.2]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 16:38:37.609
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6.2.2]', --device=1, --instance=0, --stop] return code: 8
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 16:38:37.625
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6.2.2]' --device=1 --instance=0 --go /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 16:38:39.058
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6.2.2]', --device=1, --instance=0, --go, /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf] return code: 8
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 16:38:39.060
+!MESSAGE Downloading ELF Process failed
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 16:39:10.452
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6.2.3]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 16:39:11.921
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6.2.3]', --device=1, --instance=0, --stop] return code: 2, no processors found
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 16:39:11.970
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6.2.3]' --device=1 --instance=0 --go /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 16:39:13.435
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6.2.3]', --device=1, --instance=0, --go, /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf] return code: 2, no processors found
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 16:39:13.437
+!MESSAGE Downloading ELF Process failed
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 16:39:29.506
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6.2.3]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 16:39:30.965
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6.2.3]', --device=1, --instance=0, --stop] return code: 2, no processors found
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 16:39:31.021
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6.2.3]' --device=1 --instance=0 --go /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 16:39:32.529
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6.2.3]', --device=1, --instance=0, --go, /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf] return code: 2, no processors found
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 16:39:32.530
+!MESSAGE Downloading ELF Process failed
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 16:39:50.272
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6.2.3]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 16:39:51.745
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6.2.3]', --device=1, --instance=0, --stop] return code: 2, no processors found
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 16:39:51.794
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6.2.3]' --device=1 --instance=0 --go /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 16:39:53.278
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6.2.3]', --device=1, --instance=0, --go, /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf] return code: 2, no processors found
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 16:39:53.280
+!MESSAGE Downloading ELF Process failed
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 16:45:39.470
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6.2.3]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 16:45:41.547
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6.2.3]' --device=1 --instance=0 --go /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf]
+!SESSION 2019-10-06 20:17:19.457 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product -pluginCustomization /opt/intelFPGA_lite/18.1/nios2eds/bin/eclipse_nios2/plugin_customization.ini
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.cpp.product -pluginCustomization /opt/intelFPGA_lite/18.1/nios2eds/bin/eclipse_nios2/plugin_customization.ini
+
+!ENTRY org.eclipse.core.resources 2 10035 2019-10-06 20:17:25.046
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.epp.logging.aeri.ide 2 16 2019-10-06 20:17:43.489
+!MESSAGE Server ‘org.eclipse.epp.logging.aeri.ide.server’ failed with exception: dev.eclipse.org: unknown error. ; version: 1.100.0.v20160217-0435
+!STACK 0
+java.net.UnknownHostException: dev.eclipse.org: unknown error
+	at java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.net.InetAddress$2.lookupAllHostAddr(Unknown Source)
+	at java.net.InetAddress.getAddressesFromNameService(Unknown Source)
+	at java.net.InetAddress.getAllByName0(Unknown Source)
+	at java.net.InetAddress.getAllByName(Unknown Source)
+	at java.net.InetAddress.getAllByName(Unknown Source)
+	at org.apache.http.impl.conn.SystemDefaultDnsResolver.resolve(SystemDefaultDnsResolver.java:44)
+	at org.apache.http.impl.conn.HttpClientConnectionOperator.connect(HttpClientConnectionOperator.java:102)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:319)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:363)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:219)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:195)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:86)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:108)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:184)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:57)
+	at org.apache.http.client.fluent.Executor.execute(Executor.java:206)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.IO.request(IO.java:205)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.IO.refreshConfiguration(IO.java:68)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.ServerConnection.startUp(ServerConnection.java:101)
+	at com.google.common.util.concurrent.AbstractIdleService$2$1.run(AbstractIdleService.java:54)
+	at com.google.common.util.concurrent.Callables$3.run(Callables.java:93)
+	at java.lang.Thread.run(Unknown Source)
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 20:19:05.960
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 20:19:07.396
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6]', --device=1, --instance=0, --stop] return code: 2, no processors found
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 20:19:07.493
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --go /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 20:19:08.956
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6]', --device=1, --instance=0, --go, /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf] return code: 2, no processors found
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 20:19:08.960
+!MESSAGE Downloading ELF Process failed
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 20:19:28.444
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 20:19:29.892
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6]', --device=1, --instance=0, --stop] return code: 2, no processors found
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 20:19:29.957
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --go /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 20:19:31.426
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6]', --device=1, --instance=0, --go, /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf] return code: 2, no processors found
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 20:19:31.427
+!MESSAGE Downloading ELF Process failed
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 20:19:46.593
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 20:19:48.026
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6]', --device=1, --instance=0, --stop] return code: 2, no processors found
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 20:19:48.074
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --go /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 20:19:49.544
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6]', --device=1, --instance=0, --go, /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf] return code: 2, no processors found
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 20:19:49.546
+!MESSAGE Downloading ELF Process failed
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 20:20:39.823
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 20:20:41.262
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6]', --device=1, --instance=0, --stop] return code: 2, no processors found
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 20:20:41.307
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --go /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 20:20:42.813
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6]', --device=1, --instance=0, --go, /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf] return code: 2, no processors found
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 20:20:42.815
+!MESSAGE Downloading ELF Process failed
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 20:21:49.478
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 20:21:51.553
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --go /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 20:45:39.918
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [1-6]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 20:45:40.005
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 20:45:42.077
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --go /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 20:48:15.909
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [1-6]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 20:48:15.988
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 20:48:18.066
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --go /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf]
+!SESSION 2019-10-06 21:56:03.095 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product -pluginCustomization /opt/intelFPGA_lite/18.1/nios2eds/bin/eclipse_nios2/plugin_customization.ini
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.cpp.product -pluginCustomization /opt/intelFPGA_lite/18.1/nios2eds/bin/eclipse_nios2/plugin_customization.ini
+
+!ENTRY org.eclipse.epp.logging.aeri.ide 2 16 2019-10-06 21:56:19.730
+!MESSAGE Server ‘org.eclipse.epp.logging.aeri.ide.server’ failed with exception: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1. ; version: 1.100.0.v20160217-0435
+!STACK 0
+com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1
+	at com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read(ReflectiveTypeAdapterFactory.java:176)
+	at com.google.gson.Gson.fromJson(Gson.java:803)
+	at com.google.gson.Gson.fromJson(Gson.java:768)
+	at com.google.gson.Gson.fromJson(Gson.java:717)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.json.Json.deserialize(Json.java:88)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.IO.refreshConfiguration(IO.java:70)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.ServerConnection.startUp(ServerConnection.java:101)
+	at com.google.common.util.concurrent.AbstractIdleService$2$1.run(AbstractIdleService.java:54)
+	at com.google.common.util.concurrent.Callables$3.run(Callables.java:93)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1
+	at com.google.gson.stream.JsonReader.beginObject(JsonReader.java:374)
+	at com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read(ReflectiveTypeAdapterFactory.java:165)
+	... 9 more
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 21:57:23.968
+!MESSAGE Unable to validate connection settings.
+!STACK 0
+java.lang.Exception: Connected system ID hash not found on target at expected base address.
+	at com.altera.embeddedsw.flash.model.internal.SystemConsoleConnectionModel.assertTrue(SystemConsoleConnectionModel.java:645)
+	at com.altera.embeddedsw.flash.model.internal.SystemConsoleConnectionModel.validateSystemId(SystemConsoleConnectionModel.java:589)
+	at com.altera.embeddedsw.flash.model.internal.SystemConsoleConnectionModel.validateConnectionSettings(SystemConsoleConnectionModel.java:511)
+	at com.altera.sbtgui.launch.hardware.AbstractNios2CLaunchDelegate.launch(AbstractNios2CLaunchDelegate.java:115)
+	at com.altera.sbtgui.launch.hardware.Nios2HardwareLaunchDelegate.launch(Nios2HardwareLaunchDelegate.java:98)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 21:57:23.985
+!MESSAGE Unable to validate connection settings.
+!STACK 0
+java.lang.Exception: Connected system ID hash not found on target at expected base address.
+	at com.altera.embeddedsw.flash.model.internal.SystemConsoleConnectionModel.assertTrue(SystemConsoleConnectionModel.java:645)
+	at com.altera.embeddedsw.flash.model.internal.SystemConsoleConnectionModel.validateSystemId(SystemConsoleConnectionModel.java:589)
+	at com.altera.embeddedsw.flash.model.internal.SystemConsoleConnectionModel.validateConnectionSettings(SystemConsoleConnectionModel.java:511)
+	at com.altera.sbtgui.launch.hardware.AbstractNios2CLaunchDelegate.launch(AbstractNios2CLaunchDelegate.java:115)
+	at com.altera.sbtgui.launch.hardware.Nios2HardwareLaunchDelegate.launch(Nios2HardwareLaunchDelegate.java:98)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 21:58:46.089
+!MESSAGE Unable to validate connection settings.
+!STACK 0
+java.lang.Exception: Connected system ID hash not found on target at expected base address.
+	at com.altera.embeddedsw.flash.model.internal.SystemConsoleConnectionModel.assertTrue(SystemConsoleConnectionModel.java:645)
+	at com.altera.embeddedsw.flash.model.internal.SystemConsoleConnectionModel.validateSystemId(SystemConsoleConnectionModel.java:589)
+	at com.altera.embeddedsw.flash.model.internal.SystemConsoleConnectionModel.validateConnectionSettings(SystemConsoleConnectionModel.java:511)
+	at com.altera.sbtgui.launch.hardware.AbstractNios2CLaunchDelegate.launch(AbstractNios2CLaunchDelegate.java:115)
+	at com.altera.sbtgui.launch.hardware.Nios2HardwareLaunchDelegate.launch(Nios2HardwareLaunchDelegate.java:98)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 21:58:46.092
+!MESSAGE Unable to validate connection settings.
+!STACK 0
+java.lang.Exception: Connected system ID hash not found on target at expected base address.
+	at com.altera.embeddedsw.flash.model.internal.SystemConsoleConnectionModel.assertTrue(SystemConsoleConnectionModel.java:645)
+	at com.altera.embeddedsw.flash.model.internal.SystemConsoleConnectionModel.validateSystemId(SystemConsoleConnectionModel.java:589)
+	at com.altera.embeddedsw.flash.model.internal.SystemConsoleConnectionModel.validateConnectionSettings(SystemConsoleConnectionModel.java:511)
+	at com.altera.sbtgui.launch.hardware.AbstractNios2CLaunchDelegate.launch(AbstractNios2CLaunchDelegate.java:115)
+	at com.altera.sbtgui.launch.hardware.Nios2HardwareLaunchDelegate.launch(Nios2HardwareLaunchDelegate.java:98)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 22:00:32.490
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 22:00:33.943
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6]', --device=1, --instance=0, --stop] return code: 2, no processors found
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 22:00:33.996
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --go /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 22:00:35.469
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [1-6]', --device=1, --instance=0, --go, /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf] return code: 2, no processors found
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-10-06 22:00:35.471
+!MESSAGE Downloading ELF Process failed
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 22:00:50.286
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 22:00:52.357
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --go /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 22:02:22.311
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [1-6]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 22:02:22.373
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 22:02:24.444
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --go /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 22:03:34.153
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [1-6]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 22:03:34.221
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 22:03:36.282
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --go /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 22:10:16.238
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 22:10:18.320
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --go /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 22:11:13.106
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [1-6]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 22:11:13.163
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 22:11:15.231
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --go /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 22:17:11.466
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-10-06 22:17:13.551
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=USB-Blaster on localhost [1-6]' --device=1 --instance=0 --go /home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow/hellow.elf]

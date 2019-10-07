@@ -1,0 +1,6 @@
+22:19:05 **** Clean-only build of configuration Nios II for project hellow ****
+make clean 
+[hellow clean complete]
+
+22:19:05 Build Finished (took 312ms)
+

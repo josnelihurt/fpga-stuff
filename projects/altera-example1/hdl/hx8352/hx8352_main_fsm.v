@@ -5,10 +5,9 @@ module hx8352_main_fsm(
 	input bus_done,
 	input delay_done,
 	
-	input  [7:0] cmd_in,
-	input  cmd_step,
-	input  [15:0] data_in,	
-	input  data_step,
+	input step,
+	input  [3:0] cmd_in,
+	input  [15:0] data_in,
 	
 	output init_done,
 	output reg [15:0]data_to_write,
@@ -37,10 +36,26 @@ STATE_TRANSFER_PIXEL_LOAD_DATA		= 4'h7,
 STATE_TRANSFER_PIXEL_LOAD_DATA_END	= 4'h8,
 STATE_RESET_WAIT							= 4'h9,
 STATE_RESET_WAIT_DONE					= 4'ha,
-STATE_INIT_SEQ								= 4'hb
+STATE_INIT_SEQ								= 4'hb,
+STATE_PROCESS_CMD							= 4'he,
 
+CMD_NOP		=	4'h0,
+CMD_HOME		= 	4'h1,
+CMD_SET_X	=	4'h2,
+CMD_SET_Y	=	4'h3,
+CMD_SET_XY	=	4'h4,
+CMD_SET_P	=	4'h5
 ;
-
+/*
+ Input register
+ *step
+ Commands cmd_in
+ Home
+ Set x-pos ->
+ Set y-pos ->
+ Set xy-pos->
+ Set pixel ->
+*/
 
 reg  lcd_init_step;
 wire init_bus_step, init_command_or_data, init_delay_step;
@@ -76,29 +91,35 @@ always @(posedge clk or posedge rst) begin
   end else begin 	
 		case (fsm_state)
 			STATE_IDLE: begin
-				//if(step_sync) begin
-					//if(write_cmd_reg)
-						//fsm_state <= STATE_TRANSFER_CMD;
-					//else
-
+				fsm_state <= STATE_IDLE;
 				lcd_cs <= HIGH;
-				fsm_state <= STATE_TRANSFER_PIXEL;
-				//end
+				if(step) begin
+					fsm_state <= STATE_PROCESS_CMD;
+				end
 			end
-			//STATE_TRANSFER_CMD: begin
-			//	bus_step <= HIGH;
-			//	case (pc)
-			//		8'h00:  
-			//		8'h01:  {pc,command_or_data, data_to_write}     <= {pc+1,LCD_CMD,  {8'h00, cmd_in_reg}}; 
-			//		8'h02:  {pc,command_or_data, data_to_write}     <= {pc+1,LCD_DATA, data_in_reg}; 
-			//		8'h03:  begin //! NOP
-			//				command_or_data <= LCD_CMD;
-			//				data_to_write <= {8'h00, CMD_Product_ID};
-			//				fsm_state <= STATE_IDLE;						
-			//				end
-			//		default: fsm_state <= STATE_IDLE; 
-			//	endcase
-			//end			
+			STATE_PROCESS_CMD: begin
+				/*case (cmd_in) 
+				CMD_NOP: fsm_state <= STATE_IDLE;
+				CMD_HOME: begin
+					fsm_state <= STATE_IDLE;
+				end
+				CMD_SET_X: begin
+					fsm_state <= STATE_IDLE;
+				end
+				CMD_SET_Y: begin
+					fsm_state <= STATE_IDLE;
+				end
+				CMD_SET_XY: begin
+					fsm_state <= STATE_IDLE;
+				end	
+				CMD_SET_P: begin*/
+					fsm_state <= STATE_TRANSFER_PIXEL;
+				/*end			
+				default: fsm_state <= STATE_IDLE;
+				endcase*/
+			end
+			STATE_TRANSFER_CMD: begin
+			end			
 			STATE_TRANSFER_PIXEL: begin
 				lcd_cs <= LOW;
 				bus_step_reg <= LOW;
@@ -112,7 +133,6 @@ always @(posedge clk or posedge rst) begin
 			end 
 			STATE_TRANSFER_PIXEL_LOAD_CMD_END : begin
 				bus_step_reg <= LOW;
-				
 				if(bus_done)
 					fsm_state <= STATE_TRANSFER_PIXEL_LOAD_DATA; 
 			end

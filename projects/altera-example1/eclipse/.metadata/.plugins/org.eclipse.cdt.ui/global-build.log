@@ -1,0 +1,3 @@
+22:19:10 **** Clean-only build of configuration Nios II for project hellow_bsp ****
+make clean 
+[BSP clean complete]

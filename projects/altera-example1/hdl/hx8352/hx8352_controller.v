@@ -5,10 +5,11 @@ module hx8352_controller
 (
 	input  clk,
 	input  rst,
-	input  [7:0] cmd_in,
-	input  cmd_step,
-	input  [15:0] data_in,	
-	input  data_step,
+	
+	input  step,
+	input  [3:0] cmd_in,
+	input  [15:0] data_in,
+	
 	output busy,
 	output [15:0] data_bus,
 	output lcd_rs,
@@ -19,24 +20,26 @@ module hx8352_controller
 	output init_done,
 	output [31:0]debug_instruction_step
 );		
-	wire data_step_sync, cmd_step_sync;
+	wire step_sync;
 	edge_detect 
-		edge_data_step(.async_sig(data_step),.clk(clk),
-			.rise(data_step_sync),.fall());
+		edge_data_step(.async_sig(step),.clk(clk),
+			.rise(step_sync),.fall());
 	
-	edge_detect 
-		edge_cmd_step(.async_sig(cmd_step),.clk(clk),
-			.rise(cmd_step_sync),.fall());
 	
 	// Data Synchronization
-	wire [15:0] data_in_sync;
-	wire [7:0]	cmd_in_sync;
-	hx8352_controller_data_sync 
-	data_sync_ut0(
-	.clk(clk),.rst(rst),
-	.cmd_in(cmd_in),.data_in(data_in), 
-	.cmd_in_sync(cmd_in_sync),.data_in_sync(data_in_sync)
-	);
+	reg [3:0]	cmd_in_sync;
+	reg [15:0]	data_in_sync;
+	
+	always @(posedge clk or posedge rst)
+	if(rst) begin
+		cmd_in_sync <= 0;
+		data_in_sync <= 0;
+	end else begin
+		cmd_in_sync <= cmd_in;
+		data_in_sync <= data_in;
+	end
+	
+	
 	
 	// Bus
 	wire command_or_data, bus_controller_step, bus_busy, bus_done;
@@ -71,8 +74,8 @@ module hx8352_controller
 	hx8352_main_fsm 
 		fsm_u0(
 		.clk(clk),.rst(rst),.bus_done(bus_done),.delay_done(delay_done),
-		.data_in(data_in_sync), .cmd_in(cmd_in_sync),
-		.data_step(data_step_sync), .cmd_step(cmd_step_sync),
+		.step(step_sync), .data_in(data_in_sync), .cmd_in(cmd_in_sync),
+		
 		.init_done(init_done),
 		.data_to_write(data_to_write),.command_or_data(command_or_data),.bus_step(bus_controller_step),
 		.delay_value(delay_value),.delay_step(delay_step),

@@ -1,7 +1,7 @@
 create_clock -name main_clk_50MHz -period 20 [get_ports clk_50M] 
 
 #create_generated_clock -name main_clk_5MHz -source [get_ports {clk_50M}] [get_registers {clk_5M}]
-create_generated_clock -name main_clk_1Hz -source [get_ports {clk_50M}] [get_registers {clock_divider:clk_divider_0|counter[10]}]
+create_generated_clock -name main_clk_1Hz -source [get_ports {clk_50M}] [get_registers {clock_divider:clk_divider_0|clk_out}]
 #
 #create_generated_clock -source [get_ports {clk_50M}] \
 #	[get_registers {internal_system:internal_system_unit0|hx8352_controller:hx8352_controller_unit0|hx8352_delay_ms:hx8352_delay_ms_unit|counter:counter_base_unit|r_reg[0]}]

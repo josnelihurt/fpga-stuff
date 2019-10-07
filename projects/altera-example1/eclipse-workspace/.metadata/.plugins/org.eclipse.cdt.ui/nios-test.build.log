@@ -1,0 +1,9 @@
+20:04:07 **** Build of configuration Nios II for project nios-test ****
+make all 
+Info: Building ../nios-test_bsp/
+make --no-print-directory -C ../nios-test_bsp/
+[BSP build complete]
+[nios-test build complete]
+
+20:04:07 Build Finished (took 361ms)
+
