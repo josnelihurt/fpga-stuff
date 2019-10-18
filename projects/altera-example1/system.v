@@ -19,6 +19,11 @@ module system(
 	output 	hx8352_rd,
 	output 	hx8352_cs,
 	output 	hx8352_rst
+	//dataflash
+//	output data_flash_spi_clk,
+//	output data_flash_spi_cs,
+//	inout data_flash_spi_data0,
+//	inout data_flash_spi_asdo
 	);
 	wire rst = ~key0;
 	wire clk_200M;
@@ -42,14 +47,21 @@ module system(
 		        .locked()
 	        );
 	`endif
-	
+//	wire [3:0]data_flash_data;
 	wire[31:0] nios_pio_0, nios_pio_lcd;
 	nios_core nios_core_u0(
 		.clk_clk(clk_50M),       //   clk.clk
 		.reset_reset_n(1'b1),  // reset.reset_n
 		.pio_0_external_connection_export(nios_pio_0),
 		.pio_lcd_control_external_connection_export(nios_pio_lcd)
+		
+//		.intel_generic_serial_flash_interface_qspi_pins_dclk(data_flash_spi_clk), // intel_generic_serial_flash_interface_qspi_pins.dclk
+//		.intel_generic_serial_flash_interface_qspi_pins_ncs(data_flash_spi_cs),  //                                               .ncs
+//		.intel_generic_serial_flash_interface_qspi_pins_data(data_flash_data) //                                               .data
 	);
+//	
+//	assign data_flash_spi_data = data_flash_data[0];
+//	assign data_flash_spi_asdo = data_flash_data[1];
 	
 	
 	wire [31:0]hx8352_dbg;
@@ -67,6 +79,8 @@ module system(
 	wire hx8352_step;
 	wire [3:0] hx8352_cmd_in;
 	wire [15:0] hx8352_data_in;
+	// 0000_0000_0000_0000
+	//	31....16_15.......0 
 	
 	assign hx8352_step	=nios_pio_lcd[31];
 	assign hx8352_cmd_in	=nios_pio_lcd[19:16];
@@ -105,7 +119,7 @@ module system(
 		.rst(rst),
 		.display_off(1'b0),
 		.display_level(3'b100),
-		.display_value(nios_pio_0),//{debug_instruction_step, hx8352_data}),
+		.display_value(nios_pio_lcd),//{debug_instruction_step, hx8352_data}),
 		.dots(8'h00),
 		.leds_green({ hx8352_cs, hx8352_rst, hx8352_rs, hx8352_wr, hx8352_rd, clk_1H, counter_1s[1], counter_1s[0]}),
 		.leds_red(8'h00),
@@ -115,7 +129,7 @@ module system(
 		.tm1638_clk(tm1638_clk),
 		.tm1638_data_io(tm1638_data_io)
 		);
-	hardware hardware_u0();
+	//hardware hardware_u0();
 	assign led = clk_1H;
 	assign probe_bus[15:0] = {hx8352_dbg[15:0]};
 	assign probe_bus2[0] = clk_1H;

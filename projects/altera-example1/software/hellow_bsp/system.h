@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_cpu' in SOPC Builder design 'nios_core'
  * SOPC Builder design path: ../../nios_core.sopcinfo
  *
- * Generated: Sun Oct 06 21:43:47 COT 2019
+ * Generated: Tue Oct 08 21:14:12 COT 2019
  */
 
 /*
@@ -62,17 +62,17 @@
 
 #define ALT_CPU_ARCHITECTURE "altera_nios2_gen2"
 #define ALT_CPU_BIG_ENDIAN 0
-#define ALT_CPU_BREAK_ADDR 0x00002820
+#define ALT_CPU_BREAK_ADDR 0x00108820
 #define ALT_CPU_CPU_ARCH_NIOS2_R1
 #define ALT_CPU_CPU_FREQ 50000000u
 #define ALT_CPU_CPU_ID_SIZE 1
 #define ALT_CPU_CPU_ID_VALUE 0x00000000
 #define ALT_CPU_CPU_IMPLEMENTATION "tiny"
-#define ALT_CPU_DATA_ADDR_WIDTH 0xe
+#define ALT_CPU_DATA_ADDR_WIDTH 0x15
 #define ALT_CPU_DCACHE_LINE_SIZE 0
 #define ALT_CPU_DCACHE_LINE_SIZE_LOG2 0
 #define ALT_CPU_DCACHE_SIZE 0
-#define ALT_CPU_EXCEPTION_ADDR 0x00001020
+#define ALT_CPU_EXCEPTION_ADDR 0x00104020
 #define ALT_CPU_FLASH_ACCELERATOR_LINES 0
 #define ALT_CPU_FLASH_ACCELERATOR_LINE_SIZE 0
 #define ALT_CPU_FLUSHDA_SUPPORTED
@@ -87,10 +87,10 @@
 #define ALT_CPU_ICACHE_LINE_SIZE 0
 #define ALT_CPU_ICACHE_LINE_SIZE_LOG2 0
 #define ALT_CPU_ICACHE_SIZE 0
-#define ALT_CPU_INST_ADDR_WIDTH 0xe
+#define ALT_CPU_INST_ADDR_WIDTH 0x15
 #define ALT_CPU_NAME "nios2_cpu"
 #define ALT_CPU_OCI_VERSION 1
-#define ALT_CPU_RESET_ADDR 0x00001000
+#define ALT_CPU_RESET_ADDR 0x00104000
 
 
 /*
@@ -99,17 +99,17 @@
  */
 
 #define NIOS2_BIG_ENDIAN 0
-#define NIOS2_BREAK_ADDR 0x00002820
+#define NIOS2_BREAK_ADDR 0x00108820
 #define NIOS2_CPU_ARCH_NIOS2_R1
 #define NIOS2_CPU_FREQ 50000000u
 #define NIOS2_CPU_ID_SIZE 1
 #define NIOS2_CPU_ID_VALUE 0x00000000
 #define NIOS2_CPU_IMPLEMENTATION "tiny"
-#define NIOS2_DATA_ADDR_WIDTH 0xe
+#define NIOS2_DATA_ADDR_WIDTH 0x15
 #define NIOS2_DCACHE_LINE_SIZE 0
 #define NIOS2_DCACHE_LINE_SIZE_LOG2 0
 #define NIOS2_DCACHE_SIZE 0
-#define NIOS2_EXCEPTION_ADDR 0x00001020
+#define NIOS2_EXCEPTION_ADDR 0x00104020
 #define NIOS2_FLASH_ACCELERATOR_LINES 0
 #define NIOS2_FLASH_ACCELERATOR_LINE_SIZE 0
 #define NIOS2_FLUSHDA_SUPPORTED
@@ -123,9 +123,9 @@
 #define NIOS2_ICACHE_LINE_SIZE 0
 #define NIOS2_ICACHE_LINE_SIZE_LOG2 0
 #define NIOS2_ICACHE_SIZE 0
-#define NIOS2_INST_ADDR_WIDTH 0xe
+#define NIOS2_INST_ADDR_WIDTH 0x15
 #define NIOS2_OCI_VERSION 1
-#define NIOS2_RESET_ADDR 0x00001000
+#define NIOS2_RESET_ADDR 0x00104000
 
 
 /*
@@ -137,6 +137,7 @@
 #define __ALTERA_AVALON_ONCHIP_MEMORY2
 #define __ALTERA_AVALON_PIO
 #define __ALTERA_NIOS2_GEN2
+#define __INTEL_GENERIC_SERIAL_FLASH_INTERFACE_TOP
 
 
 /*
@@ -155,19 +156,19 @@
 #define ALT_NUM_INTERNAL_INTERRUPT_CONTROLLERS 1
 #define ALT_NUM_INTERRUPT_CONTROLLERS 1
 #define ALT_STDERR "/dev/jtag_uart"
-#define ALT_STDERR_BASE 0x3028
+#define ALT_STDERR_BASE 0x109228
 #define ALT_STDERR_DEV jtag_uart
 #define ALT_STDERR_IS_JTAG_UART
 #define ALT_STDERR_PRESENT
 #define ALT_STDERR_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDIN "/dev/jtag_uart"
-#define ALT_STDIN_BASE 0x3028
+#define ALT_STDIN_BASE 0x109228
 #define ALT_STDIN_DEV jtag_uart
 #define ALT_STDIN_IS_JTAG_UART
 #define ALT_STDIN_PRESENT
 #define ALT_STDIN_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDOUT "/dev/jtag_uart"
-#define ALT_STDOUT_BASE 0x3028
+#define ALT_STDOUT_BASE 0x109228
 #define ALT_STDOUT_DEV jtag_uart
 #define ALT_STDOUT_IS_JTAG_UART
 #define ALT_STDOUT_PRESENT
@@ -187,12 +188,40 @@
 
 
 /*
+ * intel_generic_serial_flash_interface_avl_csr configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_intel_generic_serial_flash_interface_avl_csr intel_generic_serial_flash_interface_top
+#define INTEL_GENERIC_SERIAL_FLASH_INTERFACE_AVL_CSR_BASE 0x109100
+#define INTEL_GENERIC_SERIAL_FLASH_INTERFACE_AVL_CSR_IRQ -1
+#define INTEL_GENERIC_SERIAL_FLASH_INTERFACE_AVL_CSR_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define INTEL_GENERIC_SERIAL_FLASH_INTERFACE_AVL_CSR_NAME "/dev/intel_generic_serial_flash_interface_avl_csr"
+#define INTEL_GENERIC_SERIAL_FLASH_INTERFACE_AVL_CSR_SPAN 256
+#define INTEL_GENERIC_SERIAL_FLASH_INTERFACE_AVL_CSR_TYPE "intel_generic_serial_flash_interface_top"
+
+
+/*
+ * intel_generic_serial_flash_interface_avl_mem configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_intel_generic_serial_flash_interface_avl_mem intel_generic_serial_flash_interface_top
+#define INTEL_GENERIC_SERIAL_FLASH_INTERFACE_AVL_MEM_BASE 0x0
+#define INTEL_GENERIC_SERIAL_FLASH_INTERFACE_AVL_MEM_IRQ -1
+#define INTEL_GENERIC_SERIAL_FLASH_INTERFACE_AVL_MEM_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define INTEL_GENERIC_SERIAL_FLASH_INTERFACE_AVL_MEM_NAME "/dev/intel_generic_serial_flash_interface_avl_mem"
+#define INTEL_GENERIC_SERIAL_FLASH_INTERFACE_AVL_MEM_SPAN 1048576
+#define INTEL_GENERIC_SERIAL_FLASH_INTERFACE_AVL_MEM_TYPE "intel_generic_serial_flash_interface_top"
+
+
+/*
  * jtag_uart configuration
  *
  */
 
 #define ALT_MODULE_CLASS_jtag_uart altera_avalon_jtag_uart
-#define JTAG_UART_BASE 0x3028
+#define JTAG_UART_BASE 0x109228
 #define JTAG_UART_IRQ 0
 #define JTAG_UART_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define JTAG_UART_NAME "/dev/jtag_uart"
@@ -212,7 +241,7 @@
 #define ALT_MODULE_CLASS_onchip_memory altera_avalon_onchip_memory2
 #define ONCHIP_MEMORY_ALLOW_IN_SYSTEM_MEMORY_CONTENT_EDITOR 0
 #define ONCHIP_MEMORY_ALLOW_MRAM_SIM_CONTENTS_ONLY_FILE 0
-#define ONCHIP_MEMORY_BASE 0x1000
+#define ONCHIP_MEMORY_BASE 0x104000
 #define ONCHIP_MEMORY_CONTENTS_INFO ""
 #define ONCHIP_MEMORY_DUAL_PORT 0
 #define ONCHIP_MEMORY_GUI_RAM_BLOCK_TYPE "AUTO"
@@ -227,8 +256,8 @@
 #define ONCHIP_MEMORY_READ_DURING_WRITE_MODE "DONT_CARE"
 #define ONCHIP_MEMORY_SINGLE_CLOCK_OP 0
 #define ONCHIP_MEMORY_SIZE_MULTIPLE 1
-#define ONCHIP_MEMORY_SIZE_VALUE 4096
-#define ONCHIP_MEMORY_SPAN 4096
+#define ONCHIP_MEMORY_SIZE_VALUE 15000
+#define ONCHIP_MEMORY_SPAN 15000
 #define ONCHIP_MEMORY_TYPE "altera_avalon_onchip_memory2"
 #define ONCHIP_MEMORY_WRITABLE 1
 
@@ -239,7 +268,7 @@
  */
 
 #define ALT_MODULE_CLASS_pio_0 altera_avalon_pio
-#define PIO_0_BASE 0x3010
+#define PIO_0_BASE 0x109210
 #define PIO_0_BIT_CLEARING_EDGE_REGISTER 0
 #define PIO_0_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define PIO_0_CAPTURE 0
@@ -266,7 +295,7 @@
  */
 
 #define ALT_MODULE_CLASS_pio_lcd_control altera_avalon_pio
-#define PIO_LCD_CONTROL_BASE 0x3000
+#define PIO_LCD_CONTROL_BASE 0x109200
 #define PIO_LCD_CONTROL_BIT_CLEARING_EDGE_REGISTER 0
 #define PIO_LCD_CONTROL_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define PIO_LCD_CONTROL_CAPTURE 0

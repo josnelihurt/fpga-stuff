@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_cpu' in SOPC Builder design 'nios_core'
  * SOPC Builder design path: ../../nios_core.sopcinfo
  *
- * Generated: Sun Oct 06 16:34:28 COT 2019
+ * Generated: Tue Oct 08 21:14:12 COT 2019
  */
 
 /*
@@ -65,9 +65,11 @@
  *
  */
 
-#define ONCHIP_MEMORY_REGION_BASE 0x1020
-#define ONCHIP_MEMORY_REGION_SPAN 4064
-#define RESET_REGION_BASE 0x1000
+#define INTEL_GENERIC_SERIAL_FLASH_INTERFACE_AVL_MEM_REGION_BASE 0x0
+#define INTEL_GENERIC_SERIAL_FLASH_INTERFACE_AVL_MEM_REGION_SPAN 1048576
+#define ONCHIP_MEMORY_REGION_BASE 0x104020
+#define ONCHIP_MEMORY_REGION_SPAN 14968
+#define RESET_REGION_BASE 0x104000
 #define RESET_REGION_SPAN 32
 
 

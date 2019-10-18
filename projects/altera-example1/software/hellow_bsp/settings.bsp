@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Oct 6, 2019 9:57:09 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1570417029343</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Oct 17, 2019 7:19:16 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1571357956208</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>/home/jrb/code/fpga-stuff/projects/altera-example1/software/hellow_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>../../nios_core.sopcinfo</SopcDesignFile>
@@ -899,26 +899,38 @@
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <MemoryMap>
+                <slaveDescriptor>intel_generic_serial_flash_interface_avl_mem</slaveDescriptor>
+                <addressRange>0x00000000 - 0x000FFFFF</addressRange>
+                <addressSpan>1048576</addressSpan>
+                <attributes>memory, non-volatile</attributes>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>onchip_memory</slaveDescriptor>
-                <addressRange>0x00001000 - 0x00001FFF</addressRange>
-                <addressSpan>4096</addressSpan>
+                <addressRange>0x00104000 - 0x00107A97</addressRange>
+                <addressSpan>15000</addressSpan>
                 <attributes>memory</attributes>
         </MemoryMap>
         <MemoryMap>
+                <slaveDescriptor>intel_generic_serial_flash_interface_avl_csr</slaveDescriptor>
+                <addressRange>0x00109100 - 0x001091FF</addressRange>
+                <addressSpan>256</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>pio_lcd_control</slaveDescriptor>
-                <addressRange>0x00003000 - 0x0000300F</addressRange>
+                <addressRange>0x00109200 - 0x0010920F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>pio_0</slaveDescriptor>
-                <addressRange>0x00003010 - 0x0000301F</addressRange>
+                <addressRange>0x00109210 - 0x0010921F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>jtag_uart</slaveDescriptor>
-                <addressRange>0x00003028 - 0x0000302F</addressRange>
+                <addressRange>0x00109228 - 0x0010922F</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>

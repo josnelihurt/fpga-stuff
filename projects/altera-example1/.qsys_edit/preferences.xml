@@ -5,10 +5,10 @@
   <columns>
    <connections preferredWidth="143" />
    <irq preferredWidth="34" />
-   <name preferredWidth="221" />
+   <name preferredWidth="381" />
   </columns>
  </systemtable>
  <library
-   expandedCategories="Library/Processors and Peripherals/Peripherals,Library/Interface Protocols,Library,Project,Library/Interface Protocols/PCI Express,Library/Processors and Peripherals,Library/Interface Protocols/PCI Express/QSYS Example Designs" />
- <window width="1932" height="1059" x="1914" y="26" />
+   expandedCategories="Library/Processors and Peripherals/Embedded Processors,Library/Basic Functions/Configuration and Programming,Library/University Program/Bridges,Library/University Program/Audio &amp; Video,Library/Memory Interfaces and Controllers,Library/Basic Functions/On Chip Memory,Library/University Program/Memory,Library/Processors and Peripherals/Peripherals,Library/University Program/Generic IO,Library/Memory Interfaces and Controllers/Memory Interfaces with ALTMEMPHY,Library/Memory Interfaces and Controllers/SDRAM,Library/Basic Functions,Project,Library/University Program,Library/Memory Interfaces and Controllers/Flash,Library/University Program/Communications,Library,Library/Processors and Peripherals/Inter-Process Communication,Library/Processors and Peripherals" />
+ <window width="1932" height="1059" x="-6" y="26" />
 </preferences>

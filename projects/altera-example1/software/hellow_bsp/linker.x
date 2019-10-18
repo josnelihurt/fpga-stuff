@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_cpu' in SOPC Builder design 'nios_core'
  * SOPC Builder design path: ../../nios_core.sopcinfo
  *
- * Generated: Sun Oct 06 16:34:28 COT 2019
+ * Generated: Tue Oct 08 21:14:12 COT 2019
  */
 
 /*
@@ -50,12 +50,14 @@
 
 MEMORY
 {
-    reset : ORIGIN = 0x1000, LENGTH = 32
-    onchip_memory : ORIGIN = 0x1020, LENGTH = 4064
+    intel_generic_serial_flash_interface_avl_mem : ORIGIN = 0x0, LENGTH = 1048576
+    reset : ORIGIN = 0x104000, LENGTH = 32
+    onchip_memory : ORIGIN = 0x104020, LENGTH = 14968
 }
 
 /* Define symbols for each memory base-address */
-__alt_mem_onchip_memory = 0x1000;
+__alt_mem_intel_generic_serial_flash_interface_avl_mem = 0x0;
+__alt_mem_onchip_memory = 0x104000;
 
 OUTPUT_FORMAT( "elf32-littlenios2",
                "elf32-littlenios2",
@@ -307,7 +309,24 @@ SECTIONS
      *
      */
 
-    .onchip_memory LOADADDR (.bss) + SIZEOF (.bss) : AT ( LOADADDR (.bss) + SIZEOF (.bss) )
+    .intel_generic_serial_flash_interface_avl_mem : AT ( LOADADDR (.bss) + SIZEOF (.bss) )
+    {
+        PROVIDE (_alt_partition_intel_generic_serial_flash_interface_avl_mem_start = ABSOLUTE(.));
+        *(.intel_generic_serial_flash_interface_avl_mem .intel_generic_serial_flash_interface_avl_mem. intel_generic_serial_flash_interface_avl_mem.*)
+        . = ALIGN(4);
+        PROVIDE (_alt_partition_intel_generic_serial_flash_interface_avl_mem_end = ABSOLUTE(.));
+    } > intel_generic_serial_flash_interface_avl_mem
+
+    PROVIDE (_alt_partition_intel_generic_serial_flash_interface_avl_mem_load_addr = LOADADDR(.intel_generic_serial_flash_interface_avl_mem));
+
+    /*
+     *
+     * This section's LMA is set to the .text region.
+     * crt0 will copy to this section's specified mapped region virtual memory address (VMA)
+     *
+     */
+
+    .onchip_memory LOADADDR (.intel_generic_serial_flash_interface_avl_mem) + SIZEOF (.intel_generic_serial_flash_interface_avl_mem) : AT ( LOADADDR (.intel_generic_serial_flash_interface_avl_mem) + SIZEOF (.intel_generic_serial_flash_interface_avl_mem) )
     {
         PROVIDE (_alt_partition_onchip_memory_start = ABSOLUTE(.));
         *(.onchip_memory .onchip_memory. onchip_memory.*)
@@ -367,7 +386,7 @@ SECTIONS
 /*
  * Don't override this, override the __alt_stack_* symbols instead.
  */
-__alt_data_end = 0x2000;
+__alt_data_end = 0x107a98;
 
 /*
  * The next two symbols define the location of the default stack.  You can
@@ -383,4 +402,4 @@ PROVIDE( __alt_stack_limit   = __alt_stack_base );
  * Override this symbol to put the heap in a different memory.
  */
 PROVIDE( __alt_heap_start    = end );
-PROVIDE( __alt_heap_limit    = 0x2000 );
+PROVIDE( __alt_heap_limit    = 0x107a98 );

@@ -27,17 +27,16 @@ CMD_Product_ID								=	8'h00,
 CMD_Data_read_write						=	8'h22,
 
 STATE_INITIALIZE							= 4'h1,
+STATE_RESET_WAIT							= 4'h9,
+STATE_RESET_WAIT_DONE					= 4'ha,
+STATE_INIT_SEQ								= 4'hb,
 STATE_IDLE									= 4'h2,
-STATE_TRANSFER_CMD 						= 4'h3,
+STATE_PROCESS_CMD							= 4'he,
 STATE_TRANSFER_PIXEL						= 4'h4,
 STATE_TRANSFER_PIXEL_LOAD_CMD 		= 4'h5,
 STATE_TRANSFER_PIXEL_LOAD_CMD_END	= 4'h6,
 STATE_TRANSFER_PIXEL_LOAD_DATA		= 4'h7,
 STATE_TRANSFER_PIXEL_LOAD_DATA_END	= 4'h8,
-STATE_RESET_WAIT							= 4'h9,
-STATE_RESET_WAIT_DONE					= 4'ha,
-STATE_INIT_SEQ								= 4'hb,
-STATE_PROCESS_CMD							= 4'he,
 
 CMD_NOP		=	4'h0,
 CMD_HOME		= 	4'h1,
@@ -91,14 +90,14 @@ always @(posedge clk or posedge rst) begin
   end else begin 	
 		case (fsm_state)
 			STATE_IDLE: begin
-				fsm_state <= STATE_IDLE;
 				lcd_cs <= HIGH;
-				if(step) begin
+				if(step) 
 					fsm_state <= STATE_PROCESS_CMD;
-				end
+				else
+					fsm_state <= STATE_IDLE;					
 			end
 			STATE_PROCESS_CMD: begin
-				/*case (cmd_in) 
+				case (cmd_in) 
 				CMD_NOP: fsm_state <= STATE_IDLE;
 				CMD_HOME: begin
 					fsm_state <= STATE_IDLE;
@@ -112,14 +111,12 @@ always @(posedge clk or posedge rst) begin
 				CMD_SET_XY: begin
 					fsm_state <= STATE_IDLE;
 				end	
-				CMD_SET_P: begin*/
+				CMD_SET_P: begin
 					fsm_state <= STATE_TRANSFER_PIXEL;
-				/*end			
+				end			
 				default: fsm_state <= STATE_IDLE;
-				endcase*/
+				endcase
 			end
-			STATE_TRANSFER_CMD: begin
-			end			
 			STATE_TRANSFER_PIXEL: begin
 				lcd_cs <= LOW;
 				bus_step_reg <= LOW;
@@ -145,7 +142,7 @@ always @(posedge clk or posedge rst) begin
 			STATE_TRANSFER_PIXEL_LOAD_DATA_END : begin
 				bus_step_reg <= LOW;
 				if(bus_done) begin
-					fsm_state <= STATE_TRANSFER_PIXEL_LOAD_DATA; 
+					fsm_state <= STATE_IDLE; 
 				end
 			end
 			STATE_INITIALIZE: begin
