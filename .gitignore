@@ -8,3 +8,4 @@ syn_install_scripts
 *.save
 *.bak
 
+.metadata
