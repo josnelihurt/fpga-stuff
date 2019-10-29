@@ -82,9 +82,9 @@ set_location_assignment PIN_V13 -to display_7seg_anodes[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to display_7seg_anodes[2]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to display_7seg_anodes[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to display_7seg_anodes[0]
-set_location_assignment PIN_C20 -to tm1638_strobe
 set_location_assignment PIN_C19 -to tm1638_data_io
-set_location_assignment PIN_C17 -to tm1638_clk
+set_location_assignment PIN_C17 -to tm1638_strobe
+set_location_assignment PIN_C20 -to tm1638_clk
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to tm1638_strobe
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to tm1638_data_io
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to tm1638_clk
@@ -166,6 +166,91 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to probe_bus[3]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to probe_bus[2]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to probe_bus[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to probe_bus[0]
+#SDRAM
+
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[12]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[11]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[10]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[9]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[8]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_BA[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_BA[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CAS_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CKE
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CLK
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CS_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[15]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[14]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[13]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[12]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[11]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[10]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[9]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[8]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_WE_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_UDQM
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_RAS_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_LDQM
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[2]
+set_location_assignment PIN_AB4 -to DRAM_WE_N
+set_location_assignment PIN_W7 -to DRAM_UDQM
+set_location_assignment PIN_AB3 -to DRAM_RAS_N
+set_location_assignment PIN_AA5 -to DRAM_LDQM
+set_location_assignment PIN_AA10 -to DRAM_DQ[0]
+set_location_assignment PIN_AB9 -to DRAM_DQ[1]
+set_location_assignment PIN_AA9 -to DRAM_DQ[2]
+set_location_assignment PIN_AB8 -to DRAM_DQ[3]
+set_location_assignment PIN_AA8 -to DRAM_DQ[4]
+set_location_assignment PIN_AB7 -to DRAM_DQ[5]
+set_location_assignment PIN_AA7 -to DRAM_DQ[6]
+set_location_assignment PIN_AB5 -to DRAM_DQ[7]
+set_location_assignment PIN_Y7 -to DRAM_DQ[8]
+set_location_assignment PIN_W8 -to DRAM_DQ[9]
+set_location_assignment PIN_Y8 -to DRAM_DQ[10]
+set_location_assignment PIN_V9 -to DRAM_DQ[11]
+set_location_assignment PIN_V10 -to DRAM_DQ[12]
+set_location_assignment PIN_Y10 -to DRAM_DQ[13]
+set_location_assignment PIN_W10 -to DRAM_DQ[14]
+set_location_assignment PIN_V11 -to DRAM_DQ[15]
+set_location_assignment PIN_AA3 -to DRAM_CS_N
+set_location_assignment PIN_Y6 -to DRAM_CLK
+set_location_assignment PIN_W6 -to DRAM_CKE
+set_location_assignment PIN_AA4 -to DRAM_CAS_N
+set_location_assignment PIN_Y1 -to DRAM_BA[0]
+set_location_assignment PIN_W2 -to DRAM_BA[1]
+set_location_assignment PIN_V2 -to DRAM_ADDR[0]
+set_location_assignment PIN_V1 -to DRAM_ADDR[1]
+set_location_assignment PIN_U2 -to DRAM_ADDR[2]
+set_location_assignment PIN_U1 -to DRAM_ADDR[3]
+set_location_assignment PIN_V3 -to DRAM_ADDR[4]
+set_location_assignment PIN_V4 -to DRAM_ADDR[5]
+set_location_assignment PIN_Y2 -to DRAM_ADDR[6]
+set_location_assignment PIN_AA1 -to DRAM_ADDR[7]
+set_location_assignment PIN_Y3 -to DRAM_ADDR[8]
+set_location_assignment PIN_V5 -to DRAM_ADDR[9]
+set_location_assignment PIN_W1 -to DRAM_ADDR[10]
+set_location_assignment PIN_Y4 -to DRAM_ADDR[11]
+set_location_assignment PIN_V6 -to DRAM_ADDR[12]
+#end SDRAM
+
+
+set_location_assignment PIN_A8 -to RESET_N
+
 set_global_assignment -name TOP_LEVEL_ENTITY system
 set_global_assignment -name ENABLE_LOGIC_ANALYZER_INTERFACE OFF
 set_global_assignment -name USE_LOGIC_ANALYZER_INTERFACE_FILE output_files/lai1.lai
@@ -268,7 +353,7 @@ set_global_assignment -name EDA_TEST_BENCH_FILE testbenches/system_tb.v -section
 set_global_assignment -name DEVICE_FILTER_PIN_COUNT 484
 set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 8
 set_global_assignment -name CRC_ERROR_OPEN_DRAIN ON
-set_global_assignment -name CYCLONEII_RESERVE_NCEO_AFTER_CONFIGURATION "USE AS PROGRAMMING PIN"
+set_global_assignment -name CYCLONEII_RESERVE_NCEO_AFTER_CONFIGURATION "USE AS REGULAR IO"
 set_global_assignment -name ENABLE_BOOT_SEL_PIN OFF
 set_global_assignment -name ENABLE_CONFIGURATION_PINS OFF
 set_global_assignment -name ENABLE_OCT_DONE OFF
@@ -278,30 +363,8 @@ set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -
 set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -fall
 set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -rise
 set_global_assignment -name USE_CONFIGURATION_DEVICE ON
-set_global_assignment -name RESERVE_FLASH_NCE_AFTER_CONFIGURATION "AS INPUT TRI-STATED"
+set_global_assignment -name RESERVE_FLASH_NCE_AFTER_CONFIGURATION "USE AS REGULAR IO"
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
-set_global_assignment -name QIP_FILE nios_core/synthesis/nios_core.qip
-set_global_assignment -name VERILOG_FILE hdl/delay_ms.v
-set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_main_fsm.v
-set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_init_values.v
-set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_lcd_init.v
-set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_rom_init_cmd.v
-set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_bus_controller.v
-set_global_assignment -name VERILOG_FILE hdl/single_shot_counter.v
-set_global_assignment -name VERILOG_FILE hdl/seven_segments_handler.v
-set_global_assignment -name VERILOG_FILE hdl/edge_detect.v
-set_global_assignment -name VERILOG_FILE hdl/clock_divider.v
-set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_controller.v
-set_global_assignment -name VERILOG_FILE testbenches/system_tb.v
-set_global_assignment -name SIGNALTAP_FILE stp1.stp
-set_global_assignment -name VERILOG_FILE "../../rtl-generic/tm1638/tm1638_keys_display_encoded.v"
-set_global_assignment -name VERILOG_FILE "../../rtl-generic/tm1638/tm1638_keys_display.v"
-set_global_assignment -name VERILOG_FILE "../../rtl-generic/tm1638/tm1638.v"
-set_global_assignment -name SDC_FILE "blinking-test.sdc"
-set_global_assignment -name VERILOG_FILE "../../rtl-generic/7segdriver/Led7Seg.v"
-set_global_assignment -name VERILOG_FILE "../../rtl-generic/counter/counter.v"
-set_global_assignment -name VERILOG_FILE system.v
-set_global_assignment -name QIP_FILE PLL.qip
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
@@ -309,5 +372,40 @@ set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 #set_location_assignment PIN_K2 -to data_flash_spi_clk
 #set_location_assignment PIN_K1 -to data_flash_spi_data0
 #set_location_assignment PIN_D1 -to data_flash_spi_asdo
+set_global_assignment -name RESERVE_DATA0_AFTER_CONFIGURATION "USE AS REGULAR IO"
+set_global_assignment -name RESERVE_DATA1_AFTER_CONFIGURATION "USE AS REGULAR IO"
+set_global_assignment -name RESERVE_DCLK_AFTER_CONFIGURATION "USE AS REGULAR IO"
+set_global_assignment -name VERILOG_FILE hdl/RW_Test.v
+set_global_assignment -name VERILOG_FILE hdl/sdram_control/command.v
+set_global_assignment -name QIP_FILE hdl/sdram_control/PLL_SDRAM.qip
+set_global_assignment -name SOURCE_FILE hdl/sdram_control/Sdram_Params.h
+set_global_assignment -name VERILOG_FILE hdl/sdram_control/Sdram_Control.v
+set_global_assignment -name VERILOG_FILE hdl/sdram_control/sdr_data_path.v
+set_global_assignment -name VERILOG_FILE hdl/sdram_control/control_interface.v
+set_global_assignment -name QIP_FILE hdl/sdram_control/sdram_pll0.qip
+set_global_assignment -name QIP_FILE hdl/sdram_control/Sdram_WR_FIFO.qip
+set_global_assignment -name QIP_FILE hdl/sdram_control/Sdram_RD_FIFO.qip
+set_global_assignment -name QSYS_FILE nios_core.qsys
+set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_rom_init_cmd.v
+set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_reset_generator.v
+set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_main_fsm.v
+set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_lcd_init.v
+set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_init_values.v
+set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_controller_fsm_enabler.v
+set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_controller_data_sync.v
+set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_controller.v
+set_global_assignment -name VERILOG_FILE hdl/hx8352/hx8352_bus_controller.v
+set_global_assignment -name VERILOG_FILE hdl/single_shot_counter.v
+set_global_assignment -name VERILOG_FILE hdl/seven_segments_handler.v
+set_global_assignment -name VERILOG_FILE hdl/edge_detect.v
+set_global_assignment -name VERILOG_FILE hdl/delay_ms.v
+set_global_assignment -name VERILOG_FILE hdl/clock_divider.v
+set_global_assignment -name VERILOG_FILE "../../rtl-generic/tm1638/tm1638_keys_display_encoded.v"
+set_global_assignment -name VERILOG_FILE "../../rtl-generic/tm1638/tm1638_keys_display.v"
+set_global_assignment -name VERILOG_FILE "../../rtl-generic/tm1638/tm1638.v"
+set_global_assignment -name VERILOG_FILE "../../rtl-generic/7segdriver/Led7Seg.v"
+set_global_assignment -name VERILOG_FILE "../../rtl-generic/counter/counter.v"
+set_global_assignment -name VERILOG_FILE system.v
+
 set_global_assignment -name SLD_FILE db/stp1_auto_stripped.stp
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

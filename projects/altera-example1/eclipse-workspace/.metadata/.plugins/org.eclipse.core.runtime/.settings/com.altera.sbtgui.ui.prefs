@@ -1,4 +1,7 @@
 eclipse.preferences.version=1
-newSoftwareExampleWizardPage.defaultLocation=/home/jrb/code/fpga-stuff/projects/altera-example1/software/nios-test
+newApplicationWizardPage.defaultLocation=D\:\\code\\fpga-stuff\\projects\\altera-example1\\software\\test1
+newBspWizardPage.defaultLocation=/home/jrb/code/fpga-stuff/projects/altera-example1/software/bsp
+newBspWizardPage.sopcinfoFile=/home/jrb/code/fpga-stuff/projects/altera-example1/nios_core.sopcinfo
+newSoftwareExampleWizardPage.defaultLocation=/home/jrb/code/fpga-stuff/projects/altera-example1/software/t4
 newSoftwareExampleWizardPage.sopcinfoFile=/home/jrb/code/fpga-stuff/projects/altera-example1/nios_core.sopcinfo
-newSoftwareExampleWizardPage2.newBspLocation=/home/jrb/code/fpga-stuff/projects/altera-example1/software/nios-test_bsp
+newSoftwareExampleWizardPage2.newBspLocation=/home/jrb/code/fpga-stuff/projects/altera-example1/software/t4_bsp

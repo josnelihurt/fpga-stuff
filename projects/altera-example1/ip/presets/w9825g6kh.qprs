@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ip>
+ <presets version="12.1">
+  <preset
+     name="w9825g6kh"
+     kind="altera_avalon_new_sdram_controller"
+     version="All"
+     description="">
+   <parameter name="casLatency" value="2" />
+   <parameter name="refreshPeriod" value="7.8125" />
+   <parameter name="rowWidth" value="13" />
+   <parameter name="powerUpDelay" value="200.0" />
+   <parameter name="TWR" value="20.0" />
+   <parameter name="TRP" value="40.0" />
+   <parameter name="numberOfChipSelects" value="1" />
+   <parameter name="initRefreshCommands" value="8" />
+   <parameter name="TAC" value="6.0" />
+   <parameter name="TRCD" value="20.0" />
+   <parameter name="columnWidth" value="9" />
+   <parameter name="generateSimulationModel" value="false" />
+   <parameter name="TRFC" value="60.0" />
+   <parameter name="dataWidth" value="16" />
+   <parameter name="numberOfBanks" value="4" />
+  </preset>
+ </presets>
+</ip>

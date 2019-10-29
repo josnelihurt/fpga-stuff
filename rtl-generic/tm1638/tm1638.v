@@ -3,7 +3,8 @@ module tm1638(
     input rst,
 
     input step,
-    inout [7:0] data,
+    input [7:0] data_in,
+    output [7:0] data_out,
     input rw,
 
     output busy,
@@ -26,9 +27,7 @@ module tm1638(
     reg dio_out_d;
     reg [2:0] ctr_d, ctr_q;
 
-    // output read data if we're reading
-    assign data = rw ? 8'hZZ : data_out_q;
-
+	 assign data_out = data_d;
     // we're busy if we're not idle
     assign busy = cur_state != S_IDLE;
 
@@ -50,7 +49,7 @@ module tm1638(
                 if (step) begin
                     // if we're reading, set to zero, otherwise latch in
                     // data to send
-                    data_d = rw ? data : 8'b0;
+                    data_d = rw ? data_in : 8'b0;
                     next_state = S_WAIT;
                 end
             end

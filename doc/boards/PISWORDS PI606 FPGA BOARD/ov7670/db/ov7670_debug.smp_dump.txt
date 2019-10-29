@@ -1,0 +1,39 @@
+
+State Machine - |ov7670_debug|mysystem:u0|oc_i2c_master:oc_iic_0|i2c_master_top:i2c_top_inst|i2c_master_byte_ctrl:u1|\statemachine:c_state
+Name \statemachine:c_state.st_stop \statemachine:c_state.st_ack \statemachine:c_state.st_write \statemachine:c_state.st_read \statemachine:c_state.st_start \statemachine:c_state.st_idle 
+\statemachine:c_state.st_idle 0 0 0 0 0 0 
+\statemachine:c_state.st_start 0 0 0 0 1 1 
+\statemachine:c_state.st_read 0 0 0 1 0 1 
+\statemachine:c_state.st_write 0 0 1 0 0 1 
+\statemachine:c_state.st_ack 0 1 0 0 0 1 
+\statemachine:c_state.st_stop 1 0 0 0 0 1 
+
+State Machine - |ov7670_debug|mysystem:u0|oc_i2c_master:oc_iic_0|i2c_master_top:i2c_top_inst|i2c_master_byte_ctrl:u1|i2c_master_bit_ctrl:u1|c_state
+Name c_state.wr_d c_state.wr_c c_state.wr_b c_state.wr_a c_state.rd_d c_state.rd_c c_state.rd_b c_state.rd_a c_state.stop_d c_state.stop_c c_state.stop_b c_state.stop_a c_state.start_e c_state.start_d c_state.start_c c_state.start_b c_state.start_a c_state.idle 
+c_state.idle 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+c_state.start_a 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+c_state.start_b 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+c_state.start_c 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+c_state.start_d 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+c_state.start_e 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+c_state.stop_a 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+c_state.stop_b 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+c_state.stop_c 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+c_state.stop_d 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+c_state.rd_a 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+c_state.rd_b 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+c_state.rd_c 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+c_state.rd_d 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+c_state.wr_a 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+c_state.wr_b 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+c_state.wr_c 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+c_state.wr_d 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |ov7670_debug|mysystem:u0|mysystem_nios2:nios2|mysystem_nios2_nios2_oci:the_mysystem_nios2_nios2_oci|mysystem_nios2_jtag_debug_module_wrapper:the_mysystem_nios2_jtag_debug_module_wrapper|mysystem_nios2_jtag_debug_module_tck:the_mysystem_nios2_jtag_debug_module_tck|DRsize
+Name DRsize.101 DRsize.100 DRsize.011 DRsize.010 DRsize.001 DRsize.000 
+DRsize.000 0 0 0 0 0 0 
+DRsize.001 0 0 0 0 1 1 
+DRsize.010 0 0 0 1 0 1 
+DRsize.011 0 0 1 0 0 1 
+DRsize.100 0 1 0 0 0 1 
+DRsize.101 1 0 0 0 0 1 

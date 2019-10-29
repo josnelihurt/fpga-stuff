@@ -32,7 +32,7 @@ module qspi_inf_mux (
 		input  wire        sink2_endofpacket    //          .endofpacket
 	);
 
-	nios_core_intel_generic_serial_flash_interface_qspi_inf_inst_qspi_inf_mux_qspi_inf_mux qspi_inf_mux (
+	nios_core_intel_generic_serial_flash_interface_top_0_qspi_inf_inst_qspi_inf_mux_qspi_inf_mux qspi_inf_mux (
 		.clk                 (clk),                 //       clk.clk
 		.reset               (reset),               // clk_reset.reset
 		.src_ready           (src_ready),           //       src.ready

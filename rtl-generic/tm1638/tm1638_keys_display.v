@@ -55,19 +55,15 @@ module tm1638_keys_display
     //   tm_data    the tristate io pin to module
     reg tm_step;
     wire busy;
-    wire [7:0] tm_data, tm_in;
-    reg [7:0] tm_out;
-
-
-    assign tm_in = tm_data;
-    assign tm_data = tm1638_data_oe ? tm_out : 8'hZZ;
-
+    wire[7:0]  tm_in;
+    reg[7:0] tm_out;
 
     tm1638 u_tm1638 (
         .clk(clk_1MHz),
         .rst(rst),
         .step(tm_step),
-        .data(tm_data),
+        .data_in(tm_out),
+        .data_out(tm_in),
         .rw(tm1638_data_oe),
         .busy(busy),
         .sclk(tm1638_clk),
@@ -81,15 +77,10 @@ module tm1638_keys_display
             instruction_step <= 6'b0;
             tm1638_strobe <= HIGH;
             tm1638_data_oe <= HIGH;
-
             flush_reg <= 0;
             keys <= 8'b0;
-
-        end else 
-        begin
-
-            if (flush_reg && ~busy) 
-            begin
+        end else begin
+            if (flush_reg && ~busy) begin
                 case (instruction_step)
                     // *** KEYS ***
                     1:  {tm1638_strobe, tm1638_data_oe}     <= {LOW, HIGH};
@@ -147,14 +138,11 @@ module tm1638_keys_display
                 endcase
 
                 instruction_step <= instruction_step_next;
-
-            end else if (busy) 
-            begin
+            end else if (busy) begin
                 // pull latch low next clock cycle after module has been
                 // latched
                 tm_step <= LOW;
             end
-
             flush_reg <= ~flush_reg;
         end
     end

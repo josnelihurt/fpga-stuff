@@ -1,0 +1,27 @@
+Info: Starting: Create block symbol file (.bsf)
+Info: qsys-generate /home/jrb/code/fpga-stuff/projects/altera-example1/soc.qsys --block-symbol-file --output-directory=/home/jrb/code/fpga-stuff/projects/altera-example1/soc --family="Cyclone IV E" --part=EP4CE15F23C8
+Progress: Loading altera-example1/soc.qsys
+Progress: Reading input file
+Progress: Adding clk_0 [clock_source 19.1]
+Progress: Parameterizing module clk_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: qsys-generate succeeded.
+Info: Finished: Create block symbol file (.bsf)
+Info: 
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate /home/jrb/code/fpga-stuff/projects/altera-example1/soc.qsys --synthesis=VERILOG --output-directory=/home/jrb/code/fpga-stuff/projects/altera-example1/soc/synthesis --family="Cyclone IV E" --part=EP4CE15F23C8
+Progress: Loading altera-example1/soc.qsys
+Progress: Reading input file
+Progress: Adding clk_0 [clock_source 19.1]
+Progress: Parameterizing module clk_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: soc: Generating soc "soc" for QUARTUS_SYNTH
+Info: soc: Done "soc" with 1 modules, 1 files
+Info: qsys-generate succeeded.
+Info: Finished: Create HDL design files for synthesis

@@ -49,21 +49,21 @@ module nios_core_mm_interconnect_0_router_002_default_decode
                DEFAULT_RD_CHANNEL = -1,
                DEFAULT_DESTID = 0 
    )
-  (output [95 - 93 : 0] default_destination_id,
-   output [7-1 : 0] default_wr_channel,
-   output [7-1 : 0] default_rd_channel,
-   output [7-1 : 0] default_src_channel
+  (output [75 - 74 : 0] default_destination_id,
+   output [4-1 : 0] default_wr_channel,
+   output [4-1 : 0] default_rd_channel,
+   output [4-1 : 0] default_src_channel
   );
 
   assign default_destination_id = 
-    DEFAULT_DESTID[95 - 93 : 0];
+    DEFAULT_DESTID[75 - 74 : 0];
 
   generate
     if (DEFAULT_CHANNEL == -1) begin : no_default_channel_assignment
       assign default_src_channel = '0;
     end
     else begin : default_channel_assignment
-      assign default_src_channel = 7'b1 << DEFAULT_CHANNEL;
+      assign default_src_channel = 4'b1 << DEFAULT_CHANNEL;
     end
   endgenerate
 
@@ -73,8 +73,8 @@ module nios_core_mm_interconnect_0_router_002_default_decode
       assign default_rd_channel = '0;
     end
     else begin : default_rw_channel_assignment
-      assign default_wr_channel = 7'b1 << DEFAULT_WR_CHANNEL;
-      assign default_rd_channel = 7'b1 << DEFAULT_RD_CHANNEL;
+      assign default_wr_channel = 4'b1 << DEFAULT_WR_CHANNEL;
+      assign default_rd_channel = 4'b1 << DEFAULT_RD_CHANNEL;
     end
   endgenerate
 
@@ -93,7 +93,7 @@ module nios_core_mm_interconnect_0_router_002
     // Command Sink (Input)
     // -------------------
     input                       sink_valid,
-    input  [109-1 : 0]    sink_data,
+    input  [89-1 : 0]    sink_data,
     input                       sink_startofpacket,
     input                       sink_endofpacket,
     output                      sink_ready,
@@ -102,8 +102,8 @@ module nios_core_mm_interconnect_0_router_002
     // Command Source (Output)
     // -------------------
     output                          src_valid,
-    output reg [109-1    : 0] src_data,
-    output reg [7-1 : 0] src_channel,
+    output reg [89-1    : 0] src_data,
+    output reg [4-1 : 0] src_channel,
     output                          src_startofpacket,
     output                          src_endofpacket,
     input                           src_ready
@@ -112,18 +112,18 @@ module nios_core_mm_interconnect_0_router_002
     // -------------------------------------------------------
     // Local parameters and variables
     // -------------------------------------------------------
-    localparam PKT_ADDR_H = 56;
+    localparam PKT_ADDR_H = 50;
     localparam PKT_ADDR_L = 36;
-    localparam PKT_DEST_ID_H = 95;
-    localparam PKT_DEST_ID_L = 93;
-    localparam PKT_PROTECTION_H = 99;
-    localparam PKT_PROTECTION_L = 97;
-    localparam ST_DATA_W = 109;
-    localparam ST_CHANNEL_W = 7;
+    localparam PKT_DEST_ID_H = 75;
+    localparam PKT_DEST_ID_L = 74;
+    localparam PKT_PROTECTION_H = 79;
+    localparam PKT_PROTECTION_L = 77;
+    localparam ST_DATA_W = 89;
+    localparam ST_CHANNEL_W = 4;
     localparam DECODER_TYPE = 1;
 
-    localparam PKT_TRANS_WRITE = 59;
-    localparam PKT_TRANS_READ  = 60;
+    localparam PKT_TRANS_WRITE = 53;
+    localparam PKT_TRANS_READ  = 54;
 
     localparam PKT_ADDR_W = PKT_ADDR_H-PKT_ADDR_L + 1;
     localparam PKT_DEST_ID_W = PKT_DEST_ID_H-PKT_DEST_ID_L + 1;
@@ -158,7 +158,7 @@ module nios_core_mm_interconnect_0_router_002
     assign src_valid         = sink_valid;
     assign src_startofpacket = sink_startofpacket;
     assign src_endofpacket   = sink_endofpacket;
-    wire [7-1 : 0] default_src_channel;
+    wire [4-1 : 0] default_src_channel;
 
 
 
@@ -190,11 +190,11 @@ module nios_core_mm_interconnect_0_router_002
 
 
         if (destid == 0 ) begin
-            src_channel = 7'b01;
+            src_channel = 4'b01;
         end
 
         if (destid == 1  && read_transaction) begin
-            src_channel = 7'b10;
+            src_channel = 4'b10;
         end
 
 
